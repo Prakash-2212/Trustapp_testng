@@ -7,17 +7,17 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
 public class openingonetab {
-   
-    public static void main(String[] args) throws InterruptedException {
-        // Set the path to the ChromeDriver executable.
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\praka\\Downloads\\chromedriver-win64\\chromedriver.exe");
 
+    public static void main(String[] args) throws InterruptedException {
+//        // Set the path to the ChromeDriver executable.
+//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\praka\\Downloads\\chromedriver_win32 (13)\\chromedriver.exe");
+//        
+    	
         ChromeOptions options = new ChromeOptions();
         options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
         options.addArguments("--proxy-server=http://your-proxy-server:port");
@@ -58,50 +58,33 @@ public class openingonetab {
         String newTabHandle = handles.iterator().next();
         driver.switchTo().window(newTabHandle);
 
-     
-
         // Wait for the page to load (you can use WebDriverWait if needed)
         Thread.sleep(5000);
 
-       
-        //locate searchbar
-     
-     		WebElement searchbar = driver.findElement(By.xpath("//input[@placeholder='Search']"));
-     		Thread.sleep(8000);
-
-     		// to highlight the searchbar
-     		JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-     		jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')", searchbar);
-     		Thread.sleep(4000);
-
-        
+      
     }
 
-    private static WebDriver openChrome(String url, ChromeOptions options) throws IOException {
-        String os = System.getProperty("os.name").toLowerCase();
-        ProcessBuilder processBuilder;
+    private static WebDriver openChrome(String url, ChromeOptions options) throws IOException, InterruptedException {
+        WebDriver driver = new ChromeDriver(options);
 
-        if (os.contains("win")) {
-            // Windows
-            processBuilder = new ProcessBuilder("cmd.exe", "/c", "start", "chrome", url);
-        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-            // Unix/Linux/Mac
-            processBuilder = new ProcessBuilder("google-chrome", url);
-        } else {
-            throw new UnsupportedOperationException("Unsupported operating system");
-        }
+        // Wait for Chrome to open (you may need to adjust this as needed)
+        Thread.sleep(5000);
 
-        try {
-            // Start Chrome with the provided options
-            processBuilder.start();
+        // Locate Search_bar
+        WebElement Search_bar = driver.findElement(By.xpath("//input[@placeholder='Search']"));
 
-            // Wait for Chrome to open (adjust this as needed)
-            Thread.sleep(5000);
+        // to highlight the Log_in
+        JavascriptExecutor jse5 = (JavascriptExecutor) driver;
+        jse5.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Search_bar);
+        Thread.sleep(2000);
 
-            // Create a new instance of ChromeDriver with options
-            return new ChromeDriver(options);
-        } catch (InterruptedException e) {
-            throw new IOException("Failed to open Chrome", e);
-        }
+        Search_bar.click();
+        Search_bar.clear();
+        Thread.sleep(1000);
+
+        Search_bar.sendKeys("The Economist");
+        Thread.sleep(5000);
+
+        return driver;
     }
 }
