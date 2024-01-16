@@ -17,7 +17,10 @@ public class hhfhc {
         // Set the path to the ChromeDriver executable.
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\praka\\Downloads\\chromedriver-win64\\chromedriver.exe");
 
-        String url = "https://www.google.com/";
+        String url = "https://twitter.com/TheEconomist";
+        
+        Thread.sleep(10000);
+        
 
         // Open Google Chrome and perform actions
         try {
@@ -27,6 +30,18 @@ public class hhfhc {
 
             // Open a new tab and switch to "twitter.com"
             openNewTab(driver, "https://twitter.com/");
+            
+            // locate TrustApp_mark
+            WebElement TrustApp_mark = driver.findElement(By.xpath("(//img[@alt='TrustApp mark'])"));
+
+            // to highlight the TrustApp_mark
+            JavascriptExecutor jse7 = (JavascriptExecutor) driver;
+            jse7.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", TrustApp_mark);
+            Thread.sleep(2000);
+
+            // Perform a hover action on TrustApp_mark
+            Actions actions = new Actions(driver);
+            actions.moveToElement(TrustApp_mark).perform();
 
             // Close the browser
             driver.quit();
@@ -60,6 +75,9 @@ public class hhfhc {
         Thread.sleep(5000);
 
         // You can continue with additional code in the new tab if needed
+        driver.get("https://twitter.com/TheEconomist");
+        
+        
     }
 
     private static WebDriver openChrome(String url) throws IOException {

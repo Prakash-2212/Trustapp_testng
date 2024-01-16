@@ -1,5 +1,8 @@
 package test;
 
+
+import java.io.File;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -9,82 +12,57 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
-import java.io.File;
-
 public class ChromeExtensionAutomation_clone {
 
     public static void main(String[] args) throws InterruptedException {
+    	ChromeOptions option = new ChromeOptions();
         // Set the path to the ChromeDriver executable.
-    	System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\praka\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
+        option.setBinary("C:\\Users\\praka\\Downloads\\chromedriver-win64 (1)\\chromedriver-win64\\chromedriver.exe");
+//        WebDriver driver= new ChromeDriver(option);
 
-        // Create an instance of ChromeOptions.
-        ChromeOptions options = new ChromeOptions();
-        options.addExtensions(new File("./Extensions/TrustApp.crx"));
+        String url = "https://twitter.com/TheEconomist";
+        String extensionId = "gbjgcjcomfhmleglhdfgibgnmplodedb"; // Replace with your extension ID
 
-        // Create an instance of ChromeDriver with the options.
-        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = openChromeWithExtension(url, extensionId);
 
-        // Navigate to a website (replace with the desired URL).
         driver.get("https://twitter.com/home");
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         driver.manage().window().maximize();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
-        // locate Username
         WebElement Username = driver.findElement(By.xpath("//input[@name='text']"));
-
-        // to highlight the Chrome_Web_Store
-        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-        jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')", Username);
+        highlightElement(driver, Username);
         Thread.sleep(2000);
-
         Username.click();
         Username.clear();
-        Username.sendKeys("PRAKASH31226122");
-        Thread.sleep(2000);
+        Username.sendKeys("TrustApp_Tsting");
+        Thread.sleep(3000);
 
-        // locate Next
         WebElement Next = driver.findElement(By.xpath("//span[contains(text(),'Next')]"));
-
-        // to highlight the Next
-        JavascriptExecutor jse2 = (JavascriptExecutor) driver;
-        jse2.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Next);
+        highlightElement(driver, Next);
         Thread.sleep(2000);
-
         Next.click();
 
         Thread.sleep(2000);
 
-        // locate Password
         WebElement Password = driver.findElement(By.xpath("//input[@name='password']"));
-
-        // to highlight the Password
-        JavascriptExecutor jse3 = (JavascriptExecutor) driver;
-        jse3.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')", Password);
+        highlightElement(driver, Password);
         Thread.sleep(2000);
-
         Password.click();
         Password.clear();
-        Password.sendKeys("Ankush@4948");
+        Password.sendKeys("TrustApp@4948");
         Thread.sleep(2000);
 
-        // locate Log_in
         WebElement Log_in = driver.findElement(By.xpath("//span[contains(text(),'Log in')]"));
-
-        // to highlight the Log_in
-        JavascriptExecutor jse4 = (JavascriptExecutor) driver;
-        jse4.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Log_in);
+        highlightElement(driver, Log_in);
         Thread.sleep(2000);
-
         Log_in.click();
 
         Thread.sleep(15000);
 
-        // driver.navigate().refresh();
         Thread.sleep(1000);
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -100,164 +78,111 @@ public class ChromeExtensionAutomation_clone {
         js.executeScript("window.scrollBy(0,650)", "");
         Thread.sleep(3000);
 
-        // locate Search_bar
         WebElement Search_bar = driver.findElement(By.xpath("//input[@placeholder='Search']"));
-
-        // to highlight the Log_in
-        JavascriptExecutor jse5 = (JavascriptExecutor) driver;
-        jse5.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Search_bar);
+        highlightElement(driver, Search_bar);
         Thread.sleep(2000);
-
         Search_bar.click();
         Search_bar.clear();
         Thread.sleep(1000);
-
         Search_bar.sendKeys("The Economist");
         Thread.sleep(1000);
-
         Search_bar.sendKeys(Keys.RETURN);
         Thread.sleep(3000);
 
-        // locate The_Economist
         WebElement The_Economist = driver.findElement(By.xpath("//span[normalize-space()='@TheEconomist']"));
-
-        // to highlight the The_Economist
-        JavascriptExecutor jse6 = (JavascriptExecutor) driver;
-        jse6.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", The_Economist);
+        highlightElement(driver, The_Economist);
         Thread.sleep(2000);
-
         The_Economist.click();
-        jse6.executeScript("window.scrollBy(0,350)", "");
         Thread.sleep(3000);
 
-        // locate TrustApp_mark
         WebElement TrustApp_mark = driver.findElement(By.xpath("//div//img[@alt='TrustApp mark']"));
-
-        // to highlight the TrustApp_mark
-        JavascriptExecutor jse7 = (JavascriptExecutor) driver;
-        jse7.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", TrustApp_mark);
+        highlightElement(driver, TrustApp_mark);
         Thread.sleep(2000);
-
-        // Perform a hover action on TrustApp_mark
         Actions actions = new Actions(driver);
         actions.moveToElement(TrustApp_mark).perform();
 
-
-        
-        // locate Search_bar
         WebElement Search_bar1 = driver.findElement(By.xpath("//input[@placeholder='Search']"));
-
-        // to highlight the Log_in
-        JavascriptExecutor jse8 = (JavascriptExecutor) driver;
-        jse8.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Search_bar1);
+        highlightElement(driver, Search_bar1);
         Thread.sleep(2000);
-
         Search_bar1.click();
         Search_bar1.clear();
         Thread.sleep(1000);
-
         Search_bar1.sendKeys("CNN");
         Thread.sleep(2000);
-
         Search_bar1.sendKeys(Keys.RETURN);
         Thread.sleep(3000);
-        
-        
-        // locate CNN
+
         WebElement CNN = driver.findElement(By.xpath("//span[normalize-space()='CNN']"));
-
-        // to highlight the CNN
-        JavascriptExecutor jse9 = (JavascriptExecutor) driver;
-        jse9.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", CNN);
+        highlightElement(driver, CNN);
         Thread.sleep(2000);
-        
         CNN.click();
-        jse9.executeScript("window.scrollBy(0,450)", "");
         Thread.sleep(3000);
-        
-        // locate TrustApp_mark1
+
         WebElement TrustApp_mark1 = driver.findElement(By.xpath("//div//img[@alt='TrustApp mark']"));
-
-        // to highlight the TrustApp_mark
-        JavascriptExecutor jse10 = (JavascriptExecutor) driver;
-        jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", TrustApp_mark1);
+        highlightElement(driver, TrustApp_mark1);
         Thread.sleep(2000);
-
-        // Perform a hover action on TrustApp_mark
         Actions actions1 = new Actions(driver);
         actions1.moveToElement(TrustApp_mark1).perform();
-        
-        
-        
-//        WebElement newsElement = driver.findElement(By.cssSelector("div[id='id__wagpq6ggja'] span[class='css-1qaijid r-bcqeeo r-qvutc0 r-poiln3']"));
-//        String newsText = newsElement.getText();
-//        System.out.println(newsText);
-        
-        
-        
-        // locate Post
-        WebElement Post = driver.findElement(By.xpath("//a[@aria-label='Post']"));
 
-        // to highlight the Post
-        JavascriptExecutor jse11 = (JavascriptExecutor) driver;
-        jse11.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Post);
+        WebElement Profile = driver.findElement(By.xpath("//span[normalize-space()='Profile']"));
+        highlightElement(driver, Profile);
         Thread.sleep(2000);
-        
-        Post.click();
-        
+        Profile.click();
+
         Thread.sleep(3000);
-        
-        
-        // locate Post_text
-        WebElement Post_text = driver.findElement(By.xpath("//div[@aria-label='Post text']"));
 
-        // to highlight the Post_text
-        JavascriptExecutor jse12 = (JavascriptExecutor) driver;
-        jse12.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Post_text);
+        WebElement Post = driver.findElement(By.xpath("//a[@aria-label='Post']"));
+        highlightElement(driver, Post);
         Thread.sleep(2000);
-        
+        Post.click();
+
+        Thread.sleep(3000);
+
+        WebElement Post_text = driver.findElement(By.xpath("//div[@aria-label='Post text']"));
+        highlightElement(driver, Post_text);
+        Thread.sleep(2000);
         Post_text.click();
         Post_text.clear();
-        
-        Post_text.sendKeys("For the first time since Vladimir Putin invaded Ukraine, it "
-        		+ "looks as if he could win. His biggest asset is Europe’s fatalism, "
-        		+ "complacency and shocking lack of strategic vision https://econ.st/47DL80U");
-        
-        Thread.sleep(2000);
-        
-        
-        // locate Post1
+        Post_text.sendKeys("https://www.economist.com/interactive/international/2023/08/03/western-values-are-steadily-diverging-from-the-rest-of-the-world");
+
+        Thread.sleep(4000);
+
         WebElement Post1 = driver.findElement(By.xpath(" //span[normalize-space()='Post']"));
-
-        // to highlight the Post
-        JavascriptExecutor jse13 = (JavascriptExecutor) driver;
-        jse13.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Post1);
+        highlightElement(driver, Post1);
         Thread.sleep(2000);
-        
-      
         Post1.click();
-        
+
         Thread.sleep(2000);
 
-        
-        // locate Profile
-        WebElement Profile = driver.findElement(By.xpath("//span[normalize-space()='Profile']"));
-
-        // to highlight the Profile
-        JavascriptExecutor jse14 = (JavascriptExecutor) driver;
-        jse14.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Profile);
+        WebElement Profile1 = driver.findElement(By.xpath("//span[normalize-space()='Profile']"));
+        highlightElement(driver, Profile1);
         Thread.sleep(2000);
-        
-      
-        Profile.click();
-        
-        Thread.sleep(2000);
-        
-         jse14.executeScript("window.scrollBy(0,650)", "");
-        // Scroll down
-       // js.executeScript("window.scrollBy(0,850)", "");
+        Profile1.click();
 
-        // Don't forget to close the WebDriver when done.
-        //driver.quit();
+        Thread.sleep(2000);
+
+        js.executeScript("window.scrollBy(0,350)", "");
+
+        WebElement TrustApp_mark3 = driver.findElement(By.xpath("//div[@class='trust-app-verification-container trust-app-trusted-container']//img[@alt='TrustApp mark']"));
+        highlightElement(driver, TrustApp_mark3);
+        Thread.sleep(2000);
+        Actions actions2 = new Actions(driver);
+        actions1.moveToElement(TrustApp_mark3).perform();
+    }
+
+    private static WebDriver openChromeWithExtension(String url, String extensionId) {
+        ChromeOptions options = new ChromeOptions();
+     options.addExtensions(new File("./Extensions/TrustApp 1.1.14.0.crx"));
+//      options.addArguments("--load-extension=" + extensionId);
+        ChromeDriver driver = new ChromeDriver(options);
+        driver.get(url);
+        return driver;
+    }
+
+    private static void highlightElement(WebDriver driver, WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')", element);
     }
 }
+
+  //C:\Users\praka\AppData\Local\Google\Chrome\User Data\Default\Extensions
