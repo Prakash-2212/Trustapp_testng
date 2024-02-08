@@ -43,8 +43,8 @@ public class ClickOnExtension {
         // Your existing code...
 
         // Open a new tab
-        driver.switchTo().newWindow(WindowType.TAB);
-
+//        driver.switchTo().newWindow(WindowType.TAB);
+//
         // Navigate to the desired webpage in the new tab
         driver.get("https://twitter.com/home");
 

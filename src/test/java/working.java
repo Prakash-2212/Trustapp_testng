@@ -18,7 +18,7 @@ public class working {
         WebDriverManager.chromedriver().setup();
 
         // Example usage:
-        List<String> extensionPaths = List.of("./Extension/TrustApp 1.1.14.0.crx");
+        List<String> extensionPaths = List.of("./Extension/TrustApp 1.1.16.0.crx");
         WebDriver driver = createChromeDriverWithExtensions(extensionPaths);
 
         // Navigate to a website (replace with the desired URL).
@@ -40,7 +40,7 @@ public class working {
 
         Username.click();
         Username.clear();
-        Username.sendKeys("TrustApp_Tsting");
+        Username.sendKeys("TrustAppTesting");
         Thread.sleep(3000);
 
         // locate Next
@@ -56,8 +56,8 @@ public class working {
         Thread.sleep(2000);
 
         // locate Password
-        WebElement Password = driver.findElement(By.xpath("//input[@name='password']"));
-
+        WebElement Password = driver.findElement(By.xpath("(//input[@name='password'])[1]"));
+                                                           //input[@name='password']
         // to highlight the Password
         JavascriptExecutor jse3 = (JavascriptExecutor) driver;
         jse3.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')", Password);
@@ -96,26 +96,14 @@ public class working {
         js.executeScript("window.scrollBy(0,650)", "");
         Thread.sleep(3000);
 
-        // locate Search_bar
-        WebElement Search_bar = driver.findElement(By.xpath("//input[@placeholder='Search']"));
-
-        // to highlight the Log_in
-        JavascriptExecutor jse5 = (JavascriptExecutor) driver;
-        jse5.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Search_bar);
-        Thread.sleep(2000);
-
-        Search_bar.click();
-        Search_bar.clear();
-        Thread.sleep(1000);
-
-        Search_bar.sendKeys("The Economist");
-        Thread.sleep(1000);
-
-        Search_bar.sendKeys(Keys.RETURN);
+     
+        
+        driver.get("https://twitter.com/TheEconomist");
         Thread.sleep(3000);
-
+        
+        
         // locate The_Economist
-        WebElement The_Economist = driver.findElement(By.xpath("//span[normalize-space()='@TheEconomist']"));
+        WebElement The_Economist = driver.findElement(By.xpath("//span[normalize-space()='@TheEconomist'][1]"));
 
         // to highlight the The_Economist
         JavascriptExecutor jse6 = (JavascriptExecutor) driver;
@@ -137,27 +125,17 @@ public class working {
         // Perform a hover action on TrustApp_mark
         Actions actions = new Actions(driver);
         actions.moveToElement(TrustApp_mark).perform();
+        Thread.sleep(4000);
 
-        // locate Search_bar1
-        WebElement Search_bar1 = driver.findElement(By.xpath("//input[@placeholder='Search']"));
+    //--------------------------------------------------------------------------------------------------------------------------------------
 
-        // to highlight the Search_bar1
-        JavascriptExecutor jse8 = (JavascriptExecutor) driver;
-        jse8.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Search_bar1);
-        Thread.sleep(2000);
-
-        Search_bar1.click();
-        Search_bar1.clear();
-        Thread.sleep(1000);
-
-        Search_bar1.sendKeys("CNN");
-        Thread.sleep(2000);
-
-        Search_bar1.sendKeys(Keys.RETURN);
+        driver.get("https://twitter.com/CNN");
+        
         Thread.sleep(3000);
 
         // locate CNN
         WebElement CNN = driver.findElement(By.xpath("//span[normalize-space()='CNN']"));
+        Thread.sleep(2000);
 
         // to highlight the CNN
         JavascriptExecutor jse9 = (JavascriptExecutor) driver;
@@ -179,10 +157,7 @@ public class working {
         // Perform a hover action on TrustApp_mark
         Actions actions1 = new Actions(driver);
         actions1.moveToElement(TrustApp_mark1).perform();
-
-        // WebElement newsElement = driver.findElement(By.cssSelector("div[id='id__wagpq6ggja'] span[class='css-1qaijid r-bcqeeo r-qvutc0 r-poiln3']"));
-        // String newsText = newsElement.getText();
-        // System.out.println(newsText);
+        Thread.sleep(3000);
 
         // locate Profile
         WebElement Profile = driver.findElement(By.xpath("//span[normalize-space()='Profile']"));
@@ -194,7 +169,7 @@ public class working {
 
         Profile.click();
 
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
 
         // locate Post
         WebElement Post = driver.findElement(By.xpath("//a[@aria-label='Post']"));
@@ -219,14 +194,14 @@ public class working {
         Post_text.click();
         Post_text.clear();
 
-        Post_text.sendKeys("https://www.economist.com/interactive/international/2023/08/03/western-values-are-steadily-diverging-from-the-rest-of-the-world");
+        Post_text.sendKeys("https://www.theguardian.com/business/2024/feb/05/boeing-may-delay-more-737-max-deliveries-after-new-production-glitch-found");
 
-        Thread.sleep(4000);
+        Thread.sleep(3000);
 
         // locate Post1
         WebElement Post1 = driver.findElement(By.xpath(" //span[normalize-space()='Post']"));
 
-        // to highlight the Post
+        // to highlight the Post1
         JavascriptExecutor jse13 = (JavascriptExecutor) driver;
         jse13.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Post1);
         Thread.sleep(2000);
@@ -235,10 +210,10 @@ public class working {
 
         Thread.sleep(2000);
 
-        // locate Profile
+        // locate Profile1
         WebElement Profile1 = driver.findElement(By.xpath("//span[normalize-space()='Profile']"));
 
-        // to highlight the Profile
+        // to highlight the Profile1
         JavascriptExecutor jse14 = (JavascriptExecutor) driver;
         jse14.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Profile1);
         Thread.sleep(2000);
@@ -260,12 +235,189 @@ public class working {
         // Perform a hover action on TrustApp_mark
         Actions actions2 = new Actions(driver);
         actions1.moveToElement(TrustApp_mark3).perform();
+        Thread.sleep(3000);
+        
+       //-----------------------------------------------------------------------------------------------------------------------------------------------
+        
+        driver.get("https://twitter.com/TrustApp_Tsting/status/1742067234799821185");
+        Thread.sleep(5000);
+        
+//        
+//        //second tweet
+//        
+//        // locate Post2
+//        WebElement Post2 = driver.findElement(By.xpath("//a[@aria-label='Post']"));
+//
+//        // to highlight the Post
+//        JavascriptExecutor jse1112 = (JavascriptExecutor) driver;
+//        jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Post2);
+//        Thread.sleep(2000);
+//
+//        Post2.click();
+//
+//        Thread.sleep(3000);
+//
+//        // locate Post_text2
+//        WebElement Post_text2 = driver.findElement(By.xpath("//div[@aria-label='Post text']"));
+//
+//        // to highlight the Post_text2
+//        JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+//        jse12.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Post_text2);
+//        Thread.sleep(2000);
+//
+//        Post_text2.click();
+//        Post_text2.clear();
+//
+//        Post_text2.sendKeys("https://www.politico.com/news/2024/02/04/fed-powell-debt-sustainability-00139528");
+//
+//        Thread.sleep(3000);
+//
+//        // locate Post3
+//        WebElement Post3 = driver.findElement(By.xpath(" //span[normalize-space()='Post']"));
+//
+//        // to highlight the Post3
+//        JavascriptExecutor jse132 = (JavascriptExecutor) driver;
+//        jse13.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Post3);
+//        Thread.sleep(2000);
+//
+//        Post3.click();
+//
+//        Thread.sleep(2000);
+//
+//        // locate Profile2
+//        WebElement Profile2 = driver.findElement(By.xpath("//span[normalize-space()='Profile']"));
+//
+//        // to highlight the Profile2
+//        JavascriptExecutor jse142 = (JavascriptExecutor) driver;
+//        jse14.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Profile2);
+//        Thread.sleep(2000);
+//
+//        Profile2.click();
+//
+//        Thread.sleep(2000);
+//
+//        jse14.executeScript("window.scrollBy(0,350)", "");
+//
+        // locate TrustApp_mark2      //div[@class='trust-app-verification-container trust-app-trusted-container']//img[@alt='TrustApp mark']
+        WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+        Thread.sleep(3000); 
+        
+        
+        // to highlight the TrustApp_mark2
+        JavascriptExecutor jse152= (JavascriptExecutor) driver;
+        jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", TrustApp_mark2);
+        Thread.sleep(2000);
+
+        // Perform a hover action on TrustApp_mark2
+        Actions actions22 = new Actions(driver);
+        actions1.moveToElement(TrustApp_mark2).perform();
+        Thread.sleep(3000);
+//
+//       //--------------------------------------------------------------------------------------------------------------------------------------- 
+//        
+//        //third tweet
+//        
+//        // locate Post4
+//        WebElement Post4 = driver.findElement(By.xpath("//a[@aria-label='Post']"));
+//
+//        // to highlight the Post4
+//        JavascriptExecutor jse1113 = (JavascriptExecutor) driver;
+//        jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Post4);
+//        Thread.sleep(2000);
+//
+//        Post4.click();
+//
+//        Thread.sleep(3000);
+//
+//        // locate Post_text4
+//        WebElement Post_text4 = driver.findElement(By.xpath("//div[@aria-label='Post text']"));
+//
+//        // to highlight the Post_text4
+//        JavascriptExecutor jse1223 = (JavascriptExecutor) driver;
+//        jse12.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Post_text4);
+//        Thread.sleep(2000);
+//
+//        Post_text4.click();
+//        Post_text4.clear();
+//
+//        Post_text4.sendKeys("https://www.economist.com/business/2024/02/04/the-three-threats-to-american-business");
+//
+//        Thread.sleep(3000);
+//
+//        // locate Post5
+//        WebElement Post5 = driver.findElement(By.xpath(" //span[normalize-space()='Post']"));
+//
+//        // to highlight the Post5
+//        JavascriptExecutor jse1324 = (JavascriptExecutor) driver;
+//        jse13.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Post5);
+//        Thread.sleep(2000);
+//
+//        Post5.click();
+//
+//        Thread.sleep(2000);
+//
+//        // locate Profile4
+//        WebElement Profile4 = driver.findElement(By.xpath("//span[normalize-space()='Profile']"));
+//
+//        // to highlight the Profile4
+//        JavascriptExecutor jse1424 = (JavascriptExecutor) driver;
+//        jse14.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Profile4);
+//        Thread.sleep(2000);
+//
+//        Profile4.click();
+//
+//        Thread.sleep(2000);
+//
+//        jse14.executeScript("window.scrollBy(0,350)", "");
+//
+//        // locate TrustApp_mark24
+//        WebElement TrustApp_mark24 = driver.findElement(By.xpath("//div[@class='trust-app-verification-container trust-app-trusted-container']//img[@alt='TrustApp mark']"));
+//
+//        // to highlight the TrustApp_mark24
+//        JavascriptExecutor jse1524= (JavascriptExecutor) driver;
+//        jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", TrustApp_mark24);
+//        Thread.sleep(2000);
+//
+//        // Perform a hover action on TrustApp_mark24
+//        Actions actions224 = new Actions(driver);
+//        actions1.moveToElement(TrustApp_mark24).perform();
+//        Thread.sleep(3000);
+//
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         // Scroll down
         // js.executeScript("window.scrollBy(0,850)", "");
 
         // Don't forget to close the WebDriver when done.
-        // driver.quit();
+//         driver.quit();
     }
 
     private static WebDriver createChromeDriverWithExtensions(List<String> extensionPaths) {

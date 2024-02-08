@@ -17,7 +17,7 @@ public class ChromeExtensionAutomation_clone {
     public static void main(String[] args) throws InterruptedException {
     	ChromeOptions option = new ChromeOptions();
         // Set the path to the ChromeDriver executable.
-        option.setBinary("C:\\Users\\praka\\Downloads\\chromedriver-win64 (1)\\chromedriver-win64\\chromedriver.exe");
+        option.setBinary("C:\\Users\\praka\\Downloads\\chromedriver_win32 (17)\\chromedriver.exe");
 //        WebDriver driver= new ChromeDriver(option);
 
         String url = "https://twitter.com/TheEconomist";
@@ -38,7 +38,7 @@ public class ChromeExtensionAutomation_clone {
         Thread.sleep(2000);
         Username.click();
         Username.clear();
-        Username.sendKeys("TrustApp_Tsting");
+        Username.sendKeys("TrustAppTesting");
         Thread.sleep(3000);
 
         WebElement Next = driver.findElement(By.xpath("//span[contains(text(),'Next')]"));

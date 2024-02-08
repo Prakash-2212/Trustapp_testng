@@ -51,7 +51,7 @@ public class demotrial {
 
 	        Username.click();
 	        Username.clear();
-	        Username.sendKeys("TrustApp_Tsting");
+	        Username.sendKeys("TrustAppTesting");
 	        Thread.sleep(3000);
 
 	        // locate Next

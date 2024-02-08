@@ -15,13 +15,13 @@ public class openingonetab {
 
     public static void main(String[] args) throws InterruptedException {
 //        // Set the path to the ChromeDriver executable.
-//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\praka\\Downloads\\chromedriver_win32 (13)\\chromedriver.exe");
-//        
+        System.setProperty("webdriver.chrome.driver", "C:\\\\Users\\\\praka\\\\Downloads\\\\chromedriver_win32 (17)\\\\chromedriver.exe");
+        
     	
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-        options.addArguments("--proxy-server=http://your-proxy-server:port");
-        options.addArguments("--headless"); // Add this line for headless mode
+       ChromeOptions options = new ChromeOptions();
+//        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+//        options.addArguments("--proxy-server=http://your-proxy-server:port");
+//        options.addArguments("--headless"); // Add this line for headless mode
 
         String url = "https://twitter.com/";
 
@@ -70,20 +70,20 @@ public class openingonetab {
         // Wait for Chrome to open (you may need to adjust this as needed)
         Thread.sleep(5000);
 
-        // Locate Search_bar
-        WebElement Search_bar = driver.findElement(By.xpath("//input[@placeholder='Search']"));
-
-        // to highlight the Log_in
-        JavascriptExecutor jse5 = (JavascriptExecutor) driver;
-        jse5.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Search_bar);
-        Thread.sleep(2000);
-
-        Search_bar.click();
-        Search_bar.clear();
-        Thread.sleep(1000);
-
-        Search_bar.sendKeys("The Economist");
-        Thread.sleep(5000);
+//        // Locate Search_bar
+//        WebElement Search_bar = driver.findElement(By.xpath("//input[@placeholder='Search']"));
+//
+//        // to highlight the Log_in
+//        JavascriptExecutor jse5 = (JavascriptExecutor) driver;
+//        jse5.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", Search_bar);
+//        Thread.sleep(2000);
+//
+//        Search_bar.click();
+//        Search_bar.clear();
+//        Thread.sleep(1000);
+//
+//        Search_bar.sendKeys("The Economist");
+//        Thread.sleep(5000);
 
         return driver;
     }

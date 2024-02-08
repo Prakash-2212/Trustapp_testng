@@ -19,14 +19,23 @@ public class Samewindow {
         try {
             WebDriver driver = openChrome(url);
 
-            // Locate For_You
-            By TrustApp = By.xpath("TrustApp");
-            WebElement forYou = driver.findElement(TrustApp);
+            // Locate TrustApp
+//            WebElement TrustApp = By.xpath("TrustApp");
+            WebElement TrustApp = driver.findElement(By.xpath("//img[@alt='TrustApp mark'][1]"));
+            
+          
 
-            // Highlight and scroll to the For_You element
-            highlightAndScrollToElement(driver, forYou);
+            // to highlight the TrustApp
+            JavascriptExecutor jse1 = (JavascriptExecutor) driver;
+            jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')", TrustApp);
+            Thread.sleep(2000);
+
+            // Highlight and scroll to the TrustApp element
+            highlightAndScrollToElement(driver, TrustApp);
             
             driver.navigate().to("https://twitter.com/TheEconomist");
+            
+            
 
             // Close the browser
             driver.quit();
