@@ -130,7 +130,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark1
 		Actions actions = new Actions(driver);
 		actions.moveToElement(TrustApp_mark1).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status1
 		WebElement Widget_Status1 = driver
@@ -216,7 +216,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark2
 		Actions actions1 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark2).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status2
 		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag green']"));
@@ -276,7 +276,7 @@ public class UI_TrustApp {
 		// NO_URL_TO_VERIFY
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1742067234799821185");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 //
 		// locate TrustApp_mark3 //div[@class='trust-app-verification-container
@@ -293,7 +293,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark3
 		Actions actions22 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark3).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status3
 		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
@@ -337,7 +337,7 @@ public class UI_TrustApp {
 		// CANNOT_VERIFY_IMAGE_ATTACHMENT
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775226836971778?s=20");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 //
 		// locate TrustApp_mark4
@@ -353,7 +353,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark4
 		Actions action104 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark4).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status4
 		WebElement Widget_Status4 = driver.findElement(By.xpath("//div[@class='tag']"));
@@ -396,7 +396,7 @@ public class UI_TrustApp {
 		// CANNOT_VERIFY_VIDEO_ATTACHMENT
 
 		driver.get("https://twitter.com/TrustAppTesting/status/1754388754658218354");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 //
 		// locate TrustApp_mark5
@@ -412,7 +412,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark5
 		Actions actions105 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark5).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status5
 		WebElement Widget_Status5 = driver.findElement(By.xpath("//div[@class='tag']"));
@@ -455,7 +455,7 @@ public class UI_TrustApp {
 		// PUBLISHER_MATCH
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775640005243004?s=20");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark6
 		WebElement TrustApp_mark6 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -470,7 +470,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark6
 		Actions actions106 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark6).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status6
 		WebElement Widget_Status6 = driver.findElement(By.xpath("//div[@class='tag green']"));
@@ -529,7 +529,7 @@ public class UI_TrustApp {
 		// EXACT_HEADLINE_MATCH
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1737777541266469017?s=20");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark7
 		WebElement TrustApp_mark7 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -544,7 +544,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark7
 		Actions actions107 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark7).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status7
 		WebElement Widget_Status7 = driver.findElement(By.xpath("//div[@class='tag green']"));
@@ -602,7 +602,7 @@ public class UI_TrustApp {
 		// SEMANTIC_HEADLINE_MATCH
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1742062790829826348");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark8
 		WebElement TrustApp_mark8 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -617,7 +617,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark8
 		Actions actions108 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark8).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status8
 		WebElement Widget_Status8 = driver.findElement(By.xpath("//div[@class='tag green']"));
@@ -675,7 +675,7 @@ public class UI_TrustApp {
 		// SEMANTIC_HEADLINE_CONTRADICTION
 
 		driver.get("https://twitter.com/Kushagra3837/status/1735733278332821781?s=20");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark9
 		WebElement TrustApp_mark9 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -690,7 +690,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark9
 		Actions actions109 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark9).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status9
 		WebElement Widget_Status9 = driver.findElement(By.xpath("//div[@class='tag danger']"));
@@ -749,7 +749,7 @@ public class UI_TrustApp {
 		// PUBLISHER_MATCH
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1742164277736112172");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark10
 		WebElement TrustApp_mark10 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -764,7 +764,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark10
 		Actions actions110 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark10).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status10
 		WebElement Widget_Status10 = driver.findElement(By.xpath("//div[@class='tag green']"));
@@ -822,7 +822,7 @@ public class UI_TrustApp {
 		// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
 
 		driver.get("https://twitter.com/Kushagra3837/status/1737696969022226734?s=20");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark11
 		WebElement TrustApp_mark11 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -837,7 +837,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark11
 		Actions actions111 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark11).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status11
 		WebElement Widget_Status11 = driver.findElement(By.xpath("//div[@class='tag danger']"));
@@ -895,7 +895,7 @@ public class UI_TrustApp {
 		// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
 
 		driver.get("https://twitter.com/TrustAppTesting/status/1753009390892757266");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark12
 		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -910,7 +910,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark12
 		Actions actions112 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark12).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status12
 		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
@@ -968,7 +968,7 @@ public class UI_TrustApp {
 		// KNOWN_NEWS_ITEM_NO_CONNECTION
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1738064809608753627?s=20");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark13
 		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -983,7 +983,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark13
 		Actions actions113 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark13).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status13
 		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
@@ -1042,7 +1042,7 @@ public class UI_TrustApp {
 		// UNVERIFIED_ATTACHMENT_ORIGIN
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1745370148293206387");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark14
 		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -1057,7 +1057,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark14
 		Actions actions114 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark14).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status14
 		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
@@ -1072,13 +1072,13 @@ public class UI_TrustApp {
 		// Get the text of Widget_Status14
 		String widgetstatus14 = Widget_Status14.getText();
 
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// grey
+			
+		// Print the status with only the word "STATUS" in bold and the widget status in red
 		System.out.print("\033[1m14. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus14 + "\033[0m"); // \033[90m sets color to grey
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
 		System.out.println();
-		Thread.sleep(1000);
-
+		
+		
 		// locate TrustApp_message14
 		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
 		Thread.sleep(1000);
@@ -1100,7 +1100,7 @@ public class UI_TrustApp {
 		// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1744614732441526369");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark15
 		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -1115,7 +1115,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark15
 		Actions actions115 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark15).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status15
 		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
@@ -1173,7 +1173,7 @@ public class UI_TrustApp {
 		// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1742157772085485819");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark16
 		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -1188,7 +1188,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark16
 		Actions actions116 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark16).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status16
 		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
@@ -1231,7 +1231,7 @@ public class UI_TrustApp {
 		// KNOWN_MATCHED_PUBLISHER_DOMAIN
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1745322114326966478");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark17
 		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -1246,7 +1246,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark17
 		Actions actions117 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark17).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status17
 		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
@@ -1305,7 +1305,7 @@ public class UI_TrustApp {
 		// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1745321840896053345");
-		Thread.sleep(6000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark18
 		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -1320,7 +1320,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark18
 		Actions actions118 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark18).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status18
 		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
@@ -1378,7 +1378,7 @@ public class UI_TrustApp {
 		// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1748238228241756526");
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 
 		// locate TrustApp_mark19
 		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
@@ -1393,7 +1393,7 @@ public class UI_TrustApp {
 		// Perform a hover action on TrustApp_mark19
 		Actions actions119 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark19).perform();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// locate Widget_Status19
 		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
@@ -1449,7 +1449,448 @@ public class UI_TrustApp {
 
 		// ----------------------------------------------------------------------------------------------------------------------------------------------
 
-		driver.quit();
+		
+		// NO_URL_TO_VERIFY
+
+		driver.get("https://twitter.com/Kushagra3837/status/1737838697738129837");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark20
+		WebElement TrustApp_mark20 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark20
+		JavascriptExecutor jse120 = (JavascriptExecutor) driver;
+		jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark20);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark20
+		Actions actions120 = new Actions(driver);
+		actions1.moveToElement(TrustApp_mark20).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status20
+		WebElement Widget_Status20 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status20
+		JavascriptExecutor jse10020 = (JavascriptExecutor) driver;
+		jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 20px solid red;')",
+				Widget_Status20);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status20
+		String widgetstatus20 = Widget_Status20.getText();
+
+		// Print the status with only the word "STATUS" in bold and the widget status in grey
+		System.out.print("\033[1m20. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus20 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+
+//		// locate News_Item_Publisher20
+//		WebElement News_Item_Publisher20 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+//		Thread.sleep(1000);
+//
+//		// to highlight the News_Item_Publisher20
+//		JavascriptExecutor jse102220 = (JavascriptExecutor) driver;
+//		jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher20);
+//		Thread.sleep(1000);
+//
+//		// Get the text of News_Item_Publisher20
+//		String Publisher20 = News_Item_Publisher20.getText();
+//
+//		// Print the Publisher20
+//		System.out.println("Publisher: " + Publisher20);
+
+		// locate TrustApp_message20
+		WebElement TrustApp_message20 = driver.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message20
+		JavascriptExecutor jse1020 = (JavascriptExecutor) driver;
+		jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message20);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message20
+		String messageText20 = TrustApp_message20.getText();
+
+		// Print the text
+		System.out.println("NO_URL_TO_VERIFY: " + messageText20);
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------
+	
+		// CANNOT_VERIFY_IMAGE_ATTACHMENT
+
+				driver.get("https://twitter.com/TrustApp_Tsting/status/1737775226836971778?s=21");
+				Thread.sleep(7000);
+
+				// locate TrustApp_mark21
+				WebElement TrustApp_mark21 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+				Thread.sleep(1000);
+
+				// to highlight the TrustApp_mark21
+				JavascriptExecutor jse121 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+						TrustApp_mark21);
+				Thread.sleep(1000);
+
+				// Perform a hover action on TrustApp_mark21
+				Actions actions121 = new Actions(driver);
+				actions1.moveToElement(TrustApp_mark21).perform();
+				Thread.sleep(3000);
+
+				// locate Widget_Status21
+				WebElement Widget_Status21 = driver.findElement(By.xpath("//div[@class='tag']"));
+				Thread.sleep(2100);
+
+				// to highlight the Widget_Status21
+				JavascriptExecutor jse10021 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 21px solid red;')",
+						Widget_Status21);
+				Thread.sleep(1000);
+
+				// Get the text of Widget_Status21
+				String widgetstatus21 = Widget_Status21.getText();
+
+				// Print the status with only the word "STATUS" in bold and the widget status in grey
+				System.out.print("\033[1m21. STATUS\033[0m: ");
+				System.out.print("\033[90m" + widgetstatus21 + "\033[0m"); // \033[90m sets color to grey
+				System.out.println();
+
+//				// locate News_Item_Publisher21
+//				WebElement News_Item_Publisher21 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+//				Thread.sleep(1000);
+		//
+//				// to highlight the News_Item_Publisher21
+//				JavascriptExecutor jse102221 = (JavascriptExecutor) driver;
+//				jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//						News_Item_Publisher21);
+//				Thread.sleep(1000);
+		//
+//				// Get the text of News_Item_Publisher21
+//				String Publisher21 = News_Item_Publisher21.getText();
+		//
+//				// Print the Publisher21
+//				System.out.println("Publisher: " + Publisher21);
+
+				// locate TrustApp_message21
+				WebElement TrustApp_message21 = driver.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+				Thread.sleep(1000);
+
+				// to highlight the TrustApp_message21
+				JavascriptExecutor jse1021 = (JavascriptExecutor) driver;
+				jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+						TrustApp_message21);
+				Thread.sleep(1000);
+
+				// Get the text of TrustApp_message21
+				String messageText21 = TrustApp_message21.getText();
+
+				// Print the text
+				System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText21);
+				
+				
+				//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+//				// CANNOT_VERIFY_VIDEO_ATTACHMENT
+//
+//				driver.get("https://twitter.com/TrustAppTesting/status/1755906683946111011");
+//				Thread.sleep(7000);
+//
+//				// locate TrustApp_mark22
+//				WebElement TrustApp_mark22 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+//				Thread.sleep(1000);
+//
+//				// to highlight the TrustApp_mark22
+//				JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+//				jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+//						TrustApp_mark22);
+//				Thread.sleep(1000);
+//
+//				// Perform a hover action on TrustApp_mark22
+//				Actions actions122 = new Actions(driver);
+//				actions1.moveToElement(TrustApp_mark22).perform();
+//				Thread.sleep(1000);
+//
+//				// locate Widget_Status22
+//				WebElement Widget_Status22 = driver.findElement(By.xpath("//div[@class='tag']"));
+//				Thread.sleep(2200);
+//
+//				// to highlight the Widget_Status22
+//				JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+//				jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 22px solid red;')",
+//						Widget_Status22);
+//				Thread.sleep(1000);
+//
+//				// Get the text of Widget_Status22
+//				String widgetstatus22 = Widget_Status22.getText();
+//
+//				// Print the status with only the word "STATUS" in bold and the widget status in
+//				// red
+//				System.out.print("\033[1m22. STATUS\033[0m: ");
+//				System.out.print("\033[31m" + widgetstatus22 + "\033[0m"); // \033[31m sets color to red
+//				System.out.println();
+//				Thread.sleep(1000);
+//
+////				// locate News_Item_Publisher22
+////				WebElement News_Item_Publisher22 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+////				Thread.sleep(1000);
+//		//
+////				// to highlight the News_Item_Publisher22
+////				JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+////				jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+////						News_Item_Publisher22);
+////				Thread.sleep(1000);
+//		//
+////				// Get the text of News_Item_Publisher22
+////				String Publisher22 = News_Item_Publisher22.getText();
+//		//
+////				// Print the Publisher22
+////				System.out.println("Publisher: " + Publisher22);
+//
+//				// locate TrustApp_message22
+//				WebElement TrustApp_message22 = driver.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+//				Thread.sleep(1000);
+//
+//				// to highlight the TrustApp_message22
+//				JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+//				jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+//						TrustApp_message22);
+//				Thread.sleep(1000);
+//
+//				// Get the text of TrustApp_message22
+//				String messageText22 = TrustApp_message22.getText();
+//
+//				// Print the text
+//				System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText22);
+//				
+				//-----------------------------------------------------------------------------------------------------------------------------------------
+				
+				
+				// PUBLISHER_MATCH
+
+				driver.get("https://twitter.com/TrustApp_Tsting/status/1737775640005243004?s=20");
+				Thread.sleep(7000);
+
+				// locate TrustApp_mark23
+				WebElement TrustApp_mark23 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+				Thread.sleep(1000);
+
+				// to highlight the TrustApp_mark23
+				JavascriptExecutor jse123 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+						TrustApp_mark23);
+				Thread.sleep(1000);
+
+				// Perform a hover action on TrustApp_mark23
+				Actions actions123 = new Actions(driver);
+				actions1.moveToElement(TrustApp_mark23).perform();
+				Thread.sleep(3000);
+
+				// locate Widget_Status23
+				WebElement Widget_Status23 = driver.findElement(By.xpath("//div[@class='tag green']"));
+				Thread.sleep(2300);
+
+				// to highlight the Widget_Status23
+				JavascriptExecutor jse10023 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 23px solid red;')",
+						Widget_Status23);
+				Thread.sleep(1000);
+
+				// Get the text of Widget_Status23
+				String widgetstatus23 = Widget_Status23.getText();
+
+				// Print the status with only the word "STATUS" in bold and the widget status in green
+				System.out.print("\033[1m23. STATUS\033[0m: ");
+				System.out.print("\033[32m" + widgetstatus23 + "\033[0m"); // \033[32m sets color to green
+				System.out.println();
+
+				// locate News_Item_Publisher23
+				WebElement News_Item_Publisher23 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+				Thread.sleep(1000);
+		
+				// to highlight the News_Item_Publisher23
+				JavascriptExecutor jse102323 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+						News_Item_Publisher23);
+				Thread.sleep(1000);
+		
+				// Get the text of News_Item_Publisher23
+				String Publisher23 = News_Item_Publisher23.getText();
+		
+				// Print the Publisher23
+				System.out.println("Publisher: " + Publisher23);
+
+				// locate TrustApp_message23
+				WebElement TrustApp_message23 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+				Thread.sleep(1000);
+
+				// to highlight the TrustApp_message23
+				JavascriptExecutor jse1023 = (JavascriptExecutor) driver;
+				jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+						TrustApp_message23);
+				Thread.sleep(1000);
+
+				// Get the text of TrustApp_message23
+				String messageText23 = TrustApp_message23.getText();
+
+				// Print the text
+				System.out.println("PUBLISHER_MATCH: " + messageText23);
+				
+
+				
+				//-----------------------------------------------------------------------------------------------------------------------------------------------------
+		
+				
+				// EXACT_HEADLINE_MATCH
+
+				driver.get("https://twitter.com/TrustApp_Tsting/status/1737777541266469017?s=20");
+				Thread.sleep(7000);
+
+				// locate TrustApp_mark24
+				WebElement TrustApp_mark24 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+				Thread.sleep(1000);
+
+				// to highlight the TrustApp_mark24
+				JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+						TrustApp_mark24);
+				Thread.sleep(1000);
+
+				// Perform a hover action on TrustApp_mark24
+				Actions actions124 = new Actions(driver);
+				actions1.moveToElement(TrustApp_mark24).perform();
+				Thread.sleep(3000);
+
+				// locate Widget_Status24
+				WebElement Widget_Status24 = driver.findElement(By.xpath("//div[@class='tag green']"));
+				Thread.sleep(2400);
+
+				// to highlight the Widget_Status24
+				JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 24px solid red;')",
+						Widget_Status24);
+				Thread.sleep(1000);
+
+				// Get the text of Widget_Status24
+				String widgetstatus24 = Widget_Status24.getText();
+
+				// Print the status with only the word "STATUS" in bold and the widget status in green
+				System.out.print("\033[1m24. STATUS\033[0m: ");
+				System.out.print("\033[32m" + widgetstatus24 + "\033[0m"); // \033[32m sets color to green
+				System.out.println();
+
+				// locate News_Item_Publisher24
+				WebElement News_Item_Publisher24 = driver.findElement(By.xpath("//a[normalize-space()='Fox News']"));
+				Thread.sleep(1000);
+		
+				// to highlight the News_Item_Publisher24
+				JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+						News_Item_Publisher24);
+				Thread.sleep(1000);
+		
+				// Get the text of News_Item_Publisher24
+				String Publisher24 = News_Item_Publisher24.getText();
+		
+				// Print the Publisher24
+				System.out.println("Publisher: " + Publisher24);
+
+				// locate TrustApp_message24
+				WebElement TrustApp_message24 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+				Thread.sleep(1000);
+
+				// to highlight the TrustApp_message24
+				JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+				jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+						TrustApp_message24);
+				Thread.sleep(1000);
+
+				// Get the text of TrustApp_message24
+				String messageText24 = TrustApp_message24.getText();
+
+				// Print the text
+				System.out.println("EXACT_HEADLINE_MATCH: " + messageText24);
+				
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+				// SEMANTIC_HEADLINE_MATCH
+
+				driver.get("https://twitter.com/TrustAppTesting/status/1752985276467609694");
+				Thread.sleep(7000);
+
+				// locate TrustApp_mark25
+				WebElement TrustApp_mark25 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+				Thread.sleep(1000);
+
+				// to highlight the TrustApp_mark25
+				JavascriptExecutor jse125 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+						TrustApp_mark25);
+				Thread.sleep(1000);
+
+				// Perform a hover action on TrustApp_mark25
+				Actions actions125 = new Actions(driver);
+				actions1.moveToElement(TrustApp_mark25).perform();
+				Thread.sleep(3000);
+
+				// locate Widget_Status25
+				WebElement Widget_Status25 = driver.findElement(By.xpath("//div[@class='tag green']"));
+				Thread.sleep(2500);
+
+				// to highlight the Widget_Status25
+				JavascriptExecutor jse10025 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 25px solid red;')",
+						Widget_Status25);
+				Thread.sleep(1000);
+
+				// Get the text of Widget_Status25
+				String widgetstatus25 = Widget_Status25.getText();
+
+				// Print the status with only the word "STATUS" in bold and the widget status in green
+				System.out.print("\033[1m25. STATUS\033[0m: ");
+				System.out.print("\033[32m" + widgetstatus25 + "\033[0m"); // \033[32m sets color to green
+				System.out.println();
+
+				// locate News_Item_Publisher25
+				WebElement News_Item_Publisher25 = driver.findElement(By.xpath("//a[normalize-space()='The Wall Street Journal']"));
+				Thread.sleep(1000);
+		
+				// to highlight the News_Item_Publisher25
+				JavascriptExecutor jse102525 = (JavascriptExecutor) driver;
+				jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+						News_Item_Publisher25);
+				Thread.sleep(1000);
+		
+				// Get the text of News_Item_Publisher25
+				String Publisher25 = News_Item_Publisher25.getText();
+		
+				// Print the Publisher25
+				System.out.println("Publisher: " + Publisher25);
+
+				// locate TrustApp_message25
+				WebElement TrustApp_message25 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+				Thread.sleep(1000);
+
+				// to highlight the TrustApp_message25
+				JavascriptExecutor jse1025 = (JavascriptExecutor) driver;
+				jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+						TrustApp_message25);
+				Thread.sleep(1000);
+
+				// Get the text of TrustApp_message25
+				String messageText25 = TrustApp_message25.getText();
+
+				// Print the text
+				System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText25);
+				
+				
+				//-----------------------------------------------------------------------------------------------------------------------------------------------
+				
+				driver.quit();
 	}
 
 	private static WebDriver createChromeDriverWithExtensions(List<String> extensionPaths) {
