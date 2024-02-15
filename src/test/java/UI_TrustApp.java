@@ -3684,7 +3684,7 @@ public class UI_TrustApp {
 
 				// Print the status with only the word "STATUS" in bold and the widget status in green
 				System.out.print("\033[1m51. STATUS\033[0m: ");
-				System.out.print("\033[32m" + widgetstatus50 + "\033[0m"); // \042[42m sets color to green
+				System.out.print("\033[32m" + widgetstatus51 + "\033[0m"); // \042[42m sets color to green
 				System.out.println();
 						
 				// locate News_Item_Publisher51
@@ -3756,7 +3756,7 @@ public class UI_TrustApp {
 
 				// Print the status with only the word "STATUS" in bold and the widget status in green
 				System.out.print("\033[1m52. STATUS\033[0m: ");
-				System.out.print("\033[32m" + widgetstatus50 + "\033[0m"); // \042[42m sets color to green
+				System.out.print("\033[32m" + widgetstatus52 + "\033[0m"); // \042[42m sets color to green
 				System.out.println();
 						
 				// locate News_Item_Publisher52
