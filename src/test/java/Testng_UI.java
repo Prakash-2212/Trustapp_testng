@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -24,7 +25,7 @@ public class Testng_UI {
 		WebDriverManager.chromedriver().setup();
 
 		// Create ChromeDriver instance with extensions
-		driver = createChromeDriverWithExtensions("./Extension/TrustApp 1.1.16.0.crx");
+		driver = createChromeDriverWithExtensions("./Extension/TrustApp 1.1.17.0.crx");
 	}
 
 	@AfterSuite
@@ -64,15 +65,15 @@ public class Testng_UI {
 	}
 
 	// ---------------------------------------------------------------------
-
+	// Verified_Tweet
 	@Test(priority = 0)
-	public void TheEconomist() throws InterruptedException {
+	public void TheEconomist0001() throws InterruptedException {
 		// Navigate to a website).
 		driver.get("https://twitter.com/TheEconomist");
 
 		driver.manage().window().maximize();
 
-		Thread.sleep(3000);
+		Thread.sleep(7000);
 
 		JavascriptExecutor js1 = (JavascriptExecutor) driver;
 		js1.executeScript("window.scrollBy(0,350)", "");
@@ -80,7 +81,7 @@ public class Testng_UI {
 
 		// locate The_Economist
 		WebElement The_Economist = driver.findElement(By.xpath("//span[normalize-space()='@TheEconomist'][1]"));
-		Thread.sleep(7000);
+		Thread.sleep(3000);
 
 		// to highlight the The_Economist
 		JavascriptExecutor jse1 = (JavascriptExecutor) driver;
@@ -119,9 +120,14 @@ public class Testng_UI {
 		// Get the text of Widget_Status1
 		String widgetstatus1 = Widget_Status1.getText();
 
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
 
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus1, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// greengetText();
 		System.out.print("\033[1m1. STATUS\033[0m: ");
 		System.out.print("\033[32m" + widgetstatus1 + "\033[0m"); // \033[32m sets color to green
 		System.out.println();
@@ -159,28 +165,32 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("Verified_Tweet: " + messageText1);
 
-		// is DISPLAYED or not
-		boolean res1 = TrustApp_message1.isDisplayed();
+		// expected output
+		String expectedOutput = "This post contains information from The Economist, one of your trusted sources.";
 
-		if (res1 == true) {
-			System.out.println("TrustApp_message1 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText1.equals(expectedOutput)) {
+			System.out.println("Verified_Tweet test case PASSED");
 		} else {
-			System.out.println("TrustApp_message1 is not DISPLAYED");
+			System.out.println("Verified_Tweet test case FAILED");
+			Assert.fail("Verified_Tweet test case FAILED"); // Fail the test case if the text does not match the
+															// expected output
 		}
 	}
-	//--------------------------------------------------------------------------
 
+	// ------------------------------------------------------------------------------------------------------------------------------------------
+//Verified_Tweet
 	@Test(priority = 1)
-	public void CNN() throws InterruptedException {
+	public void CNN0002() throws InterruptedException {
 		driver.get("https://twitter.com/CNN");
 
 		Thread.sleep(7000);
 
-        // locate CNN
+		// locate CNN
 		WebElement CNN = driver.findElement(By.xpath("//span[normalize-space()='CNN']"));
 		Thread.sleep(5000);
 
-// to highlight the CNN
+		// to highlight the CNN
 		JavascriptExecutor jse9 = (JavascriptExecutor) driver;
 		jse9.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')", CNN);
 		Thread.sleep(2000);
@@ -188,80 +198,88 @@ public class Testng_UI {
 		jse9.executeScript("window.scrollBy(0,450)", "");
 		Thread.sleep(1000);
 
-// locate TrustApp_mark2
+		// locate TrustApp_mark2
 		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//div//img[@alt='TrustApp mark']"));
 
-// to highlight the TrustApp_mark2
+		// to highlight the TrustApp_mark2
 		JavascriptExecutor jse10 = (JavascriptExecutor) driver;
 		jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_mark2);
 		Thread.sleep(1000);
 
-// Perform a hover action on TrustApp_mark2
+		// Perform a hover action on TrustApp_mark2
 		Actions actions1 = new Actions(driver);
 		actions1.moveToElement(TrustApp_mark2).perform();
 		Thread.sleep(3000);
 
-// locate Widget_Status2
+		// locate Widget_Status2
 		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag green']"));
 		Thread.sleep(1000);
 
-// to highlight the Widget_Status2
+		// to highlight the Widget_Status2
 		JavascriptExecutor jse1001 = (JavascriptExecutor) driver;
 		jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				Widget_Status2);
 		Thread.sleep(1000);
 
-// Get the text of Widget_Status2
+		// Get the text of Widget_Status2
 		String widgetstatus2 = Widget_Status2.getText();
 
-// Print the status with only the word "STATUS" in bold and the widget status in
-// green
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
 
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus2, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
 		System.out.print("\033[1m2. STATUS\033[0m: ");
 		System.out.print("\033[32m" + widgetstatus2 + "\033[0m"); // \033[32m sets color to green
 		System.out.println();
 		Thread.sleep(1000);
 
-// locate News_Item_Publisher2
+		// locate News_Item_Publisher2
 		WebElement News_Item_Publisher2 = driver.findElement(By.xpath("(//a[normalize-space()='CNN'])[5]"));
 		Thread.sleep(1000);
 
-// to highlight the News_Item_Publisher2
+		// to highlight the News_Item_Publisher2
 		JavascriptExecutor jse10222 = (JavascriptExecutor) driver;
 		jse10.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
 				News_Item_Publisher2);
 		Thread.sleep(1000);
 
-// Get the text of News_Item_Publisher2
+		// Get the text of News_Item_Publisher2
 		String Publisher2 = News_Item_Publisher2.getText();
 
-// Print the Publisher
+		// Print the Publisher
 		System.out.println("Publisher: " + Publisher2);
 
-// locate TrustApp_message2
+		// locate TrustApp_message2
 		WebElement TrustApp_message2 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
 		Thread.sleep(1000);
-//
-// to highlight the TrustApp_message2
+
+		// to highlight the TrustApp_message2
 		JavascriptExecutor jse10002 = (JavascriptExecutor) driver;
 		jse10.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_message2);
 		Thread.sleep(1000);
 
-// Get the text of TrustApp_message2
+		// Get the text of TrustApp_message2
 		String messageText2 = TrustApp_message2.getText();
 
-// Print the text
+		// Print the text
 		System.out.println("Verified_Tweet: " + messageText2);
 
-// is DISPLAYED or not
-		boolean res2 = TrustApp_message2.isDisplayed();
+		// expected output
+		String expectedOutput = "This post contains information from CNN, one of your trusted sources.";
 
-		if (res2 == true) {
-			System.out.println("TrustApp_message2 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("Verified_Tweet test case PASSED");
 		} else {
-			System.out.println("TrustApp_message2 is not DISPLAYED");
+			System.out.println("Verified_Tweet test case FAILED");
+			Assert.fail("Verified_Tweet test case FAILED"); // Fail the test case if the text does not match the
+															// expected output
 		}
 	}
 	// -----------------------------------------------------------------------------
@@ -269,41 +287,45 @@ public class Testng_UI {
 	// NO_URL_TO_VERIFY
 
 	@Test(priority = 2)
-	public void NO_URL_TO_VERIFY() throws InterruptedException {
+	public void NO_URL_TO_VERIFY30001() throws InterruptedException {
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1742067234799821185");
 		Thread.sleep(7000);
 
 		//
-		// locate TrustApp_mark3 //div[@class='trust-app-verification-container
-		// trust-app-trusted-container']//img[@alt='TrustApp mark']
-		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		// locate TrustApp_mark1
+		WebElement TrustApp_mark1 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
 		Thread.sleep(1000);
 
-		// to highlight the TrustApp_mark3
-		JavascriptExecutor jse103 = (JavascriptExecutor) driver;
-		jse103.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark3);
+		// to highlight the TrustApp_mark1
+		JavascriptExecutor jse1 = (JavascriptExecutor) driver;
+		jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark1);
 		Thread.sleep(1000);
 
-		// Perform a hover action on TrustApp_mark3
-		Actions actions22 = new Actions(driver);
-		actions22.moveToElement(TrustApp_mark3).perform();
+		// Perform a hover action on TrustApp_mark1
+		Actions actions1 = new Actions(driver);
+		actions1.moveToElement(TrustApp_mark1).perform();
 		Thread.sleep(3000);
 
-		// locate Widget_Status3
-		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(2000);
-
-		// to highlight the Widget_Status3
-		JavascriptExecutor jse1003 = (JavascriptExecutor) driver;
-		jse1003.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status3);
+		// locate Widget_Status1
+		WebElement Widget_Status1 = driver.findElement(By.xpath("//div[@class='tag']"));
 		Thread.sleep(1000);
 
-		// Get the text of Widget_Status3
-		String widgetstatus3 = Widget_Status3.getText();
+		// to highlight the Widget_Status1
+		JavascriptExecutor jse11 = (JavascriptExecutor) driver;
+		jse11.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status1);
+		Thread.sleep(1000);
 
+		// Get the text of Widget_Status1
+		String widgetstatus3 = Widget_Status1.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Unreferenced";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus3, expectedStatus, "Status does not match expected");
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
 
@@ -312,13 +334,197 @@ public class Testng_UI {
 		System.out.println();
 		Thread.sleep(1000);
 
+		// locate News_Item_Publisher1
+		WebElement News_Item_Publisher1 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher1
+		JavascriptExecutor jse12 = (JavascriptExecutor) driver;
+		jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher1);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher1
+		String Publisher1 = News_Item_Publisher1.getText();
+
+		// Print the Publisher1
+		System.out.println("Publisher: " + Publisher1);
+
+		// locate TrustApp_message1
+		WebElement TrustApp_message1 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message1
+		JavascriptExecutor jse13 = (JavascriptExecutor) driver;
+		jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message1);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message1
+		String messageText1 = TrustApp_message1.getText();
+
+		// Print the text
+		System.out.println("NO_URL_TO_VERIFY: " + messageText1);
+
+		// Define the expected output
+		String expectedOutput = "This post contains information from CNN, one of your trusted sources. However, there is no reference for us to verify.";
+
+		// Compare the actual text with the expected output
+		if (messageText1.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED");
+		} else {
+			System.out.println("NO_URL_TO_VERIFY test case FAILED");
+			Assert.fail("NO_URL_TO_VERIFY test case FAILED");
+		}
+	}
+	// --------------------------------------------------------------------------------------
+
+	// NO_URL_TO_VERIFY
+	@Test(priority = 3)
+	public void NO_URL_TO_VERIFY30002() throws InterruptedException {
+		driver.get("https://twitter.com/Kushagra3837/status/1737838697738129837");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark2
+		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark2
+		JavascriptExecutor jse2 = (JavascriptExecutor) driver;
+		jse2.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark2);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark2
+		Actions actions2 = new Actions(driver);
+		actions2.moveToElement(TrustApp_mark2).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status2
+		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status2
+		JavascriptExecutor jse21 = (JavascriptExecutor) driver;
+		jse2.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status2);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status2
+		String widgetstatus4 = Widget_Status2.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Unreferenced";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus4, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m4. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus4 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+
+		// locate TrustApp_message2
+		WebElement TrustApp_message2 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message2
+		JavascriptExecutor jse22 = (JavascriptExecutor) driver;
+		jse2.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message2);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message2
+		String messageText2 = TrustApp_message2.getText();
+
+		// Print the text
+		System.out.println("NO_URL_TO_VERIFY: " + messageText2);
+
+		// expected output
+		String expectedOutput = "This post does not have any reference for us to verify.";
+
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED");
+		} else {
+			System.out.println("NO_URL_TO_VERIFY test case FAILED");
+			Assert.fail("NO_URL_TO_VERIFY test case FAILED");
+		}
+	}
+
+	// ------------------------------------------------------------------------------------------
+
+	// NO_URL_TO_VERIFY
+	@Test(priority = 4)
+	public void NO_URL_TO_VERIFY30003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742127483397267594");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse13 = (JavascriptExecutor) driver;
+		jse13.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions actions13 = new Actions(driver);
+		actions13.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(1000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse1003 = (JavascriptExecutor) driver;
+		jse1003.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus5 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Unreferenced";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus5, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m5. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus5 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+
+		// locate News_Item_Publisher3
+		WebElement News_Item_Publisher3 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher3
+		JavascriptExecutor jse3 = (JavascriptExecutor) driver;
+		jse3.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher3);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher3
+		String Publisher3 = News_Item_Publisher3.getText();
+
+		// Print the Publisher3
+		System.out.println("Publisher: " + Publisher3);
+
 		// locate TrustApp_message3
 		WebElement TrustApp_message3 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
 		Thread.sleep(1000);
 
 		// to highlight the TrustApp_message3
-		JavascriptExecutor jse1033 = (JavascriptExecutor) driver;
-		jse1003.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		JavascriptExecutor jse103 = (JavascriptExecutor) driver;
+		jse103.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_message3);
 		Thread.sleep(1000);
 
@@ -328,22 +534,26 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("NO_URL_TO_VERIFY: " + messageText3);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message3.isDisplayed();
+		// expected output
+		String expectedOutput = "This post contains information from CNN, one of your trusted sources. However, there is no reference for us to verify.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message3 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED");
 		} else {
-			System.out.println("TrustApp_message3 is not DISPLAYED");
+			System.out.println("NO_URL_TO_VERIFY test case FAILED");
+			Assert.fail("NO_URL_TO_VERIFY test case FAILED");
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------------------------------------
 
-	// CANNOT_VERIFY_IMAGE_ATTACHMENT
-	@Test(priority = 3)
-	public void CANNOT_VERIFY_IMAGE_ATTACHMENT() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775226836971778?s=20");
+	// NO_URL_TO_VERIFY
+
+	@Test(priority = 4)
+	public void NO_URL_TO_VERIFY30004() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742140306458317169");
 		Thread.sleep(7000);
 
 		// locate TrustApp_mark4
@@ -357,8 +567,8 @@ public class Testng_UI {
 		Thread.sleep(1000);
 
 		// Perform a hover action on TrustApp_mark4
-		Actions action104 = new Actions(driver);
-		action104.moveToElement(TrustApp_mark4).perform();
+		Actions actions22 = new Actions(driver);
+		actions22.moveToElement(TrustApp_mark4).perform();
 		Thread.sleep(3000);
 
 		// locate Widget_Status4
@@ -372,22 +582,29 @@ public class Testng_UI {
 		Thread.sleep(1000);
 
 		// Get the text of Widget_Status4
-		String widgetstatus4 = Widget_Status4.getText();
+		String widgetstatus6 = Widget_Status4.getText();
 
+		// Define the expected status text
+		String expectedStatus = "Unreferenced";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus6, expectedStatus, "Status does not match expected");
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
-		System.out.print("\033[1m4. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus4 + "\033[0m"); // \033[90m sets color to grey
+
+		System.out.print("\033[1m6. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus6 + "\033[0m"); // \033[90m sets color to grey
 		System.out.println();
 		Thread.sleep(1000);
 
 		// locate TrustApp_message4
-		WebElement TrustApp_message4 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		WebElement TrustApp_message4 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
 		Thread.sleep(1000);
 
 		// to highlight the TrustApp_message4
 		JavascriptExecutor jse1034 = (JavascriptExecutor) driver;
-		jse1034.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		jse1004.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_message4);
 		Thread.sleep(1000);
 
@@ -395,25 +612,25 @@ public class Testng_UI {
 		String messageText4 = TrustApp_message4.getText();
 
 		// Print the text
-		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText4);
+		System.out.println("NO_URL_TO_VERIFY: " + messageText4);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message4.isDisplayed();
+		// Define the expected output
+		String expectedOutput = "This post does not have any reference for us to verify.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message4 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText4.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED");
 		} else {
-			System.out.println("TrustApp_message4 is not DISPLAYED");
+			System.out.println("NO_URL_TO_VERIFY test case FAILED");
+			Assert.fail("NO_URL_TO_VERIFY test case FAILED");
 		}
 	}
+	// ---------------------------------------------------------------------------------------------------------------------------------------
 
-	// --------------------------------------------------------------------
-
-	// CANNOT_VERIFY_VIDEO_ATTACHMENT
-	@Test(priority = 4)
-	public void CANNOT_VERIFY_VIDEO_ATTACHMENT() throws InterruptedException {
-
-		driver.get("https://twitter.com/TrustAppTesting/status/1754388754658218354");
+	// NO_URL_TO_VERIFY
+	@Test(priority = 5)
+	public void NO_URL_TO_VERIFY30005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742140892645863512");
 		Thread.sleep(7000);
 
 		// locate TrustApp_mark5
@@ -421,43 +638,1815 @@ public class Testng_UI {
 		Thread.sleep(1000);
 
 		// to highlight the TrustApp_mark5
-		JavascriptExecutor jse105 = (JavascriptExecutor) driver;
-		jse105.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		JavascriptExecutor jse15 = (JavascriptExecutor) driver;
+		jse15.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_mark5);
 		Thread.sleep(1000);
 
 		// Perform a hover action on TrustApp_mark5
-		Actions actions105 = new Actions(driver);
-		actions105.moveToElement(TrustApp_mark5).perform();
+		Actions actions15 = new Actions(driver);
+		actions15.moveToElement(TrustApp_mark5).perform();
 		Thread.sleep(3000);
 
 		// locate Widget_Status5
 		WebElement Widget_Status5 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 
 		// to highlight the Widget_Status5
 		JavascriptExecutor jse1005 = (JavascriptExecutor) driver;
-		jse105.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		jse1005.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				Widget_Status5);
 		Thread.sleep(1000);
 
 		// Get the text of Widget_Status5
-		String widgetstatus5 = Widget_Status5.getText();
+		String widgetstatus7 = Widget_Status5.getText();
 
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// grey
-		System.out.print("\033[1m5. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus5 + "\033[0m"); // \033[90m sets color to grey
+		// Define the expected status text
+		String expectedStatus = "Unreferenced";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus7, expectedStatus, "Status does not match expected");
+
+		System.out.print("\033[1m7. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus7 + "\033[0m"); // \033[90m sets color to grey
 		System.out.println();
 		Thread.sleep(1000);
+
+		// locate News_Item_Publisher5
+		WebElement News_Item_Publisher5 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher5
+		JavascriptExecutor jse5 = (JavascriptExecutor) driver;
+		jse5.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher5);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher5
+		String Publisher5 = News_Item_Publisher5.getText();
+
+		// Print the Publisher5
+		System.out.println("Publisher: " + Publisher5);
 
 		// locate TrustApp_message5
 		WebElement TrustApp_message5 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
 		Thread.sleep(1000);
 
 		// to highlight the TrustApp_message5
-		JavascriptExecutor jse1035 = (JavascriptExecutor) driver;
+		JavascriptExecutor jse105 = (JavascriptExecutor) driver;
 		jse105.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message5);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message5
+		String messageText5 = TrustApp_message5.getText();
+
+		// Print the text
+		System.out.println("NO_URL_TO_VERIFY: " + messageText5);
+
+		// expected output
+		String expectedOutput = "This post contains information from NPR, one of your trusted sources. However, there is no reference for us to verify.";
+
+		// Compare the actual text with the expected output
+		if (messageText5.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED");
+		} else {
+			System.out.println("NO_URL_TO_VERIFY test case FAILED");
+			Assert.fail("NO_URL_TO_VERIFY test case FAILED");
+		}
+	}
+
+//	// ------------------------------------------------------------------------------------------------
+
+	// NO_URL_TO_VERIFY (Negative Test Case)
+	@Test(priority = 6)
+	public void NO_URL_TO_VERIFY_Negative30006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745701310853247198");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark6
+		WebElement TrustApp_mark6 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark6
+		JavascriptExecutor jse16 = (JavascriptExecutor) driver;
+		jse16.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark6);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark6
+		Actions actions16 = new Actions(driver);
+		actions16.moveToElement(TrustApp_mark6).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status6
+		WebElement Widget_Status6 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(1000);
+
+		// to highlight the Widget_Status6
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status6);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status6
+		String widgetstatus8 = Widget_Status6.getText();
+
+		// Define an unexpected status text
+		String unexpectedStatus = "Referenced";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus8, unexpectedStatus, "Status unexpectedly matches");
+
+		System.out.print("\033[1m8. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus8 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message6
+		WebElement TrustApp_message6 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message6
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message6);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message6
+		String messageText6 = TrustApp_message6.getText();
+
+		// Print the text
+		System.out.println("NO_URL_TO_VERIFY: " + messageText6);
+
+		// expected output
+		String expectedOutput = "This post does not have any reference for us to verify.";
+
+		// Compare the actual text with the expected output
+		if (messageText6.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case FAILED (Unexpected outcome)");
+		} else {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED (As expected)");
+		}
+	}
+//
+	// ----------------------------------------------------------------------------------------------------------------
+
+	// NO_URL_TO_VERIFY (Negative Test Case)
+	@Test(priority = 7)
+	public void NO_URL_TO_VERIFY_Negative30007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747501678343966806");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark7
+		WebElement TrustApp_mark7 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark7
+		JavascriptExecutor jse17 = (JavascriptExecutor) driver;
+		jse17.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark7);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark7
+		Actions actions17 = new Actions(driver);
+		actions17.moveToElement(TrustApp_mark7).perform();
+		Thread.sleep(7000);
+
+		// locate Widget_Status7
+		WebElement Widget_Status7 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(1000);
+
+		// to highlight the Widget_Status7
+		JavascriptExecutor jse1007 = (JavascriptExecutor) driver;
+		jse1007.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status7);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status7
+		String widgetstatus9 = Widget_Status7.getText();
+
+		// Define an unexpected status text
+		String unexpectedStatus = "Referenced";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus9, unexpectedStatus, "Status unexpectedly matches");
+
+		System.out.print("\033[1m9. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus9 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message7
+		WebElement TrustApp_message7 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message7
+		JavascriptExecutor jse107 = (JavascriptExecutor) driver;
+		jse107.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message7);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message7
+		String messageText7 = TrustApp_message7.getText();
+
+		// Print the text
+		System.out.println("NO_URL_TO_VERIFY: " + messageText7);
+
+		// expected output
+		String expectedOutput = "This post does not have any reference for us to verify.";
+
+		// Compare the actual text with the expected output
+		if (messageText7.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case FAILED (Unexpected outcome)");
+		} else {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED (As expected)");
+		}
+	}
+
+	// -----------------------------------------------------------------------------------------------------------------
+	// NO_URL_TO_VERIFY (Negative Test Case)
+	@Test(priority = 8)
+	public void NO_URL_TO_VERIFY_Negative30008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747501678343966806");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark7
+		WebElement TrustApp_mark7 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark7
+		JavascriptExecutor jse17 = (JavascriptExecutor) driver;
+		jse17.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark7);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark7
+		Actions actions17 = new Actions(driver);
+		actions17.moveToElement(TrustApp_mark7).perform();
+		Thread.sleep(7000);
+
+		// locate Widget_Status7
+		WebElement Widget_Status7 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(1000);
+
+		// to highlight the Widget_Status7
+		JavascriptExecutor jse1007 = (JavascriptExecutor) driver;
+		jse1007.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status7);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status7
+		String widgetstatus9 = Widget_Status7.getText();
+
+		// Define an unexpected status text
+		String unexpectedStatus = "Referenced";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus9, unexpectedStatus, "Status unexpectedly matches");
+
+		System.out.print("\033[1m10. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus9 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message7
+		WebElement TrustApp_message7 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message7
+		JavascriptExecutor jse107 = (JavascriptExecutor) driver;
+		jse107.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message7);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message7
+		String messageText7 = TrustApp_message7.getText();
+
+		// Print the text
+		System.out.println("NO_URL_TO_VERIFY: " + messageText7);
+
+		// expected output
+		String expectedOutput = "This post does not have any reference for us to verify.";
+
+		// Compare the actual text with the expected output
+		if (messageText7.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case FAILED (Unexpected outcome)");
+		} else {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED (As expected)");
+		}
+	}
+
+//	// ---------------------------------------------------------------------------------------------------------
+
+	// NO_URL_TO_VERIFY (Negative Test Case)
+	@Test(priority = 9)
+	public void NO_URL_TO_VERIFY_Negative30009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1750407127330373798");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark9
+		WebElement TrustApp_mark9 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark9
+		JavascriptExecutor jse19 = (JavascriptExecutor) driver;
+		jse19.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark9);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark9
+		Actions actions19 = new Actions(driver);
+		actions19.moveToElement(TrustApp_mark9).perform();
+		Thread.sleep(9000);
+
+		// locate Widget_Status9
+		WebElement Widget_Status9 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(900);
+
+		// to highlight the Widget_Status9
+		JavascriptExecutor jse1009 = (JavascriptExecutor) driver;
+		jse1009.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status9);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status9
+		String widgetstatus11 = Widget_Status9.getText();
+
+		// Define the unexpected status text
+		String unexpectedStatus = "Referenced";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus11, unexpectedStatus, "Status unexpectedly matches");
+
+		System.out.print("\033[1m11. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus11 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message9
+		WebElement TrustApp_message9 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message9
+		JavascriptExecutor jse109 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message9);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message9
+		String messageText9 = TrustApp_message9.getText();
+
+		// Print the text
+		System.out.println("NO_URL_TO_VERIFY: " + messageText9);
+
+		// expected output
+		String expectedOutput = "This post does not have any reference for us to verify.";
+
+		// Compare the actual text with the expected output
+		if (messageText9.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case FAILED (Unexpected outcome)");
+		} else {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED (As expected)");
+		}
+	}
+
+	// -------------------------------------------------------------------------------------------------------
+
+	// NO_URL_TO_VERIFY (Negative Test Case)
+	@Test(priority = 10)
+	public void NO_URL_TO_VERIFY30010_Negative30010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750407992170750125");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark10
+		WebElement TrustApp_mark10 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark10
+		JavascriptExecutor jse110 = (JavascriptExecutor) driver;
+		jse110.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark10);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark10
+		Actions actions110 = new Actions(driver);
+		actions110.moveToElement(TrustApp_mark10).perform();
+		Thread.sleep(10000);
+
+		// locate Widget_Status10
+		WebElement Widget_Status10 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(1000);
+
+		// to highlight the Widget_Status10
+		JavascriptExecutor jse10010 = (JavascriptExecutor) driver;
+		jse10010.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status10);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status10
+		String widgetstatus12 = Widget_Status10.getText();
+
+		// Define the unexpected status text
+		String unexpectedStatus = "Referenced";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus12, unexpectedStatus, "Status unexpectedly matches");
+
+		System.out.print("\033[1m12. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus12 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message10
+		WebElement TrustApp_message10 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message10
+		JavascriptExecutor jse1010 = (JavascriptExecutor) driver;
+		jse1010.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message10);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message10
+		String messageText10 = TrustApp_message10.getText();
+
+		// Print the text
+		System.out.println("NO_URL_TO_VERIFY: " + messageText10);
+
+		// expected output
+		String expectedOutput = "This post does not have any reference for us to verify.";
+
+		// Compare the actual text with the expected output
+		if (messageText10.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case FAILED (Unexpected outcome)");
+		} else {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED (As expected)");
+		}
+	}
+
+//	// -----------------------------------------------------------------------------------------------------------
+
+	// NO_URL_TO_VERIFY (Negative Test Case)
+	@Test(priority = 11)
+	public void NO_URL_TO_VERIFY_Negative30011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760189492990714317");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark11
+		WebElement TrustApp_mark11 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark11
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark11);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark11
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark11).perform();
+		Thread.sleep(10000);
+
+		// locate Widget_Status11
+		WebElement Widget_Status11 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(1000);
+
+		// to highlight the Widget_Status11
+		JavascriptExecutor jse11011 = (JavascriptExecutor) driver;
+		jse11011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status11);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status11
+		String widgetstatus13 = Widget_Status11.getText();
+
+		// Define the unexpected status text
+		String unexpectedStatus = "Referenced";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus13, unexpectedStatus, "Status unexpectedly matches");
+
+		System.out.print("\033[1m13. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message11
+		WebElement TrustApp_message11 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message11
+		JavascriptExecutor jse1111 = (JavascriptExecutor) driver;
+		jse1111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message11);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message11
+		String messageText11 = TrustApp_message11.getText();
+
+		// Print the text
+		System.out.println("NO_URL_TO_VERIFY: " + messageText11);
+
+		// expected output
+		String expectedOutput = "This post does not have any reference for us to verify.";
+
+		// Compare the actual text with the expected output
+		if (messageText11.equals(expectedOutput)) {
+			System.out.println("NO_URL_TO_VERIFY test case FAILED (Unexpected outcome)");
+		} else {
+			System.out.println("NO_URL_TO_VERIFY test case PASSED (As expected)");
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------------------------------------
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 12)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT40001() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775226836971778?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark1
+		WebElement TrustApp_mark1 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark1
+		JavascriptExecutor jse401 = (JavascriptExecutor) driver;
+		jse401.executeScript("arguments[0].setAttribute('style','background: pink; border: 1px solid red;')",
+				TrustApp_mark1);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions action401 = new Actions(driver);
+		action401.moveToElement(TrustApp_mark1).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status1
+		WebElement Widget_Status1 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status1
+		JavascriptExecutor jse4001 = (JavascriptExecutor) driver;
+		jse4001.executeScript("arguments[0].setAttribute('style','background: pink; border: 1px solid red;')",
+				Widget_Status1);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status1
+		String widgetstatus14 = Widget_Status1.getText();
+
+		// Define the expected status text
+		String expectedStatus1 = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus14, expectedStatus1, "Status does not match expected");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m14. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus14 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message1
+		WebElement TrustApp_message1 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message1
+		JavascriptExecutor jse40011 = (JavascriptExecutor) driver;
+		jse40011.executeScript("arguments[0].setAttribute('style','background: pink; border: 1px solid red;')",
+				TrustApp_message1);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message1
+		String messageText1 = TrustApp_message1.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText1);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText1.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED");
+			Assert.fail("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED");
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 13)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT40002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760893756947988747");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark2
+		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(2000);
+
+		// to highlight the TrustApp_mark2
+		JavascriptExecutor jse402 = (JavascriptExecutor) driver;
+		jse402.executeScript("arguments[0].setAttribute('style','background: pink; border: 2px solid red;')",
+				TrustApp_mark2);
+		Thread.sleep(2000);
+
+		// Perform a hover action on TrustApp_mark2
+		Actions action202 = new Actions(driver);
+		action202.moveToElement(TrustApp_mark2).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status2
+		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(1000);
+
+		// to highlight the Widget_Status2
+		JavascriptExecutor jse4022 = (JavascriptExecutor) driver;
+		jse4022.executeScript("arguments[0].setAttribute('style','background: pink; border: 2px solid red;')",
+				Widget_Status2);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status2
+		String widgetstatus15 = Widget_Status2.getText();
+
+		// Define the expected status text
+		String expectedStatus2 = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus15, expectedStatus2, "Status does not match expected");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m15. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message2
+		WebElement TrustApp_message2 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message2
+		JavascriptExecutor jse2032 = (JavascriptExecutor) driver;
+		jse2032.executeScript("arguments[0].setAttribute('style','background: pink; border: 2px solid red;')",
+				TrustApp_message2);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message2
+		String messageText2 = TrustApp_message2.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText2);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED");
+			Assert.fail("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED");
+		}
+	}
+	// --------------------------------------------------------------------------------------------
+
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 14)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT40003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760893756947988747");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark2
+		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(2000);
+
+		// to highlight the TrustApp_mark2
+		JavascriptExecutor jse402 = (JavascriptExecutor) driver;
+		jse402.executeScript("arguments[0].setAttribute('style','background: pink; border: 2px solid red;')",
+				TrustApp_mark2);
+		Thread.sleep(2000);
+
+		// Perform a hover action on TrustApp_mark2
+		Actions action202 = new Actions(driver);
+		action202.moveToElement(TrustApp_mark2).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status2
+		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(1000);
+
+		// to highlight the Widget_Status2
+		JavascriptExecutor jse4022 = (JavascriptExecutor) driver;
+		jse4022.executeScript("arguments[0].setAttribute('style','background: pink; border: 2px solid red;')",
+				Widget_Status2);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status2
+		String widgetstatus16 = Widget_Status2.getText();
+
+		// Define the expected status text
+		String expectedStatus2 = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus16, expectedStatus2, "Status does not match expected");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m16. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message2
+		WebElement TrustApp_message2 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message2
+		JavascriptExecutor jse2032 = (JavascriptExecutor) driver;
+		jse2032.executeScript("arguments[0].setAttribute('style','background: pink; border: 2px solid red;')",
+				TrustApp_message2);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message2
+		String messageText2 = TrustApp_message2.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText2);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED");
+			Assert.fail("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED");
+		}
+	}
+
+//--------------------------------------------------------------------------------------------
+
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 15)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT40004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742418602819498016");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark4
+		WebElement TrustApp_mark4 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark4
+		JavascriptExecutor jse403 = (JavascriptExecutor) driver;
+		jse403.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_mark4);
+		Thread.sleep(1000);
+		// Perform a hover action on TrustApp_mark4
+		Actions action403 = new Actions(driver);
+		action403.moveToElement(TrustApp_mark4).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(1000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse3003 = (JavascriptExecutor) driver;
+		jse3003.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus17 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String expectedStatus3 = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus17, expectedStatus3, "Status does not match expected");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m17. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse3033 = (JavascriptExecutor) driver;
+		jse3033.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText3);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED");
+			Assert.fail("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED");
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 16)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT40005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760980728429621298");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse303 = (JavascriptExecutor) driver;
+		jse303.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions action303 = new Actions(driver);
+		action303.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(1000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse3003 = (JavascriptExecutor) driver;
+		jse3003.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus18 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String expectedStatus3 = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus18, expectedStatus3, "Status does not match expected");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m18. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus18 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse3033 = (JavascriptExecutor) driver;
+		jse3033.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText3);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED");
+			Assert.fail("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED");
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 17)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT_Negative40006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745709777345495045");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse303 = (JavascriptExecutor) driver;
+		jse303.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions action303 = new Actions(driver);
+		action303.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(3000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse3003 = (JavascriptExecutor) driver;
+		jse3003.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus19 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String unexpectedStatus3 = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus19, unexpectedStatus3, "Status unexpectedly matches");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m19. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse3033 = (JavascriptExecutor) driver;
+		jse3033.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText3);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------
+
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 18)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT_Negative40007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747525349917839833");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse303 = (JavascriptExecutor) driver;
+		jse303.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions action303 = new Actions(driver);
+		action303.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(3000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse3003 = (JavascriptExecutor) driver;
+		jse3003.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus20 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String unexpectedStatus3 = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus20, unexpectedStatus3, "Status unexpectedly matches");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m20. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus20 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse3033 = (JavascriptExecutor) driver;
+		jse3033.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText3);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 19)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT_Negative40008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750408383713177954");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse303 = (JavascriptExecutor) driver;
+		jse303.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions action303 = new Actions(driver);
+		action303.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(3000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse3003 = (JavascriptExecutor) driver;
+		jse3003.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus21 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String unexpectedStatus3 = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus21, unexpectedStatus3, "Status unexpectedly matches");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m21. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus21 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse3033 = (JavascriptExecutor) driver;
+		jse3033.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText3);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 20)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT_Negative40009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750408767336837239");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse303 = (JavascriptExecutor) driver;
+		jse303.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions action303 = new Actions(driver);
+		action303.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(3000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse3003 = (JavascriptExecutor) driver;
+		jse3003.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus22 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String unexpectedStatus3 = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus22, unexpectedStatus3, "Status unexpectedly matches");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m22. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus22 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse3033 = (JavascriptExecutor) driver;
+		jse3033.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText3);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 21)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT_Negative40010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750409234393477217");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse303 = (JavascriptExecutor) driver;
+		jse303.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions action303 = new Actions(driver);
+		action303.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(3000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse3003 = (JavascriptExecutor) driver;
+		jse3003.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus23 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String unexpectedStatus3 = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus23, unexpectedStatus3, "Status unexpectedly matches");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m23. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus23 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse3033 = (JavascriptExecutor) driver;
+		jse3033.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText3);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------
+	// CANNOT_VERIFY_IMAGE_ATTACHMENT
+	@Test(priority = 22)
+	public void CANNOT_VERIFY_IMAGE_ATTACHMENT_Negative40011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1762035333611302950");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse303 = (JavascriptExecutor) driver;
+		jse303.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions action303 = new Actions(driver);
+		action303.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(3000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse3003 = (JavascriptExecutor) driver;
+		jse3003.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus24 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String unexpectedStatus3 = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus24, unexpectedStatus3, "Status unexpectedly matches");
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m24. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus24 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver
+				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse3033 = (JavascriptExecutor) driver;
+		jse3033.executeScript("arguments[0].setAttribute('style','background: pink; border: 3px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText3);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is an image, and TrustApp does not support verification of image attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+
+	// ------------------------------------------------------------------------------------------------------
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 23)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT5001() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1754388754658218354");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark1
+		WebElement TrustApp_mark1 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark1
+		JavascriptExecutor jse1 = (JavascriptExecutor) driver;
+		jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark1);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark1).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status1
+		WebElement Widget_Status1 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status1
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status1);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status1
+		String widgetstatus1 = Widget_Status1.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus1, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m25. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus1 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher1
+		WebElement News_Item_Publisher1 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher1
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse1.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher1);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher1
+		String Publisher1 = News_Item_Publisher1.getText();
+
+		// Print the Publisher1
+		System.out.println("Publisher: " + Publisher1);
+
+		// locate TrustApp_message1
+		WebElement TrustApp_message1 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message1
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse1.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message1);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message1
+		String messageText1 = TrustApp_message1.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText1);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText1.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED");
+		} else {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED");
+			Assert.fail("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED");
+		}
+	}
+
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 24)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT5002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775350585696281?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark2
+		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark2
+		JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark2);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark2
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark2).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status2
+		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status2
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status2);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status2
+		String widgetstatus2 = Widget_Status2.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus2, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m26. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus2 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher2
+		WebElement News_Item_Publisher2 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher2
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher2);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher2
+		String Publisher2 = News_Item_Publisher2.getText();
+
+		// Print the Publisher2
+		System.out.println("Publisher: " + Publisher2);
+
+		// locate TrustApp_message2
+		WebElement TrustApp_message2 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message2
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message2);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message2
+		String messageText2 = TrustApp_message2.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText2);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED");
+		} else {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED");
+			Assert.fail("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED");
+		}
+	}
+	// --------------------------------------------------------------------------------------
+
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 25)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT5003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1757359834570121700");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus3 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus3, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m27. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus3 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher3
+		WebElement News_Item_Publisher3 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher3
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher3);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher3
+		String Publisher3 = News_Item_Publisher3.getText();
+
+		// Print the Publisher3
+		System.out.println("Publisher: " + Publisher3);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText3);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED");
+		} else {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED");
+			Assert.fail("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED");
+		}
+	}
+//-------------------------------------------------------------------------------------------
+
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 26)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT5004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1757361308205199685");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark4
+		WebElement TrustApp_mark4 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark4
+		JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark4);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark4
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark4).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status4
+		WebElement Widget_Status4 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status4
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status4);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status4
+		String widgetstatus4 = Widget_Status4.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus4, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m28. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus4 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher4
+		WebElement News_Item_Publisher4 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher4
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher4);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher4
+		String Publisher4 = News_Item_Publisher4.getText();
+
+		// Print the Publisher4
+		System.out.println("Publisher: " + Publisher4);
+
+		// locate TrustApp_message4
+		WebElement TrustApp_message4 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message4
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message4);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message4
+		String messageText4 = TrustApp_message4.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText4);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText4.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED");
+		} else {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED");
+			Assert.fail("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED");
+		}
+	}
+
+	// --------------------------------------------------------------------------------
+
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 27)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT5005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1757361626909409518");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark5
+		WebElement TrustApp_mark5 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark5
+		JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark5);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark22
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark5).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status5
+		WebElement Widget_Status5 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status5
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status5);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status5
+		String widgetstatus5 = Widget_Status5.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus5, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m29. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus5 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher5
+		WebElement News_Item_Publisher5 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher5
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher5);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher5
+		String Publisher5 = News_Item_Publisher5.getText();
+
+		// Print the Publisher5
+		System.out.println("Publisher: " + Publisher5);
+
+		// locate TrustApp_message5
+		WebElement TrustApp_message5 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message5
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_message5);
 		Thread.sleep(1000);
 
@@ -467,22 +2456,1053 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText5);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message5.isDisplayed();
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message5 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText5.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED");
 		} else {
-			System.out.println("TrustApp_message5 is not DISPLAYED");
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED");
+			Assert.fail("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED");
 		}
 	}
 
-	// -----------------------------------------------------------------------
+	// --------------------------------------------------------------------------------
+
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 28)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1757362102535082154");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark6
+		WebElement TrustApp_mark6 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark6
+		JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark6);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark6
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark6).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status6
+		WebElement Widget_Status6 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status6
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status6);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status6
+		String widgetstatus6 = Widget_Status6.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus6, unexpectedStatus, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m30. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus6 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher6
+		WebElement News_Item_Publisher6 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher6
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher6);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher6
+		String Publisher6 = News_Item_Publisher6.getText();
+
+		// Print the Publisher6
+		System.out.println("Publisher: " + Publisher6);
+
+		// locate TrustApp_message6
+		WebElement TrustApp_message6 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message6
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message6);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message6
+		String messageText6 = TrustApp_message6.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText6);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText6.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+
+	// -----------------------------
+
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 29)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1757362453728407610");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark7
+		WebElement TrustApp_mark7 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark7
+		JavascriptExecutor jse17 = (JavascriptExecutor) driver;
+		jse17.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark7);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark7
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark7).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status7
+		WebElement Widget_Status7 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status7
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse10022.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status7);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status7
+		String widgetstatus7 = Widget_Status7.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus7, unexpectedStatus, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m31. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus7 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher7
+		WebElement News_Item_Publisher7 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher7
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse10022.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher7);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher7
+		String Publisher7 = News_Item_Publisher7.getText();
+
+		// Print the Publisher7
+		System.out.println("Publisher: " + Publisher7);
+
+		// locate TrustApp_message7
+		WebElement TrustApp_message7 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message7
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse1022.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message7);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message7
+		String messageText7 = TrustApp_message7.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText7);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText7.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+	// -----------------------------------------------------------
+
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 30)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1757362972727365918");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark8
+		WebElement TrustApp_mark8 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark8
+		JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark8);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark8
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark8).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status8
+		WebElement Widget_Status8 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status8
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status8);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status8
+		String widgetstatus8 = Widget_Status8.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus8, unexpectedStatus, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m32. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus8 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher8
+		WebElement News_Item_Publisher8 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher8
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher8);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher8
+		String Publisher8 = News_Item_Publisher8.getText();
+
+		// Print the Publisher8
+		System.out.println("Publisher: " + Publisher8);
+
+		// locate TrustApp_message8
+		WebElement TrustApp_message8 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message8
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message8);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message8
+		String messageText8 = TrustApp_message8.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText8);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText8.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+	// -----------------------------------------------
+
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 31)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1757363541277905012");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark9
+		WebElement TrustApp_mark9 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark9
+		JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark9);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark9
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark9).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status9
+		WebElement Widget_Status9 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status9
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status9);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status9
+		String widgetstatus9 = Widget_Status9.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus9, unexpectedStatus, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m33. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus9 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher9
+		WebElement News_Item_Publisher9 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher9
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher9);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher22
+		String Publisher9 = News_Item_Publisher9.getText();
+
+		// Print the Publisher22
+		System.out.println("Publisher: " + Publisher9);
+
+		// locate TrustApp_message9
+		WebElement TrustApp_message9 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message9
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message9);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message9
+		String messageText9 = TrustApp_message9.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText9);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText9.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+
+	// ---------------------------------------------------------------
+
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 32)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1757364073396658575");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark10
+		WebElement TrustApp_mark10 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark10
+		JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark10);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark10
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark10).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status10
+		WebElement Widget_Status10 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status10
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status10);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status10
+		String widgetstatus10 = Widget_Status10.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus10, unexpectedStatus, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m34. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus10 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher10
+		WebElement News_Item_Publisher10 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher10
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher10);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher10
+		String Publisher10 = News_Item_Publisher10.getText();
+
+		// Print the Publisher10
+		System.out.println("Publisher: " + Publisher10);
+
+		// locate TrustApp_message10
+		WebElement TrustApp_message10 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message10
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message10);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message10
+		String messageText10 = TrustApp_message10.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText10);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText10.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+	// ----------------------------------------------------
+
+	// CANNOT_VERIFY_VIDEO_ATTACHMENT
+	@Test(priority = 33)
+	public void CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760190053072961889");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark11
+		WebElement TrustApp_mark11 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark11
+		JavascriptExecutor jse122 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark11);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions122 = new Actions(driver);
+		actions122.moveToElement(TrustApp_mark11).perform();
+		Thread.sleep(1000);
+
+		// locate Widget_Status11
+		WebElement Widget_Status11 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2200);
+
+		// to highlight the Widget_Status11
+		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status11);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status11
+		String widgetstatus11 = Widget_Status11.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus11, unexpectedStatus, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m35. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus11 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher11
+		WebElement News_Item_Publisher11 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher11
+		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher11);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher11
+		String Publisher11 = News_Item_Publisher11.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher11);
+
+		// locate TrustApp_message11
+		WebElement TrustApp_message11 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message11
+		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
+		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message11);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message22
+		String messageText11 = TrustApp_message11.getText();
+
+		// Print the text
+		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText11);
+
+		// expected output
+		String expectedOutput = "The attachment for this post is a video, and TrustApp does not support verification of video attachments yet. Coming soon!";
+
+		// Compare the actual text with the expected output
+		if (messageText11.equals(expectedOutput)) {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT test case PASSED (As expected)");
+
+		}
+	}
+	// ---------------------------------------------------------------------------------------
 
 	// PUBLISHER_MATCH
-	@Test(priority = 5)
-	public void PUBLISHER_MATCH() throws InterruptedException {
+	@Test(priority = 34)
+	public void PUBLISHER_MATCH60001() throws InterruptedException {
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775640005243004?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark1
+		WebElement TrustApp_mark1 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark1
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark1);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark1).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status1
+		WebElement Widget_Status1 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status1
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status1);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status1
+		String widgetstatus1 = Widget_Status1.getText();
+
+		// Define the expected status text
+		String expectedStatus1 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus1, expectedStatus1, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m36. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus1 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher1
+		WebElement News_Item_Publisher1 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher1
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher1);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher1
+		String Publisher1 = News_Item_Publisher1.getText();
+
+		// Print the Publisher1
+		System.out.println("Publisher: " + Publisher1);
+
+		// locate TrustApp_message1
+		WebElement TrustApp_message1 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message1
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message1);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message1
+		String messageText1 = TrustApp_message1.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText1);
+
+		// expected output
+		String expectedOutput = "This post references Al Jazeera English, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText1.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case PASSED");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case FAILED");
+			Assert.fail("PUBLISHER_MATCH test case FAILED"); // Fail the test case if the text does not match the
+																// expected output
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 35)
+	public void PUBLISHER_MATCH60002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775640005243004?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark2
+		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark2
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark2);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark2).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status2
+		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status2
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status2);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status2
+		String widgetstatus2 = Widget_Status2.getText();
+
+		// Define the expected status text
+		String expectedStatus2 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus2, expectedStatus2, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m37. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus2 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher2
+		WebElement News_Item_Publisher2 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher2
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher2);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher2
+		String Publisher2 = News_Item_Publisher2.getText();
+
+		// Print the Publisher2
+		System.out.println("Publisher: " + Publisher2);
+
+		// locate TrustApp_message2
+		WebElement TrustApp_message2 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message2
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message2);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message2
+		String messageText2 = TrustApp_message2.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText2);
+
+		// expected output
+		String expectedOutput = "This post references Al Jazeera English, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case PASSED");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case FAILED");
+			Assert.fail("PUBLISHER_MATCH test case FAILED"); // Fail the test case if the text does not match the
+																// expected output
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	// PUBLISHER_MATCH
+	@Test(priority = 36)
+	public void PUBLISHER_MATCH60003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1757366259140755898");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus3 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String expectedStatus3 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus3, expectedStatus3, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m38. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus3 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher3
+		WebElement News_Item_Publisher3 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher3
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher3);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher3
+		String Publisher3 = News_Item_Publisher3.getText();
+
+		// Print the Publisher3
+		System.out.println("Publisher: " + Publisher3);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText3);
+
+		// expected output
+		String expectedOutput = "This post references POLITICO, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case PASSED");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case FAILED");
+			Assert.fail("PUBLISHER_MATCH test case FAILED"); // Fail the test case if the text does not match the
+																// expected output
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 37)
+	public void PUBLISHER_MATCH60004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1762712226270482496");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark4
+		WebElement TrustApp_mark4 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark4
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark4);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark4
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark4).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status4
+		WebElement Widget_Status4 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status4
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status4);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status4
+		String widgetstatus4 = Widget_Status4.getText();
+
+		// Define the expected status text
+		String expectedStatus4 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus4, expectedStatus4, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m39. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus4 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher4
+		WebElement News_Item_Publisher4 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher4
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher4);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher4
+		String Publisher4 = News_Item_Publisher4.getText();
+
+		// Print the Publisher4
+		System.out.println("Publisher: " + Publisher4);
+
+		// locate TrustApp_message4
+		WebElement TrustApp_message4 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message4
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message4);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message4
+		String messageText4 = TrustApp_message4.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText4);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText4.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case PASSED");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case FAILED");
+			Assert.fail("PUBLISHER_MATCH test case FAILED"); // Fail the test case if the text does not match the
+																// expected output
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 38)
+	public void PUBLISHER_MATCH60005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742145170143875334");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark5
+		WebElement TrustApp_mark5 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark5
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark5);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark5
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark5).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status5
+		WebElement Widget_Status5 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status5
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status5);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status5
+		String widgetstatus5 = Widget_Status5.getText();
+
+		// Define the expected status text
+		String expectedStatus5 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus5, expectedStatus5, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m40. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus5 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher5
+		WebElement News_Item_Publisher5 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher5
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher5);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher5
+		String Publisher5 = News_Item_Publisher5.getText();
+
+		// Print the Publisher5
+		System.out.println("Publisher: " + Publisher5);
+
+		// locate TrustApp_message5
+		WebElement TrustApp_message5 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message5
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message5);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message5
+		String messageText5 = TrustApp_message5.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText5);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText5.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case PASSED");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case FAILED");
+			Assert.fail("PUBLISHER_MATCH test case FAILED"); // Fail the test case if the text does not match the
+																// expected output
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 39)
+	public void PUBLISHER_MATCH_Negative60006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745714400252834137");
 		Thread.sleep(7000);
 
 		// locate TrustApp_mark6
@@ -513,15 +3533,21 @@ public class Testng_UI {
 		// Get the text of Widget_Status6
 		String widgetstatus6 = Widget_Status6.getText();
 
+		// Define the expected status text
+		String unexpectedStatus6 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus6, unexpectedStatus6, "Status unexpectedly matches");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// green
-		System.out.print("\033[1m6. STATUS\033[0m: ");
+		System.out.print("\033[1m41. STATUS\033[0m: ");
 		System.out.print("\033[32m" + widgetstatus6 + "\033[0m"); // \033[32m sets color to green
 		System.out.println();
 		Thread.sleep(1000);
 
 		// locate News_Item_Publisher6
-		WebElement News_Item_Publisher6 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+		WebElement News_Item_Publisher6 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
 		Thread.sleep(1000);
 
 		// to highlight the News_Item_Publisher6
@@ -552,22 +3578,24 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("PUBLISHER_MATCH: " + messageText6);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message6.isDisplayed();
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message6 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText6.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
 		} else {
-			System.out.println("TrustApp_message6 is not DISPLAYED");
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
 		}
 	}
 
-//-------------------------------------------------------------------------------	
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
 
-	// EXACT_HEADLINE_MATCH
-	@Test(priority = 6)
-	public void EXACT_HEADLINE_MATCH() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1737777541266469017?s=20");
+	// PUBLISHER_MATCH
+	@Test(priority = 40)
+	public void PUBLISHER_MATCH_Negative60007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747526586780241978");
 		Thread.sleep(7000);
 
 		// locate TrustApp_mark7
@@ -575,14 +3603,14 @@ public class Testng_UI {
 		Thread.sleep(1000);
 
 		// to highlight the TrustApp_mark7
-		JavascriptExecutor jse107 = (JavascriptExecutor) driver;
-		jse107.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_mark7);
 		Thread.sleep(1000);
 
 		// Perform a hover action on TrustApp_mark7
-		Actions actions107 = new Actions(driver);
-		actions107.moveToElement(TrustApp_mark7).perform();
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark7).perform();
 		Thread.sleep(3000);
 
 		// locate Widget_Status7
@@ -590,17 +3618,23 @@ public class Testng_UI {
 		Thread.sleep(2000);
 
 		// to highlight the Widget_Status7
-		JavascriptExecutor jse1007 = (JavascriptExecutor) driver;
-		jse107.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				Widget_Status7);
 		Thread.sleep(1000);
 
 		// Get the text of Widget_Status7
 		String widgetstatus7 = Widget_Status7.getText();
 
+		// Define the expected status text
+		String unexpectedStatus7 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus7, unexpectedStatus7, "Status unexpectedly matches");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// green
-		System.out.print("\033[1m7. STATUS\033[0m: ");
+		System.out.print("\033[1m42. STATUS\033[0m: ");
 		System.out.print("\033[32m" + widgetstatus7 + "\033[0m"); // \033[32m sets color to green
 		System.out.println();
 		Thread.sleep(1000);
@@ -610,8 +3644,8 @@ public class Testng_UI {
 		Thread.sleep(1000);
 
 		// to highlight the News_Item_Publisher7
-		JavascriptExecutor jse10227 = (JavascriptExecutor) driver;
-		jse107.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
 				News_Item_Publisher7);
 		Thread.sleep(1000);
 
@@ -626,8 +3660,8 @@ public class Testng_UI {
 		Thread.sleep(1000);
 
 		// to highlight the TrustApp_message7
-		JavascriptExecutor jse1037 = (JavascriptExecutor) driver;
-		jse107.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_message7);
 		Thread.sleep(1000);
 
@@ -635,23 +3669,26 @@ public class Testng_UI {
 		String messageText7 = TrustApp_message7.getText();
 
 		// Print the text
-		System.out.println("EXACT_HEADLINE_MATCH: " + messageText7);
+		System.out.println("PUBLISHER_MATCH: " + messageText7);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message7.isDisplayed();
+		// expected output
+		String expectedOutput = "This post references Fox News, one of your trusted sources.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message7 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText7.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
 		} else {
-			System.out.println("TrustApp_message7 is not DISPLAYED");
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
 		}
 	}
-	// ------------------------------------------------------------------
 
-	// SEMANTIC_HEADLINE_MATCH
-	@Test(priority = 7)
-	public void SEMANTIC_HEADLINE_MATCH() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742062790829826348");
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 41)
+	public void PUBLISHER_MATCH_Negative60008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750411546398777377");
 		Thread.sleep(7000);
 
 		// locate TrustApp_mark8
@@ -659,14 +3696,14 @@ public class Testng_UI {
 		Thread.sleep(1000);
 
 		// to highlight the TrustApp_mark8
-		JavascriptExecutor jse108 = (JavascriptExecutor) driver;
-		jse108.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_mark8);
 		Thread.sleep(1000);
 
 		// Perform a hover action on TrustApp_mark8
-		Actions actions108 = new Actions(driver);
-		actions108.moveToElement(TrustApp_mark8).perform();
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark8).perform();
 		Thread.sleep(3000);
 
 		// locate Widget_Status8
@@ -674,28 +3711,34 @@ public class Testng_UI {
 		Thread.sleep(2000);
 
 		// to highlight the Widget_Status8
-		JavascriptExecutor jse1008 = (JavascriptExecutor) driver;
-		jse108.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				Widget_Status8);
 		Thread.sleep(1000);
 
 		// Get the text of Widget_Status8
 		String widgetstatus8 = Widget_Status8.getText();
 
+		// Define the expected status text
+		String unexpectedStatus8 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus8, unexpectedStatus8, "Status unexpectedly matches");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// green
-		System.out.print("\033[1m8. STATUS\033[0m: ");
+		System.out.print("\033[1m43. STATUS\033[0m: ");
 		System.out.print("\033[32m" + widgetstatus8 + "\033[0m"); // \033[32m sets color to green
 		System.out.println();
 		Thread.sleep(1000);
 
 		// locate News_Item_Publisher8
-		WebElement News_Item_Publisher8 = driver.findElement(By.xpath("//a[normalize-space()='Fox News']"));
+		WebElement News_Item_Publisher8 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
 		Thread.sleep(1000);
 
 		// to highlight the News_Item_Publisher8
-		JavascriptExecutor jse10228 = (JavascriptExecutor) driver;
-		jse108.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
 				News_Item_Publisher8);
 		Thread.sleep(1000);
 
@@ -710,8 +3753,2034 @@ public class Testng_UI {
 		Thread.sleep(1000);
 
 		// to highlight the TrustApp_message8
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message8);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message8
+		String messageText8 = TrustApp_message8.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText8);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText8.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	// PUBLISHER_MATCH
+	@Test(priority = 42)
+	public void PUBLISHER_MATCH_Negative60009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750415170042515729");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark9
+		WebElement TrustApp_mark9 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark9
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark9);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark9
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark9).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status9
+		WebElement Widget_Status9 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status9
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status9);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status9
+		String widgetstatus9 = Widget_Status9.getText();
+
+		// Define the expected status text
+		String unexpectedStatus9 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus9, unexpectedStatus9, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m44. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus9 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher9
+		WebElement News_Item_Publisher9 = driver
+				.findElement(By.xpath("//a[normalize-space()='The Wall Street Journal']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher9
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher9);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher9
+		String Publisher9 = News_Item_Publisher9.getText();
+
+		// Print the Publisher9
+		System.out.println("Publisher: " + Publisher9);
+
+		// locate TrustApp_message9
+		WebElement TrustApp_message9 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message9
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message9);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message9
+		String messageText9 = TrustApp_message9.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText9);
+
+		// expected output
+		String expectedOutput = "This post references The Wall Street Journal, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText9.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	// PUBLISHER_MATCH
+	@Test(priority = 43)
+	public void PUBLISHER_MATCH_Negative60010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750416027060441464");
+		Thread.sleep(12000);
+
+		// locate TrustApp_mark10
+		WebElement TrustApp_mark10 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark10
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark10);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark10
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark10).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status10
+		WebElement Widget_Status10 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status10
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status10);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status10
+		String widgetstatus10 = Widget_Status10.getText();
+
+		// Define the expected status text
+		String unexpectedStatus10 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus10, unexpectedStatus10, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m45. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus10 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher10
+		WebElement News_Item_Publisher10 = driver.findElement(By.xpath("//a[normalize-space()='The Washington Post']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher10
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher10);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher10
+		String Publisher10 = News_Item_Publisher10.getText();
+
+		// Print the Publisher10
+		System.out.println("Publisher: " + Publisher10);
+
+		// locate TrustApp_message10
+		WebElement TrustApp_message10 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message10
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message10);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message10
+		String messageText10 = TrustApp_message10.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText10);
+
+		// expected output
+		String expectedOutput = "This post references The Washington Post, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText10.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	// PUBLISHER_MATCH
+	@Test(priority = 44)
+	public void PUBLISHER_MATCH_Negative60011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760191282268209498");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark11
+		WebElement TrustApp_mark11 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark11
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark11);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark11
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark11).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status11
+		WebElement Widget_Status11 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status11
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status11);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status11
+		String widgetstatus11 = Widget_Status11.getText();
+
+		// Define the expected status text
+		String unexpectedStatus11 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus11, unexpectedStatus11, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m46. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus11 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher11
+		WebElement News_Item_Publisher11 = driver.findElement(By.xpath("//a[normalize-space()='BBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher11
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher11);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher11
+		String Publisher11 = News_Item_Publisher11.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher11);
+
+		// locate TrustApp_message11
+		WebElement TrustApp_message11 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message11
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message11);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message11
+		String messageText11 = TrustApp_message11.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText11);
+
+		// expected output
+		String expectedOutput = "This post references BBC, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText11.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+	// ------------------------------------------------------------------------------------------------------------------------------------------------------------
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 45)
+	public void EXACT_HEADLINE_MATCH70001() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1737777541266469017?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark1
+		WebElement TrustApp_mark1 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark1
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark1);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark1).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status1
+		WebElement Widget_Status1 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status1
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status1);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status1
+		String widgetstatus1 = Widget_Status1.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus1, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m47. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus1 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher1
+		WebElement News_Item_Publisher1 = driver.findElement(By.xpath("//a[normalize-space()='Fox News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher1
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher1);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher1
+		String Publisher1 = News_Item_Publisher1.getText();
+
+		// Print the Publisher1
+		System.out.println("Publisher: " + Publisher1);
+
+		// locate TrustApp_message1
+		WebElement TrustApp_message1 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message1
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message1);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message1
+		String messageText1 = TrustApp_message1.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText1);
+
+		// expected output
+		String expectedOutput = "This post references Fox News, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText1.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED");
+			Assert.fail("EXACT_HEADLINE_MATCH test case FAILED");
+		}
+	}
+
+	// ---------------------------------------------------------------------
+
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 46)
+	public void EXACT_HEADLINE_MATCH70002() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1737777541266469017?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark2
+		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark2
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark2);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark2
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark2).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status2
+		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status2
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status2);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status2
+		String widgetstatus2 = Widget_Status2.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus2, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m48. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus2 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher2
+		WebElement News_Item_Publisher2 = driver.findElement(By.xpath("//a[normalize-space()='Fox News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher2
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher2);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher2
+		String Publisher2 = News_Item_Publisher2.getText();
+
+		// Print the Publisher2
+		System.out.println("Publisher: " + Publisher2);
+
+		// locate TrustApp_message2
+		WebElement TrustApp_message2 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message2
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message2);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message2
+		String messageText2 = TrustApp_message2.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText2);
+
+		// expected output
+		String expectedOutput = "This post references Fox News, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED");
+			Assert.fail("EXACT_HEADLINE_MATCH test case FAILED");
+		}
+	}
+
+	// ---------------------------------------------------------------------
+
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 47)
+	public void EXACT_HEADLINE_MATCH70003() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742151531737088311");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus3 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus3, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m49. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus3 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher3
+		WebElement News_Item_Publisher3 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher3
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher3);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher3
+		String Publisher3 = News_Item_Publisher3.getText();
+
+		// Print the Publisher3
+		System.out.println("Publisher: " + Publisher3);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText3);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED");
+			Assert.fail("EXACT_HEADLINE_MATCH test case FAILED");
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 48)
+	public void EXACT_HEADLINE_MATCH70004() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742151531737088311");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark4
+		WebElement TrustApp_mark4 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark4
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark4);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark4
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark4).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status4
+		WebElement Widget_Status4 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status4
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status4);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status4
+		String widgetstatus4 = Widget_Status4.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus4, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m50. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus4 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher4
+		WebElement News_Item_Publisher4 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher4
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher4);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher4
+		String Publisher4 = News_Item_Publisher4.getText();
+
+		// Print the Publisher4
+		System.out.println("Publisher: " + Publisher4);
+
+		// locate TrustApp_message4
+		WebElement TrustApp_message4 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message4
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message4);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message4
+		String messageText4 = TrustApp_message4.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText4);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText4.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED");
+			Assert.fail("EXACT_HEADLINE_MATCH test case FAILED");
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 49)
+	public void EXACT_HEADLINE_MATCH70005() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742424525470331200");
+		Thread.sleep(12000);
+
+		// locate TrustApp_mark5
+		WebElement TrustApp_mark5 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark5
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark5);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark5
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark5).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status5
+		WebElement Widget_Status5 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status5
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status5);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status5
+		String widgetstatus5 = Widget_Status5.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus5, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m51. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus5 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher5
+		WebElement News_Item_Publisher5 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher5
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher5);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher5
+		String Publisher5 = News_Item_Publisher5.getText();
+
+		// Print the Publisher5
+		System.out.println("Publisher: " + Publisher5);
+
+		// locate TrustApp_message5
+		WebElement TrustApp_message5 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message5
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message5);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message5
+		String messageText5 = TrustApp_message5.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText5);
+
+		// expected output
+		String expectedOutput = "This post references Al Jazeera English, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText5.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED");
+			Assert.fail("EXACT_HEADLINE_MATCH test case FAILED");
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 50)
+	public void EXACT_HEADLINE_MATCH_Negative70006() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745719134577648082");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark6
+		WebElement TrustApp_mark6 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark6
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark6);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark5
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark6).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status6
+		WebElement Widget_Status6 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status6
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status6);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status6
+		String widgetstatus6 = Widget_Status6.getText();
+
+		// Define the expected status text
+		String unexpectedStatus6 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus6, unexpectedStatus6, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m52. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus6 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher6
+		WebElement News_Item_Publisher6 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher6
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher6);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher6
+		String Publisher6 = News_Item_Publisher6.getText();
+
+		// Print the Publisher6
+		System.out.println("Publisher: " + Publisher6);
+
+		// locate TrustApp_message6
+		WebElement TrustApp_message6 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message6
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message6);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message6
+		String messageText6 = TrustApp_message6.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText6);
+
+		// expected output
+		String expectedOutput = "This post references The Economist, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText6.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 51)
+	public void EXACT_HEADLINE_MATCH_Negative70007() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747548373643673758");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark7
+		WebElement TrustApp_mark7 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark7
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark7);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark7
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark7).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status7
+		WebElement Widget_Status7 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status7
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status7);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status7
+		String widgetstatus7 = Widget_Status7.getText();
+
+		// Define the expected status text
+		String unexpectedStatus7 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus7, unexpectedStatus7, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m53. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus7 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher7
+		WebElement News_Item_Publisher7 = driver.findElement(By.xpath("//a[normalize-space()='Fox News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher7
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher7);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher7
+		String Publisher7 = News_Item_Publisher7.getText();
+
+		// Print the Publisher7
+		System.out.println("Publisher: " + Publisher7);
+
+		// locate TrustApp_message7
+		WebElement TrustApp_message7 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message7
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message7);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message7
+		String messageText7 = TrustApp_message7.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText7);
+
+		// expected output
+		String expectedOutput = "This post references Fox News, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText7.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 53)
+	public void EXACT_HEADLINE_MATCH_Negative70008() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750418327342661759");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark8
+		WebElement TrustApp_mark8 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark8
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark8);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark8
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark8).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status8
+		WebElement Widget_Status8 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status8
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status8);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status8
+		String widgetstatus8 = Widget_Status8.getText();
+
+		// Define the expected status text
+		String unexpectedStatus8 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus8, unexpectedStatus8, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m54. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus8 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher8
+		WebElement News_Item_Publisher8 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher8
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher8);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher8
+		String Publisher8 = News_Item_Publisher8.getText();
+
+		// Print the Publisher8
+		System.out.println("Publisher: " + Publisher8);
+
+		// locate TrustApp_message8
+		WebElement TrustApp_message8 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message8
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message8);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message8
+		String messageText8 = TrustApp_message8.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText8);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText8.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 53)
+	public void EXACT_HEADLINE_MATCH_Negative70009() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750419538502418478");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark
+		WebElement TrustApp_mark9 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark9
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark9);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark9
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark9).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status9
+		WebElement Widget_Status9 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status9
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status9);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status9
+		String widgetstatus9 = Widget_Status9.getText();
+
+		// Define the expected status text
+		String unexpectedStatus9 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus9, unexpectedStatus9, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m55. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus9 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher9
+		WebElement News_Item_Publisher9 = driver.findElement(By.xpath("//a[normalize-space()='CBC News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher9
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher9);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher9
+		String Publisher9 = News_Item_Publisher9.getText();
+
+		// Print the Publisher9
+		System.out.println("Publisher: " + Publisher9);
+
+		// locate TrustApp_message9
+		WebElement TrustApp_message9 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message9
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message9);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message9
+		String messageText9 = TrustApp_message9.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText9);
+
+		// expected output
+		String expectedOutput = "This post references CBC News, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText9.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------------------------------------------
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 54)
+	public void EXACT_HEADLINE_MATCH_Negative70010() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750420491607613947");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark10
+		WebElement TrustApp_mark10 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark10
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark10);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark10
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark10).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status10
+		WebElement Widget_Status10 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status10
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status10);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status10
+		String widgetstatus10 = Widget_Status10.getText();
+
+		// Define the expected status text
+		String unexpectedStatus10 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus10, unexpectedStatus10, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m56. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus10 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher10
+		WebElement News_Item_Publisher10 = driver.findElement(By.xpath("//a[normalize-space()='CBC News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher10
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher10);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher10
+		String Publisher10 = News_Item_Publisher10.getText();
+
+		// Print the Publisher10
+		System.out.println("Publisher: " + Publisher10);
+
+		// locate TrustApp_message10
+		WebElement TrustApp_message10 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message10
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message10);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message10
+		String messageText10 = TrustApp_message10.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText10);
+
+		// expected output
+		String expectedOutput = "This post references CBC News, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText10.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------------------------------------------
+	// EXACT_HEADLINE_MATCH
+	@Test(priority = 55)
+	public void EXACT_HEADLINE_MATCH_Negative70011() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustAppTesting/status/1760196005922783563");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark11
+		WebElement TrustApp_mark11 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark11
+		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark11);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark11
+		Actions actions124 = new Actions(driver);
+		actions124.moveToElement(TrustApp_mark11).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status11
+		WebElement Widget_Status11 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status11
+		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status11);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status11
+		String widgetstatus11 = Widget_Status11.getText();
+
+		// Define the expected status text
+		String unexpectedStatus11 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus11, unexpectedStatus11, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m57. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus11 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher11
+		WebElement News_Item_Publisher11 = driver.findElement(By.xpath("//a[normalize-space()='The Guardian']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher11
+		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher11);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher11
+		String Publisher11 = News_Item_Publisher11.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher11);
+
+		// locate TrustApp_message11
+		WebElement TrustApp_message11 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message11
+		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
+		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message11);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message11
+		String messageText11 = TrustApp_message11.getText();
+
+		// Print the text
+		System.out.println("EXACT_HEADLINE_MATCH: " + messageText11);
+
+		// expected output
+		String expectedOutput = "This post references The Guardian, one of your trusted sources. We have verified that the post matches the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText11.equals(expectedOutput)) {
+			System.out.println("EXACT_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("EXACT_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+	// ------------------------------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_MATCH
+
+	@Test(priority = 56)
+	public void SEMANTIC_HEADLINE_MATCH80001() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742062790829826348");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark1
+		WebElement TrustApp_mark1 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark1
+		JavascriptExecutor jse108 = (JavascriptExecutor) driver;
+		jse108.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark1);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark8
+		Actions actions108 = new Actions(driver);
+		actions108.moveToElement(TrustApp_mark1).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status1
+		WebElement Widget_Status1 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status1
+		JavascriptExecutor jse1008 = (JavascriptExecutor) driver;
+		jse108.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status1);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status1
+		String widgetstatus1 = Widget_Status1.getText();
+
+		// Define the expected status text
+		String expectedStatus1 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus1, expectedStatus1, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m58. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus1 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher1
+		WebElement News_Item_Publisher1 = driver.findElement(By.xpath("//a[normalize-space()='Fox News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher1
+		JavascriptExecutor jse10228 = (JavascriptExecutor) driver;
+		jse108.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher1);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher1
+		String Publisher1 = News_Item_Publisher1.getText();
+
+		// Print the Publisher1
+		System.out.println("Publisher: " + Publisher1);
+
+		// locate TrustApp_message1
+		WebElement TrustApp_message1 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message1
 		JavascriptExecutor jse1038 = (JavascriptExecutor) driver;
 		jse108.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message1);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message1
+		String messageText1 = TrustApp_message1.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText1);
+
+		// expected output
+		String expectedOutput = "This post references Fox News, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText1.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED");
+			Assert.fail("SEMANTIC_HEADLINE_MATCH test case FAILED");
+		}
+	}
+
+	// -------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_MATCH
+	@Test(priority = 57)
+	public void SEMANTIC_HEADLINE_MATCH8002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752985276467609694");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark2
+		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark2
+		JavascriptExecutor jse125 = (JavascriptExecutor) driver;
+		jse125.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark2);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark2
+		Actions actions125 = new Actions(driver);
+		actions125.moveToElement(TrustApp_mark2).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status2
+		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status2
+		JavascriptExecutor jse10025 = (JavascriptExecutor) driver;
+		jse125.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status2);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status2
+		String widgetstatus2 = Widget_Status2.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus2, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m59. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus2 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher2
+		WebElement News_Item_Publisher2 = driver
+				.findElement(By.xpath("//a[normalize-space()='The Wall Street Journal']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher2
+		JavascriptExecutor jse102525 = (JavascriptExecutor) driver;
+		jse125.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher2);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher2
+		String Publisher2 = News_Item_Publisher2.getText();
+
+		// Print the Publisher2
+		System.out.println("Publisher: " + Publisher2);
+
+		// locate TrustApp_message2
+		WebElement TrustApp_message2 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message2
+		JavascriptExecutor jse1025 = (JavascriptExecutor) driver;
+		jse125.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message2);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message2
+		String messageText2 = TrustApp_message2.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText2);
+
+		// expected output
+		String expectedOutput = "This post references The Wall Street Journal, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED");
+			Assert.fail("SEMANTIC_HEADLINE_MATCH test case FAILED");
+		}
+	}
+
+//-------------------------------------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_MATCH
+	@Test(priority = 58)
+	public void SEMANTIC_HEADLINE_MATCH8003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752952096771465711");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions actions142 = new Actions(driver);
+		actions142.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(2000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse10042 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus3 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus3, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m60. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus3 + "\033[0m"); // \042[42m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher3
+		WebElement News_Item_Publisher3 = driver.findElement(By.xpath("(//a[normalize-space()='The Economist'])[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher3
+		JavascriptExecutor jse104242 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher3);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher3
+		String Publisher3 = News_Item_Publisher3.getText();
+
+		// Print the Publisher3
+		System.out.println("Publisher: " + Publisher3);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse1142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText3);
+
+		// expected output
+		String expectedOutput = "This post references The Economist, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED");
+			Assert.fail("SEMANTIC_HEADLINE_MATCH test case FAILED");
+		}
+	}
+	// --------------------------------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_MATCH
+	@Test(priority = 59)
+	public void SEMANTIC_HEADLINE_MATCH8004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742426944644276366");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark4
+		WebElement TrustApp_mark4 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark4
+		JavascriptExecutor jse142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark4);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark4
+		Actions actions142 = new Actions(driver);
+		actions142.moveToElement(TrustApp_mark4).perform();
+		Thread.sleep(2000);
+
+		// locate Widget_Status4
+		WebElement Widget_Status4 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status4
+		JavascriptExecutor jse10042 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status4);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status4
+		String widgetstatus4 = Widget_Status4.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus4, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m61. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus4 + "\033[0m"); // \042[42m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher4
+		WebElement News_Item_Publisher4 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher4
+		JavascriptExecutor jse104242 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher4);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher4
+		String Publisher4 = News_Item_Publisher4.getText();
+
+		// Print the Publisher4
+		System.out.println("Publisher: " + Publisher4);
+
+		// locate TrustApp_message4
+		WebElement TrustApp_message4 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message4
+		JavascriptExecutor jse1142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message4);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message4
+		String messageText4 = TrustApp_message4.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText4);
+
+		// expected output
+		String expectedOutput = "This post references Al Jazeera English, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText4.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED");
+			Assert.fail("SEMANTIC_HEADLINE_MATCH test case FAILED");
+		}
+	}
+	// --------------------------------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_MATCH
+	@Test(priority = 60)
+	public void SEMANTIC_HEADLINE_MATCH8005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742427654567960635");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark5
+		WebElement TrustApp_mark5 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark5
+		JavascriptExecutor jse142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark5);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark5
+		Actions actions142 = new Actions(driver);
+		actions142.moveToElement(TrustApp_mark5).perform();
+		Thread.sleep(2000);
+
+		// locate Widget_Status5
+		WebElement Widget_Status5 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status5
+		JavascriptExecutor jse10042 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status5);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status5
+		String widgetstatus5 = Widget_Status5.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus5, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m62. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus5 + "\033[0m"); // \042[42m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher5
+		WebElement News_Item_Publisher5 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher5
+		JavascriptExecutor jse104242 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher5);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher5
+		String Publisher5 = News_Item_Publisher5.getText();
+
+		// Print the Publisher5
+		System.out.println("Publisher: " + Publisher5);
+
+		// locate TrustApp_message5
+		WebElement TrustApp_message5 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message5
+		JavascriptExecutor jse1142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message5);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message5
+		String messageText5 = TrustApp_message5.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText5);
+
+		// expected output
+		String expectedOutput = "This post references Al Jazeera English, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText5.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED");
+			Assert.fail("SEMANTIC_HEADLINE_MATCH test case FAILED");
+		}
+	}
+	// --------------------------------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_MATCH
+	@Test(priority = 61)
+	public void SEMANTIC_HEADLINE_MATCH_Negative8006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752990329098178953");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark6
+		WebElement TrustApp_mark6 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark6
+		JavascriptExecutor jse142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark6);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark6
+		Actions actions142 = new Actions(driver);
+		actions142.moveToElement(TrustApp_mark6).perform();
+		Thread.sleep(2000);
+
+		// locate Widget_Status6
+		WebElement Widget_Status6 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status6
+		JavascriptExecutor jse10042 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status6);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status6
+		String widgetstatus6 = Widget_Status6.getText();
+
+		// Define the expected status text
+		String unexpectedStatus6 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus6, unexpectedStatus6, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m63. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus6 + "\033[0m"); // \042[42m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher6
+		WebElement News_Item_Publisher6 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher6
+		JavascriptExecutor jse104242 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher6);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher6
+		String Publisher6 = News_Item_Publisher6.getText();
+
+		// Print the Publisher6
+		System.out.println("Publisher: " + Publisher6);
+
+		// locate TrustApp_message6
+		WebElement TrustApp_message6 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message6
+		JavascriptExecutor jse1142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message6);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message6
+		String messageText6 = TrustApp_message6.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText6);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText6.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_MATCH
+	@Test(priority = 62)
+	public void SEMANTIC_HEADLINE_MATCH_Negative80007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752990329098178953");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark7
+		WebElement TrustApp_mark7 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark7
+		JavascriptExecutor jse142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark7);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark7
+		Actions actions142 = new Actions(driver);
+		actions142.moveToElement(TrustApp_mark7).perform();
+		Thread.sleep(2000);
+
+		// locate Widget_Status7
+		WebElement Widget_Status7 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status7
+		JavascriptExecutor jse10042 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status7);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status7
+		String widgetstatus7 = Widget_Status7.getText();
+
+		// Define the expected status text
+		String unexpectedStatus7 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus7, unexpectedStatus7, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m64. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus7 + "\033[0m"); // \042[42m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher7
+		WebElement News_Item_Publisher7 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher7
+		JavascriptExecutor jse104242 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher7);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher7
+		String Publisher7 = News_Item_Publisher7.getText();
+
+		// Print the Publisher7
+		System.out.println("Publisher: " + Publisher7);
+
+		// locate TrustApp_message7
+		WebElement TrustApp_message7 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message7
+		JavascriptExecutor jse1142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message7);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message7
+		String messageText7 = TrustApp_message7.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText7);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText7.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+	// --------------------------------------------------------------------------------------------------------------------------------
+	// SEMANTIC_HEADLINE_MATCH
+	@Test(priority = 63)
+	public void SEMANTIC_HEADLINE_MATCH_Negative80008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1751918544177021150");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark8
+		WebElement TrustApp_mark8 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark8
+		JavascriptExecutor jse142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark8);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark8
+		Actions actions142 = new Actions(driver);
+		actions142.moveToElement(TrustApp_mark8).perform();
+		Thread.sleep(2000);
+
+		// locate Widget_Status8
+		WebElement Widget_Status8 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status8
+		JavascriptExecutor jse10042 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status8);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status8
+		String widgetstatus8 = Widget_Status8.getText();
+
+		// Define the expected status text
+		String unexpectedStatus8 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus8, unexpectedStatus8, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m65. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus8 + "\033[0m"); // \042[42m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher8
+		WebElement News_Item_Publisher8 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher8
+		JavascriptExecutor jse104242 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher8);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher8
+		String Publisher8 = News_Item_Publisher8.getText();
+
+		// Print the Publisher7
+		System.out.println("Publisher: " + Publisher8);
+
+		// locate TrustApp_message8
+		WebElement TrustApp_message8 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message8
+		JavascriptExecutor jse1142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_message8);
 		Thread.sleep(1000);
 
@@ -721,21 +5790,1026 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText8);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message8.isDisplayed();
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message8 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText8.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
 		} else {
-			System.out.println("TrustApp_message8 is not DISPLAYED");
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+	// --------------------------------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_MATCH
+	@Test(priority = 64)
+	public void SEMANTIC_HEADLINE_MATCH_Negative80009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752991259365441578");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark9
+		WebElement TrustApp_mark9 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark9
+		JavascriptExecutor jse142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark9);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark9
+		Actions actions142 = new Actions(driver);
+		actions142.moveToElement(TrustApp_mark9).perform();
+		Thread.sleep(2000);
+
+		// locate Widget_Status9
+		WebElement Widget_Status9 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status9
+		JavascriptExecutor jse10042 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status9);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status9
+		String widgetstatus9 = Widget_Status9.getText();
+
+		// Define the expected status text
+		String unexpectedStatus9 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus9, unexpectedStatus9, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m66. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus9 + "\033[0m"); // \042[42m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher9
+		WebElement News_Item_Publisher9 = driver.findElement(By.xpath("//a[normalize-space()='CBC News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher9
+		JavascriptExecutor jse104242 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher9);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher9
+		String Publisher9 = News_Item_Publisher9.getText();
+
+		// Print the Publisher9
+		System.out.println("Publisher: " + Publisher9);
+
+		// locate TrustApp_message9
+		WebElement TrustApp_message9 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message9
+		JavascriptExecutor jse1142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message9);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message9
+		String messageText9 = TrustApp_message9.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText9);
+
+		// expected output
+		String expectedOutput = "This post references CBC News, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText9.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+	// --------------------------------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_MATCH
+	@Test(priority = 65)
+	public void SEMANTIC_HEADLINE_MATCH_Negative80010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752986891769524479");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark10
+		WebElement TrustApp_mark10 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark10
+		JavascriptExecutor jse142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark10);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark10
+		Actions actions142 = new Actions(driver);
+		actions142.moveToElement(TrustApp_mark10).perform();
+		Thread.sleep(2000);
+
+		// locate Widget_Status10
+		WebElement Widget_Status10 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status10
+		JavascriptExecutor jse10042 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status10);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status10
+		String widgetstatus10 = Widget_Status10.getText();
+
+		// Define the expected status text
+		String unexpectedStatus10 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus10, unexpectedStatus10, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m67. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus10 + "\033[0m"); // \042[42m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher10
+		WebElement News_Item_Publisher10 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher10
+		JavascriptExecutor jse104242 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher10);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher10
+		String Publisher10 = News_Item_Publisher10.getText();
+
+		// Print the Publisher10
+		System.out.println("Publisher: " + Publisher10);
+
+		// locate TrustApp_message10
+		WebElement TrustApp_message10 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message10
+		JavascriptExecutor jse1142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message10);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message10
+		String messageText10 = TrustApp_message10.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText10);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText10.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+	// --------------------------------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_MATCH
+	@Test(priority = 66)
+	public void SEMANTIC_HEADLINE_MATCH_Negative8011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760197752691032488");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark11
+		WebElement TrustApp_mark11 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark11
+		JavascriptExecutor jse142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark11);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark11
+		Actions actions142 = new Actions(driver);
+		actions142.moveToElement(TrustApp_mark11).perform();
+		Thread.sleep(2000);
+
+		// locate Widget_Status11
+		WebElement Widget_Status11 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status11
+		JavascriptExecutor jse10042 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status11);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status11
+		String widgetstatus11 = Widget_Status11.getText();
+
+		// Define the expected status text
+		String unexpectedStatus11 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus11, unexpectedStatus11, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m68. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus11 + "\033[0m"); // \042[42m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher11
+		WebElement News_Item_Publisher11 = driver.findElement(By.xpath("//a[normalize-space()='The Guardian']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher11
+		JavascriptExecutor jse104242 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher11);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher11
+		String Publisher11 = News_Item_Publisher11.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher11);
+
+		// locate TrustApp_message11
+		WebElement TrustApp_message11 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message11
+		JavascriptExecutor jse1142 = (JavascriptExecutor) driver;
+		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message11);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message11
+		String messageText11 = TrustApp_message11.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText11);
+
+		// expected output
+		String expectedOutput = "This post references The Guardian, one of your trusted sources. We have verified that the post agrees with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText11.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_MATCH test case PASSED (As expected)");
+
+		}
+	}
+	// --------------------------------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_CONTRADICTION
+	@Test(priority = 67)
+	public void SEMANTIC_HEADLINE_CONTRADICTION90001() throws InterruptedException {
+		driver.get("https://twitter.com/Kushagra3837/status/1735733278332821781?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark1
+		WebElement TrustApp_mark1 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark1
+		JavascriptExecutor jse126 = (JavascriptExecutor) driver;
+		jse126.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark1);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions126 = new Actions(driver);
+		actions126.moveToElement(TrustApp_mark1).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status1
+		WebElement Widget_Status1 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2600);
+
+		// to highlight the Widget_Status1
+		JavascriptExecutor jse10026 = (JavascriptExecutor) driver;
+		jse126.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status1);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status1
+		String widgetstatus1 = Widget_Status1.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus1, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m69. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus1 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+
+		// locate News_Item_Publisher1
+		WebElement News_Item_Publisher1 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher1
+		JavascriptExecutor jse102626 = (JavascriptExecutor) driver;
+		jse126.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher1);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher1
+		String Publisher1 = News_Item_Publisher1.getText();
+
+		// Print the Publisher1
+		System.out.println("Publisher: " + Publisher1);
+
+		// locate TrustApp_message1
+		WebElement TrustApp_message1 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message1
+		JavascriptExecutor jse1026 = (JavascriptExecutor) driver;
+		jse126.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message1);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message1
+		String messageText1 = TrustApp_message1.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText1);
+
+		// expected output
+		String expectedOutput = "This post references The Economist, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText1.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED");
+			Assert.fail("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED");
+
 		}
 	}
 
-	// -------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------
+	// // SEMANTIC_HEADLINE_CONTRADICTION
+	@Test(priority = 68)
+	public void SEMANTIC_HEADLINE_CONTRADICTION90002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1763087854664556724");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark2
+		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark2
+		JavascriptExecutor jse109 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark2);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark2
+		Actions actions109 = new Actions(driver);
+		actions109.moveToElement(TrustApp_mark2).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status2
+		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status2
+		JavascriptExecutor jse1009 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status2);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status2
+		String widgetstatus2 = Widget_Status2.getText();
+
+		// Define the expected status text
+		String expectedStatus2 = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus2, expectedStatus2, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m70. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus2 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher2
+		WebElement News_Item_Publisher2 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher2
+		JavascriptExecutor jse10229 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher2);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher2
+		String Publisher2 = News_Item_Publisher2.getText();
+
+		// Print the Publisher2
+		System.out.println("Publisher: " + Publisher2);
+
+		// locate TrustApp_message2
+		WebElement TrustApp_message2 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message2
+		JavascriptExecutor jse1039 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message2);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message2
+		String messageText2 = TrustApp_message2.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText2);
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED");
+			Assert.fail("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED");
+		}
+	}
+
+//	//----------------------------------------------------------------------------------------------------------
+	// // SEMANTIC_HEADLINE_CONTRADICTION
+	@Test(priority = 69)
+	public void SEMANTIC_HEADLINE_CONTRADICTION90003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1758353463187046477");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse109 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions actions109 = new Actions(driver);
+		actions109.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse1009 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus3 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String expectedStatus3 = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus3, expectedStatus3, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m71. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus3 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher3
+		WebElement News_Item_Publisher3 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher3
+		JavascriptExecutor jse10229 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher3);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher3
+		String Publisher3 = News_Item_Publisher3.getText();
+
+		// Print the Publisher3
+		System.out.println("Publisher: " + Publisher3);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse1039 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText3);
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED");
+			Assert.fail("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED");
+		}
+	}
+
+//		//----------------------------------------------------------------------------------------------------------
+	// // SEMANTIC_HEADLINE_CONTRADICTION
+	@Test(priority = 70)
+	public void SEMANTIC_HEADLINE_CONTRADICTION90004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742497632688210049");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark4
+		WebElement TrustApp_mark4 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark4
+		JavascriptExecutor jse109 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark4);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark9
+		Actions actions109 = new Actions(driver);
+		actions109.moveToElement(TrustApp_mark4).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status4
+		WebElement Widget_Status4 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status4
+		JavascriptExecutor jse1009 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status4);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status4
+		String widgetstatus4 = Widget_Status4.getText();
+
+		// Define the expected status text
+		String expectedStatus4 = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus4, expectedStatus4, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m72. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus4 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher4
+		WebElement News_Item_Publisher4 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher4
+		JavascriptExecutor jse10229 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher4);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher4
+		String Publisher4 = News_Item_Publisher4.getText();
+
+		// Print the Publisher4
+		System.out.println("Publisher: " + Publisher4);
+
+		// locate TrustApp_message4
+		WebElement TrustApp_message4 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message4
+		JavascriptExecutor jse1039 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message4);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message4
+		String messageText4 = TrustApp_message4.getText();
+
+		// Print the text4
+		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText4);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText4.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED");
+			Assert.fail("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED");
+		}
+	}
+//		//----------------------------------------------------------------------------------------------------------
+
+	// // SEMANTIC_HEADLINE_CONTRADICTION
+	@Test(priority = 71)
+	public void SEMANTIC_HEADLINE_CONTRADICTION90005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742498835996225661");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark5
+		WebElement TrustApp_mark5 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark5
+		JavascriptExecutor jse109 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark5);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark9
+		Actions actions109 = new Actions(driver);
+		actions109.moveToElement(TrustApp_mark5).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status5
+		WebElement Widget_Status5 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status5
+		JavascriptExecutor jse1009 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status5);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status5
+		String widgetstatus5 = Widget_Status5.getText();
+
+		// Define the expected status text
+		String expectedStatus5 = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus5, expectedStatus5, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m73. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus5 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher5
+		WebElement News_Item_Publisher5 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher5
+		JavascriptExecutor jse10229 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher5);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher5
+		String Publisher5 = News_Item_Publisher5.getText();
+
+		// Print the Publisher5
+		System.out.println("Publisher: " + Publisher5);
+
+		// locate TrustApp_message5
+		WebElement TrustApp_message5 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message5
+		JavascriptExecutor jse1039 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message5);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message5
+		String messageText5 = TrustApp_message5.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText5);
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText5.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED");
+			Assert.fail("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED");
+		}
+	}
+
+//		//----------------------------------------------------------------------------------------------------------
 	// SEMANTIC_HEADLINE_CONTRADICTION
-	@Test(priority = 8)
-	public void SEMANTIC_HEADLINE_CONTRADICTION() throws InterruptedException {
-		driver.get("https://twitter.com/Kushagra3837/status/1735733278332821781?s=20");
+	@Test(priority = 72)
+	public void SEMANTIC_HEADLINE_CONTRADICTION_Negative90006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1753332136222876144");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark6
+		WebElement TrustApp_mark6 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark6
+		JavascriptExecutor jse109 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark6);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark6
+		Actions actions109 = new Actions(driver);
+		actions109.moveToElement(TrustApp_mark6).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status6
+		WebElement Widget_Status6 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status6
+		JavascriptExecutor jse1009 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status6);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status6
+		String widgetstatus6 = Widget_Status6.getText();
+
+		// Define the expected status text
+		String expectedStatus6 = "Trustful";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus6, expectedStatus6, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m74. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus6 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher6
+		WebElement News_Item_Publisher6 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher6
+		JavascriptExecutor jse10229 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher6);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher6
+		String Publisher6 = News_Item_Publisher6.getText();
+
+		// Print the Publisher6
+		System.out.println("Publisher: " + Publisher6);
+
+		// locate TrustApp_message6
+		WebElement TrustApp_message6 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message6
+		JavascriptExecutor jse1039 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message6);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message6
+		String messageText6 = TrustApp_message6.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText6);
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText6.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED (As expected)");
+
+		}
+	}
+
+//		//----------------------------------------------------------------------------------------------------------
+	// SEMANTIC_HEADLINE_CONTRADICTION
+	@Test(priority = 73)
+	public void SEMANTIC_HEADLINE_CONTRADICTION_Negative90007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1753334847261557247");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark7
+		WebElement TrustApp_mark7 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark7
+		JavascriptExecutor jse109 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark7);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark7
+		Actions actions109 = new Actions(driver);
+		actions109.moveToElement(TrustApp_mark7).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status7
+		WebElement Widget_Status7 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status7
+		JavascriptExecutor jse1009 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status7);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status7
+		String widgetstatus7 = Widget_Status7.getText();
+
+		// Define the expected status text
+		String expectedStatus7 = "Trustful";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus7, expectedStatus7, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m75. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus7 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher7
+		WebElement News_Item_Publisher7 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher7
+		JavascriptExecutor jse10229 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher7);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher7
+		String Publisher7 = News_Item_Publisher7.getText();
+
+		// Print the Publisher7
+		System.out.println("Publisher: " + Publisher7);
+
+		// locate TrustApp_message7
+		WebElement TrustApp_message7 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message7
+		JavascriptExecutor jse1039 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message7);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message7
+		String messageText7 = TrustApp_message7.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText7);
+		// expected output
+		String expectedOutput = "This post references POLITICO, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText7.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED (As expected)");
+
+		}
+	}
+//				//----------------------------------------------------------------------------------------------------------
+
+	// SEMANTIC_HEADLINE_CONTRADICTION
+	@Test(priority = 74)
+	public void SEMANTIC_HEADLINE_CONTRADICTION_Negative90008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1753335875885306344");
+		Thread.sleep(9000);
+
+		// locate TrustApp_mark8
+		WebElement TrustApp_mark8 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark8
+		JavascriptExecutor jse109 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark8);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark8
+		Actions actions109 = new Actions(driver);
+		actions109.moveToElement(TrustApp_mark8).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status8
+		WebElement Widget_Status8 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status8
+		JavascriptExecutor jse1009 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status8);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status8
+		String widgetstatus8 = Widget_Status8.getText();
+
+		// Define the expected status text
+		String expectedStatus8 = "Trustful";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus8, expectedStatus8, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m76. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus8 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher8
+		WebElement News_Item_Publisher8 = driver.findElement(By.xpath("//a[normalize-space()='The Guardian']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher8
+		JavascriptExecutor jse10229 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher8);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher8
+		String Publisher8 = News_Item_Publisher8.getText();
+
+		// Print the Publisher8
+		System.out.println("Publisher: " + Publisher8);
+
+		// locate TrustApp_message8
+		WebElement TrustApp_message8 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message8
+		JavascriptExecutor jse1039 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message8);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message8
+		String messageText8 = TrustApp_message8.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText8);
+		// expected output
+		String expectedOutput = "This post references The Guardian, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText8.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED (As expected)");
+
+		}
+	}
+
+//				//----------------------------------------------------------------------------------------------------------
+	// SEMANTIC_HEADLINE_CONTRADICTION
+	@Test(priority = 75)
+	public void SEMANTIC_HEADLINE_CONTRADICTION_Negative90009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1754390674886033652");
 		Thread.sleep(7000);
 
 		// locate TrustApp_mark9
@@ -766,15 +6840,21 @@ public class Testng_UI {
 		// Get the text of Widget_Status9
 		String widgetstatus9 = Widget_Status9.getText();
 
+		// Define the expected status text
+		String expectedStatus9 = "Trustful";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus9, expectedStatus9, "Status unexpectedly matches");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
-		System.out.print("\033[1m9. STATUS\033[0m: ");
+		System.out.print("\033[1m77. STATUS\033[0m: ");
 		System.out.print("\033[31m" + widgetstatus9 + "\033[0m"); // \033[31m sets color to red
 		System.out.println();
 		Thread.sleep(1000);
 
 		// locate News_Item_Publisher9
-		WebElement News_Item_Publisher9 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		WebElement News_Item_Publisher9 = driver.findElement(By.xpath("//a[normalize-space()='The Guardian']"));
 		Thread.sleep(1000);
 
 		// to highlight the News_Item_Publisher9
@@ -804,23 +6884,23 @@ public class Testng_UI {
 
 		// Print the text
 		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText9);
+		// expected output
+		String expectedOutput = "This post references The Guardian, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message9.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message9 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText9.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED(Unexpected outcome)");
 		} else {
-			System.out.println("TrustApp_message9 is not DISPLAYED");
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED (As expected)");
+
 		}
 	}
 
-//--------------------------------------------------------------------------	
-
-	// PUBLISHER_MATCH1
-	@Test(priority = 9)
-	public void PUBLISHER_MATCH1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742164277736112172");
+//				//----------------------------------------------------------------------------------------------------------
+	// SEMANTIC_HEADLINE_CONTRADICTION
+	@Test(priority = 76)
+	public void SEMANTIC_HEADLINE_CONTRADICTION_Negative90010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1754393065928688093");
 		Thread.sleep(7000);
 
 		// locate TrustApp_mark10
@@ -828,43 +6908,49 @@ public class Testng_UI {
 		Thread.sleep(1000);
 
 		// to highlight the TrustApp_mark10
-		JavascriptExecutor jse110 = (JavascriptExecutor) driver;
-		jse110.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		JavascriptExecutor jse109 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_mark10);
 		Thread.sleep(1000);
 
 		// Perform a hover action on TrustApp_mark10
-		Actions actions110 = new Actions(driver);
-		actions110.moveToElement(TrustApp_mark10).perform();
+		Actions actions109 = new Actions(driver);
+		actions109.moveToElement(TrustApp_mark10).perform();
 		Thread.sleep(3000);
 
 		// locate Widget_Status10
-		WebElement Widget_Status10 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		WebElement Widget_Status10 = driver.findElement(By.xpath("//div[@class='tag danger']"));
 		Thread.sleep(2000);
 
 		// to highlight the Widget_Status10
-		JavascriptExecutor jse10010 = (JavascriptExecutor) driver;
-		jse110.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		JavascriptExecutor jse1009 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				Widget_Status10);
 		Thread.sleep(1000);
 
 		// Get the text of Widget_Status10
 		String widgetstatus10 = Widget_Status10.getText();
 
+		// Define the expected status text
+		String expectedStatus10 = "Trustful";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus10, expectedStatus10, "Status unexpectedly matches");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m10. STATUS\033[0m: ");
-		System.out.print("\033[32m" + widgetstatus10 + "\033[0m"); // \033[32m sets color to green
+		// red
+		System.out.print("\033[1m78. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus10 + "\033[0m"); // \033[31m sets color to red
 		System.out.println();
 		Thread.sleep(1000);
 
 		// locate News_Item_Publisher10
-		WebElement News_Item_Publisher10 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		WebElement News_Item_Publisher10 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
 		Thread.sleep(1000);
 
 		// to highlight the News_Item_Publisher10
-		JavascriptExecutor jse102210 = (JavascriptExecutor) driver;
-		jse110.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+		JavascriptExecutor jse10229 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
 				News_Item_Publisher10);
 		Thread.sleep(1000);
 
@@ -879,8 +6965,1030 @@ public class Testng_UI {
 		Thread.sleep(1000);
 
 		// to highlight the TrustApp_message10
-		JavascriptExecutor jse1010 = (JavascriptExecutor) driver;
-		jse110.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+		JavascriptExecutor jse1039 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message10);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message10
+		String messageText10 = TrustApp_message10.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText10);
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText10.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED (As expected)");
+
+		}
+	}
+
+//----------------------------------------------------------------------------------------------------------
+	// SEMANTIC_HEADLINE_CONTRADICTION
+	@Test(priority = 77)
+	public void SEMANTIC_HEADLINE_CONTRADICTION_Negative90011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760199432241385977");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark11
+		WebElement TrustApp_mark11 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark11
+		JavascriptExecutor jse109 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark11);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark11
+		Actions actions109 = new Actions(driver);
+		actions109.moveToElement(TrustApp_mark11).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status11
+		WebElement Widget_Status11 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status11
+		JavascriptExecutor jse1009 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status11);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status11
+		String widgetstatus11 = Widget_Status11.getText();
+
+		// Define the expected status text
+		String expectedStatus11 = "Trustful";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus11, expectedStatus11, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m79. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus11 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher11
+		WebElement News_Item_Publisher11 = driver.findElement(By.xpath("//a[normalize-space()='The Guardian']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher11
+		JavascriptExecutor jse10229 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher11);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher11
+		String Publisher11 = News_Item_Publisher11.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher11);
+
+		// locate TrustApp_message11
+		WebElement TrustApp_message11 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message11
+		JavascriptExecutor jse1039 = (JavascriptExecutor) driver;
+		jse109.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message11);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message11
+		String messageText11 = TrustApp_message11.getText();
+
+		// Print the text
+		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText11);
+		// expected output
+		String expectedOutput = "This post references The Guardian, one of your trusted sources. We have verified that the post does not agree with the headline of the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText11.equals(expectedOutput)) {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("SEMANTIC_HEADLINE_CONTRADICTION test case PASSED (As expected)");
+
+		}
+	}
+//----------------------------------------------------------------------------------------------------------
+
+	// PUBLISHER_MATCH
+	@Test(priority = 78)
+	public void PUBLISHER_MATCH10001() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775640005243004?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark1
+		WebElement TrustApp_mark1 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark1
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark1);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark1).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status1
+		WebElement Widget_Status1 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status1
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status1);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status1
+		String widgetstatus1 = Widget_Status1.getText();
+
+		// Define the expected status text
+		String expectedStatus1 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus1, expectedStatus1, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m80. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus1 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher1
+		WebElement News_Item_Publisher1 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher1
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher1);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher1
+		String Publisher1 = News_Item_Publisher1.getText();
+
+		// Print the Publisher1
+		System.out.println("Publisher: " + Publisher1);
+
+		// locate TrustApp_message1
+		WebElement TrustApp_message1 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message1
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message1);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message1
+		String messageText1 = TrustApp_message1.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText1);
+
+		// expected output
+		String expectedOutput = "This post references Al Jazeera English, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText1.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case PASSED");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case FAILED");
+			Assert.fail("PUBLISHER_MATCH test case FAILED"); // Fail the test case if the text does not match the
+																// expected output
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 79)
+	public void PUBLISHER_MATCH10002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775640005243004?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark2
+		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark2
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark2);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark2).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status2
+		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status2
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status2);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status2
+		String widgetstatus2 = Widget_Status2.getText();
+
+		// Define the expected status text
+		String expectedStatus2 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus2, expectedStatus2, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m81. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus2 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher2
+		WebElement News_Item_Publisher2 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher2
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher2);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher2
+		String Publisher2 = News_Item_Publisher2.getText();
+
+		// Print the Publisher2
+		System.out.println("Publisher: " + Publisher2);
+
+		// locate TrustApp_message2
+		WebElement TrustApp_message2 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message2
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message2);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message2
+		String messageText2 = TrustApp_message2.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText2);
+
+		// expected output
+		String expectedOutput = "This post references Al Jazeera English, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case PASSED");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case FAILED");
+			Assert.fail("PUBLISHER_MATCH test case FAILED"); // Fail the test case if the text does not match the
+																// expected output
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	// PUBLISHER_MATCH
+	@Test(priority = 80)
+	public void PUBLISHER_MATCH10003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1757366259140755898");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus3 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String expectedStatus3 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus3, expectedStatus3, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m82. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus3 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher3
+		WebElement News_Item_Publisher3 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher3
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher3);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher3
+		String Publisher3 = News_Item_Publisher3.getText();
+
+		// Print the Publisher3
+		System.out.println("Publisher: " + Publisher3);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText3);
+
+		// expected output
+		String expectedOutput = "This post references POLITICO, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case PASSED");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case FAILED");
+			Assert.fail("PUBLISHER_MATCH test case FAILED"); // Fail the test case if the text does not match the
+																// expected output
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 81)
+	public void PUBLISHER_MATCH10004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1762712226270482496");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark4
+		WebElement TrustApp_mark4 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark4
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark4);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark4
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark4).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status4
+		WebElement Widget_Status4 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status4
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status4);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status4
+		String widgetstatus4 = Widget_Status4.getText();
+
+		// Define the expected status text
+		String expectedStatus4 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus4, expectedStatus4, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m83. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus4 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher4
+		WebElement News_Item_Publisher4 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher4
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher4);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher4
+		String Publisher4 = News_Item_Publisher4.getText();
+
+		// Print the Publisher4
+		System.out.println("Publisher: " + Publisher4);
+
+		// locate TrustApp_message4
+		WebElement TrustApp_message4 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message4
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message4);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message4
+		String messageText4 = TrustApp_message4.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText4);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText4.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case PASSED");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case FAILED");
+			Assert.fail("PUBLISHER_MATCH test case FAILED"); // Fail the test case if the text does not match the
+																// expected output
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 82)
+	public void PUBLISHER_MATCH10005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742145170143875334");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark5
+		WebElement TrustApp_mark5 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark5
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark5);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark5
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark5).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status5
+		WebElement Widget_Status5 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status5
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status5);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status5
+		String widgetstatus5 = Widget_Status5.getText();
+
+		// Define the expected status text
+		String expectedStatus5 = "Trusted Source";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus5, expectedStatus5, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m84. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus5 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher5
+		WebElement News_Item_Publisher5 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher5
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher5);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher5
+		String Publisher5 = News_Item_Publisher5.getText();
+
+		// Print the Publisher5
+		System.out.println("Publisher: " + Publisher5);
+
+		// locate TrustApp_message5
+		WebElement TrustApp_message5 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message5
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message5);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message5
+		String messageText5 = TrustApp_message5.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText5);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText5.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case PASSED");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case FAILED");
+			Assert.fail("PUBLISHER_MATCH test case FAILED"); // Fail the test case if the text does not match the
+																// expected output
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 83)
+	public void PUBLISHER_MATCH_Negative10006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745714400252834137");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark6
+		WebElement TrustApp_mark6 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark6
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark6);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark6
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark6).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status6
+		WebElement Widget_Status6 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status6
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status6);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status6
+		String widgetstatus6 = Widget_Status6.getText();
+
+		// Define the expected status text
+		String unexpectedStatus6 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus6, unexpectedStatus6, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m85. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus6 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher6
+		WebElement News_Item_Publisher6 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher6
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher6);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher6
+		String Publisher6 = News_Item_Publisher6.getText();
+
+		// Print the Publisher6
+		System.out.println("Publisher: " + Publisher6);
+
+		// locate TrustApp_message6
+		WebElement TrustApp_message6 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message6
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message6);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message6
+		String messageText6 = TrustApp_message6.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText6);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText6.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 84)
+	public void PUBLISHER_MATCH_Negative10007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747526586780241978");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark7
+		WebElement TrustApp_mark7 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark7
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark7);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark7
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark7).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status7
+		WebElement Widget_Status7 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status7
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status7);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status7
+		String widgetstatus7 = Widget_Status7.getText();
+
+		// Define the expected status text
+		String unexpectedStatus7 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus7, unexpectedStatus7, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m86. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus7 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher7
+		WebElement News_Item_Publisher7 = driver.findElement(By.xpath("//a[normalize-space()='Fox News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher7
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher7);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher7
+		String Publisher7 = News_Item_Publisher7.getText();
+
+		// Print the Publisher7
+		System.out.println("Publisher: " + Publisher7);
+
+		// locate TrustApp_message7
+		WebElement TrustApp_message7 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message7
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message7);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message7
+		String messageText7 = TrustApp_message7.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText7);
+
+		// expected output
+		String expectedOutput = "This post references Fox News, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText7.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	// PUBLISHER_MATCH
+	@Test(priority = 85)
+	public void PUBLISHER_MATCH_Negative10008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750411546398777377");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark8
+		WebElement TrustApp_mark8 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark8
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark8);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark8
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark8).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status8
+		WebElement Widget_Status8 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status8
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status8);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status8
+		String widgetstatus8 = Widget_Status8.getText();
+
+		// Define the expected status text
+		String unexpectedStatus8 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus8, unexpectedStatus8, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m87. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus8 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher8
+		WebElement News_Item_Publisher8 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher8
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher8);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher8
+		String Publisher8 = News_Item_Publisher8.getText();
+
+		// Print the Publisher8
+		System.out.println("Publisher: " + Publisher8);
+
+		// locate TrustApp_message8
+		WebElement TrustApp_message8 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message8
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message8);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message8
+		String messageText8 = TrustApp_message8.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText8);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText8.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	// PUBLISHER_MATCH
+	@Test(priority = 86)
+	public void PUBLISHER_MATCH_Negative10009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750415170042515729");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark9
+		WebElement TrustApp_mark9 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark9
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark9);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark9
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark9).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status9
+		WebElement Widget_Status9 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status9
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status9);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status9
+		String widgetstatus9 = Widget_Status9.getText();
+
+		// Define the expected status text
+		String unexpectedStatus9 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus9, unexpectedStatus9, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m88. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus9 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher9
+		WebElement News_Item_Publisher9 = driver
+				.findElement(By.xpath("//a[normalize-space()='The Wall Street Journal']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher9
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher9);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher9
+		String Publisher9 = News_Item_Publisher9.getText();
+
+		// Print the Publisher9
+		System.out.println("Publisher: " + Publisher9);
+
+		// locate TrustApp_message9
+		WebElement TrustApp_message9 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message9
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message9);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message9
+		String messageText9 = TrustApp_message9.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText9);
+
+		// expected output
+		String expectedOutput = "This post references The Wall Street Journal, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText9.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	// PUBLISHER_MATCH
+	@Test(priority = 87)
+	public void PUBLISHER_MATCH_Negative10010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1750416027060441464");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark10
+		WebElement TrustApp_mark10 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark10
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark10);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark10
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark10).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status10
+		WebElement Widget_Status10 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status10
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status10);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status10
+		String widgetstatus10 = Widget_Status10.getText();
+
+		// Define the expected status text
+		String unexpectedStatus10 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus10, unexpectedStatus10, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m89. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus10 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher10
+		WebElement News_Item_Publisher10 = driver.findElement(By.xpath("//a[normalize-space()='The Washington Post']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher10
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher10);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher10
+		String Publisher10 = News_Item_Publisher10.getText();
+
+		// Print the Publisher10
+		System.out.println("Publisher: " + Publisher10);
+
+		// locate TrustApp_message10
+		WebElement TrustApp_message10 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message10
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				TrustApp_message10);
 		Thread.sleep(1000);
 
@@ -890,21 +7998,1044 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("PUBLISHER_MATCH: " + messageText10);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message10.isDisplayed();
+		// expected output
+		String expectedOutput = "This post references The Washington Post, one of your trusted sources.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message10 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText10.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
 		} else {
-			System.out.println("TrustApp_message10 is not DISPLAYED");
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
 		}
 	}
 
-//--------------------------------------------------------------------------------	
+//------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	// PUBLISHER_MATCH
+	@Test(priority = 88)
+	public void PUBLISHER_MATCH_Negative10011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760191282268209498");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark11
+		WebElement TrustApp_mark11 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark11
+		JavascriptExecutor jse106 = (JavascriptExecutor) driver;
+		jse106.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark11);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark11
+		Actions actions106 = new Actions(driver);
+		actions106.moveToElement(TrustApp_mark11).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status11
+		WebElement Widget_Status11 = driver.findElement(By.xpath("//div[@class='tag green']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status11
+		JavascriptExecutor jse1006 = (JavascriptExecutor) driver;
+		jse1006.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status11);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status11
+		String widgetstatus11 = Widget_Status11.getText();
+
+		// Define the expected status text
+		String unexpectedStatus11 = "Untrusted Source";
+
+		// Compare the actual status text with the unexpected status
+		Assert.assertNotEquals(widgetstatus11, unexpectedStatus11, "Status unexpectedly matches");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m90. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus11 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher11
+		WebElement News_Item_Publisher11 = driver.findElement(By.xpath("//a[normalize-space()='BBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher11
+		JavascriptExecutor jse10226 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher11);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher11
+		String Publisher11 = News_Item_Publisher11.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher11);
+
+		// locate TrustApp_message11
+		WebElement TrustApp_message11 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message11
+		JavascriptExecutor jse1036 = (JavascriptExecutor) driver;
+		jse10226.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message11);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message11
+		String messageText11 = TrustApp_message11.getText();
+
+		// Print the text
+		System.out.println("PUBLISHER_MATCH: " + messageText11);
+
+		// expected output
+		String expectedOutput = "This post references BBC, one of your trusted sources.";
+
+		// Compare the actual text with the expected output
+		if (messageText11.equals(expectedOutput)) {
+			System.out.println("PUBLISHER_MATCH test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("PUBLISHER_MATCH test case PASSED (As expected)");
+
+		}
+	}
+
+	// ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
-	@Test(priority = 10)
-	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER() throws InterruptedException {
+	@Test(priority = 89)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER110001() throws InterruptedException {
 		driver.get("https://twitter.com/Kushagra3837/status/1737696969022226734?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark1
+		WebElement TrustApp_mark1 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark1
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark1);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark1
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark1).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status1
+		WebElement Widget_Status1 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status1
+		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status1);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status1
+		String widgetstatus1 = Widget_Status1.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus1, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m91. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus1 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher1
+		WebElement News_Item_Publisher1 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher1
+		JavascriptExecutor jse102211 = (JavascriptExecutor) driver;
+		jse102211.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher1);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher1
+		String Publisher1 = News_Item_Publisher1.getText();
+
+		// Print the Publisher1
+		System.out.println("Publisher: " + Publisher1);
+
+		// locate TrustApp_message1
+		WebElement TrustApp_message1 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message1
+		JavascriptExecutor jse1011 = (JavascriptExecutor) driver;
+		jse1011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message1);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message1
+		String messageText1 = TrustApp_message1.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText1);
+
+		// expected output
+		String expectedOutput = "The text of the post mentions CNN, one of your trusted sources. However, the referenced link is from The Economist.";
+
+		// Compare the actual text with the expected output
+		if (messageText1.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED");
+		}
+	}
+
+////-----------------------------------------------------------------------------------------------------
+//
+	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
+	@Test(priority = 90)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER110002() throws InterruptedException {
+		driver.get("https://twitter.com/Kushagra3837/status/1737696969022226734?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark2
+		WebElement TrustApp_mark2 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark2
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark2);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark2
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark2).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status2
+		WebElement Widget_Status2 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status2
+		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status2);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status2
+		String widgetstatus2 = Widget_Status2.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus2, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m92. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus2 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher2
+		WebElement News_Item_Publisher2 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher2
+		JavascriptExecutor jse102211 = (JavascriptExecutor) driver;
+		jse102211.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher2);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher2
+		String Publisher2 = News_Item_Publisher2.getText();
+
+		// Print the Publisher2
+		System.out.println("Publisher: " + Publisher2);
+
+		// locate TrustApp_message2
+		WebElement TrustApp_message2 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message2
+		JavascriptExecutor jse1011 = (JavascriptExecutor) driver;
+		jse1011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message2);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message2
+		String messageText2 = TrustApp_message2.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText2);
+
+		// expected output
+		String expectedOutput = "The text of the post mentions CNN, one of your trusted sources. However, the referenced link is from The Economist.";
+
+		// Compare the actual text with the expected output
+		if (messageText2.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED");
+		}
+	}
+//	// -----------------------------------------------------------------------------------------------------
+
+	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
+	@Test(priority = 91)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER110003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742433135424319884");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark3
+		WebElement TrustApp_mark3 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark3
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark3);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark3
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark3).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status3
+		WebElement Widget_Status3 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status3
+		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status3);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status3
+		String widgetstatus3 = Widget_Status3.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus3, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m93. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus3 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher3
+		WebElement News_Item_Publisher3 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher3
+		JavascriptExecutor jse102211 = (JavascriptExecutor) driver;
+		jse102211.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher3);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher3
+		String Publisher3 = News_Item_Publisher3.getText();
+
+		// Print the Publisher3
+		System.out.println("Publisher: " + Publisher3);
+
+		// locate TrustApp_message3
+		WebElement TrustApp_message3 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message3
+		JavascriptExecutor jse1011 = (JavascriptExecutor) driver;
+		jse1011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message3);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message3
+		String messageText3 = TrustApp_message3.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText3);
+
+		// expected output
+		String expectedOutput = "The text of the post mentions BBC, one of your trusted sources. However, the referenced link is from NPR.";
+
+		// Compare the actual text with the expected output
+		if (messageText3.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED");
+		}
+	}
+
+//	// -----------------------------------------------------------------------------------------------------
+//
+	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
+	@Test(priority = 92)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER110004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742500951636762708");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark4
+		WebElement TrustApp_mark4 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark4
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark4);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark4
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark4).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status4
+		WebElement Widget_Status4 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status4
+		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status4);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status4
+		String widgetstatus4 = Widget_Status4.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus4, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m94. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus4 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher4
+		WebElement News_Item_Publisher4 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher4
+		JavascriptExecutor jse102211 = (JavascriptExecutor) driver;
+		jse102211.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher4);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher4
+		String Publisher4 = News_Item_Publisher4.getText();
+
+		// Print the Publisher4
+		System.out.println("Publisher: " + Publisher4);
+
+		// locate TrustApp_message4
+		WebElement TrustApp_message4 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message4
+		JavascriptExecutor jse1011 = (JavascriptExecutor) driver;
+		jse1011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message4);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message4
+		String messageText4 = TrustApp_message4.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText4);
+
+		// expected output
+		String expectedOutput = "The text of the post mentions NPR, one of your trusted sources. However, the referenced link is from CNBC.";
+
+		// Compare the actual text with the expected output
+		if (messageText4.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED");
+		}
+	}
+//	// -----------------------------------------------------------------------------------------------------
+
+	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
+	@Test(priority = 93)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER110005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742502261203280006");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark5
+		WebElement TrustApp_mark5 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark5
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark5);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark5
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark5).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status5
+		WebElement Widget_Status5 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status5
+		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status5);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status5
+		String widgetstatus5 = Widget_Status5.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus5, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m95. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus5 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher5
+		WebElement News_Item_Publisher5 = driver.findElement(By.xpath("//a[normalize-space()='The New York Times']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher5
+		JavascriptExecutor jse102211 = (JavascriptExecutor) driver;
+		jse102211.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher5);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher5
+		String Publisher5 = News_Item_Publisher5.getText();
+
+		// Print the Publisher5
+		System.out.println("Publisher: " + Publisher5);
+
+		// locate TrustApp_message5
+		WebElement TrustApp_message5 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message5
+		JavascriptExecutor jse1011 = (JavascriptExecutor) driver;
+		jse1011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message5);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message5
+		String messageText5 = TrustApp_message5.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText5);
+
+		// expected output
+		String expectedOutput = "The text of the post mentions BBC, one of your trusted sources. However, the referenced link is from The New York Times.";
+
+		// Compare the actual text with the expected output
+		if (messageText5.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED");
+		}
+	}
+
+//	// -----------------------------------------------------------------------------------------------------
+//
+//	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
+	@Test(priority = 94)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER_Negative110006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747568798226342282");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark6
+		WebElement TrustApp_mark6 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark6
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark6);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark6
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark6).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status6
+		WebElement Widget_Status6 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status6
+		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status6);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status6
+		String widgetstatus6 = Widget_Status6.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Trustedl";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus6, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m96. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus6 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher6
+		WebElement News_Item_Publisher6 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher6
+		JavascriptExecutor jse102211 = (JavascriptExecutor) driver;
+		jse102211.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher6);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher6
+		String Publisher6 = News_Item_Publisher6.getText();
+
+		// Print the Publisher6
+		System.out.println("Publisher: " + Publisher6);
+
+		// locate TrustApp_message6
+		WebElement TrustApp_message6 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message6
+		JavascriptExecutor jse1011 = (JavascriptExecutor) driver;
+		jse1011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message6);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message6
+		String messageText6 = TrustApp_message6.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText6);
+
+		// expected output
+		String expectedOutput = "The text of the post mentions BBC, one of your trusted sources. However, the referenced link is from The Washington Post.";
+
+		// Compare the actual text with the expected output
+		if (messageText6.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
+//
+//	// -----------------------------------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
+	@Test(priority = 95)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER_Negative110007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747570541790183568");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark7
+		WebElement TrustApp_mark7 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark7
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark7);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark7
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark7).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status7
+		WebElement Widget_Status7 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status7
+		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status7);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status7
+		String widgetstatus7 = Widget_Status7.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus7, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m97. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus7 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher7
+		WebElement News_Item_Publisher7 = driver.findElement(By.xpath("//a[normalize-space()='The Washington Post']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher7
+		JavascriptExecutor jse102211 = (JavascriptExecutor) driver;
+		jse102211.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher7);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher7
+		String Publisher7 = News_Item_Publisher7.getText();
+
+		// Print the Publisher7
+		System.out.println("Publisher: " + Publisher7);
+
+		// locate TrustApp_message7
+		WebElement TrustApp_message7 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message7
+		JavascriptExecutor jse1011 = (JavascriptExecutor) driver;
+		jse1011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message7);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message7
+		String messageText7 = TrustApp_message7.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText7);
+
+		// expected output
+		String expectedOutput = "The text of the post mentions CNN, one of your trusted sources. However, the referenced link is from The Washington Post.";
+
+		// Compare the actual text with the expected output
+		if (messageText7.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
+//	// -----------------------------------------------------------------------------------------------------
+//
+	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
+	@Test(priority = 96)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER_Negative110008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1754394445481480685");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark8
+		WebElement TrustApp_mark8 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark8
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark8);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark8
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark8).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status8
+		WebElement Widget_Status8 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status8
+		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status8);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status8
+		String widgetstatus8 = Widget_Status8.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus8, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m98. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus8 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher8
+		WebElement News_Item_Publisher8 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher8
+		JavascriptExecutor jse102211 = (JavascriptExecutor) driver;
+		jse102211.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher8);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher8
+		String Publisher8 = News_Item_Publisher8.getText();
+
+		// Print the Publisher8
+		System.out.println("Publisher: " + Publisher8);
+
+		// locate TrustApp_message8
+		WebElement TrustApp_message8 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message8
+		JavascriptExecutor jse1011 = (JavascriptExecutor) driver;
+		jse1011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message8);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message8
+		String messageText8 = TrustApp_message8.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText8);
+
+		// expected output
+		String expectedOutput = "The text of the post mentions CBC News, one of your trusted sources. However, the referenced link is from NPR.";
+
+		// Compare the actual text with the expected output
+		if (messageText8.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
+//	// -----------------------------------------------------------------------------------------------------
+//
+	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
+	@Test(priority = 97)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER_Negative110009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1754395124992184689");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark9
+		WebElement TrustApp_mark9 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark9
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark9);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark9
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark9).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status9
+		WebElement Widget_Status9 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status9
+		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status9);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status9
+		String widgetstatus9 = Widget_Status9.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus9, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m99. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus9 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher9
+		WebElement News_Item_Publisher9 = driver.findElement(By.xpath("//a[normalize-space()='CBC News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher9
+		JavascriptExecutor jse102211 = (JavascriptExecutor) driver;
+		jse102211.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher9);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher9
+		String Publisher9 = News_Item_Publisher9.getText();
+
+		// Print the Publisher9
+		System.out.println("Publisher: " + Publisher9);
+
+		// locate TrustApp_message9
+		WebElement TrustApp_message9 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message9
+		JavascriptExecutor jse1011 = (JavascriptExecutor) driver;
+		jse1011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message9);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message9
+		String messageText9 = TrustApp_message9.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText9);
+
+		// expected output
+		String expectedOutput = "The text of the post mentions BBC, one of your trusted sources. However, the referenced link is from CBC News.";
+
+		// Compare the actual text with the expected output
+		if (messageText9.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
+//	// -----------------------------------------------------------------------------------------------------
+//
+	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
+	@Test(priority = 98)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER_Negative110010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1754396883269640364");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark10
+		WebElement TrustApp_mark10 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark10
+		JavascriptExecutor jse111 = (JavascriptExecutor) driver;
+		jse111.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark10);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark10
+		Actions actions111 = new Actions(driver);
+		actions111.moveToElement(TrustApp_mark10).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status10
+		WebElement Widget_Status10 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status10
+		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status10);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status10
+		String widgetstatus10 = Widget_Status10.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus10, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m100. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus10 + "\033[0m");
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher10
+		WebElement News_Item_Publisher10 = driver.findElement(By.xpath("//a[normalize-space()='BBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher10
+		JavascriptExecutor jse102211 = (JavascriptExecutor) driver;
+		jse102211.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher10);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher10
+		String Publisher10 = News_Item_Publisher10.getText();
+
+		// Print the Publisher10
+		System.out.println("Publisher: " + Publisher10);
+
+		// locate TrustApp_message10
+		WebElement TrustApp_message10 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message10
+		JavascriptExecutor jse1011 = (JavascriptExecutor) driver;
+		jse1011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message10);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message10
+		String messageText10 = TrustApp_message10.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText10);
+
+		// expected output
+		String expectedOutput = "The text of the post mentions CNBC, one of your trusted sources. However, the referenced link is from BBC.";
+
+		// Compare the actual text with the expected output
+		if (messageText10.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
+//	// -----------------------------------------------------------------------------------------------------
+//
+	// KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER
+	@Test(priority = 99)
+	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER_Negative110011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760203168858657031");
 		Thread.sleep(7000);
 
 		// locate TrustApp_mark11
@@ -928,22 +9059,28 @@ public class Testng_UI {
 
 		// to highlight the Widget_Status11
 		JavascriptExecutor jse10011 = (JavascriptExecutor) driver;
-		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 11px solid red;')",
+		jse10011.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
 				Widget_Status11);
 		Thread.sleep(1000);
 
 		// Get the text of Widget_Status11
 		String widgetstatus11 = Widget_Status11.getText();
 
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus11, expectedStatus, "Status does not match expected");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
-		System.out.print("\033[1m11. STATUS\033[0m: ");
-		System.out.print("\033[31m" + widgetstatus11 + "\033[0m"); // \033[31m sets color to red
+		System.out.print("\033[1m101. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus11 + "\033[0m");
 		System.out.println();
 		Thread.sleep(1000);
 
 		// locate News_Item_Publisher11
-		WebElement News_Item_Publisher11 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		WebElement News_Item_Publisher11 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
 		Thread.sleep(1000);
 
 		// to highlight the News_Item_Publisher11
@@ -974,20 +9111,22 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText11);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message11.isDisplayed();
+		// expected output
+		String expectedOutput = "The text of the post mentions BBC, one of your trusted sources. However, the referenced link is from CNBC.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message11 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText11.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
-			System.out.println("TrustApp_message11 is not DISPLAYED");
+			System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER test case PASSED (As expected)");
+
 		}
 	}
-//
-//	// ----------------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------
+
 	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
-	@Test(priority = 11)
-	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER() throws InterruptedException {
+	@Test(priority = 100)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER120001() throws InterruptedException {
 		driver.get("https://twitter.com/TrustAppTesting/status/1753009390892757266");
 		Thread.sleep(7000);
 
@@ -1019,9 +9158,15 @@ public class Testng_UI {
 		// Get the text of Widget_Status12
 		String widgetstatus12 = Widget_Status12.getText();
 
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus12, expectedStatus, "Status does not match expected");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// green
-		System.out.print("\033[1m12. STATUS\033[0m: ");
+		System.out.print("\033[1m102. STATUS\033[0m: ");
 		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
 		System.out.println();
 		Thread.sleep(1000);
@@ -1057,27 +9202,939 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message12.isDisplayed();
+		// expected output
+		String expectedOutput = "This post references The Economist, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message12 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED");
 		} else {
-			System.out.println("TrustApp_message12 is not DISPLAYED");
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
 		}
 	}
 
-//--------------------------------------------------------------------------------------	
+	// ---------------------------------------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 101)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER120002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1753010114510913589");
+		Thread.sleep(10000);
+
+		// locate TrustApp_mark12
+		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark12
+		JavascriptExecutor jse112 = (JavascriptExecutor) driver;
+		jse112.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark12);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark12
+		Actions actions112 = new Actions(driver);
+		actions112.moveToElement(TrustApp_mark12).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status12
+		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status12
+		JavascriptExecutor jse10012 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status12);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status12
+		String widgetstatus12 = Widget_Status12.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus12, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m103. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher12
+		WebElement News_Item_Publisher12 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher12
+		JavascriptExecutor jse102212 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher12);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher12
+		String Publisher12 = News_Item_Publisher12.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher12);
+
+		// locate TrustApp_message12
+		WebElement TrustApp_message12 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+		// to highlight the TrustApp_message12
+		JavascriptExecutor jse1012 = (JavascriptExecutor) driver;
+		jse1012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message12);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message12
+		String messageText12 = TrustApp_message12.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+
+	// -------------------------------------------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 102)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER120003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1753010685858947287");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark12
+		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark12
+		JavascriptExecutor jse112 = (JavascriptExecutor) driver;
+		jse112.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark12);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark12
+		Actions actions112 = new Actions(driver);
+		actions112.moveToElement(TrustApp_mark12).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status12
+		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status12
+		JavascriptExecutor jse10012 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status12);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status12
+		String widgetstatus12 = Widget_Status12.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus12, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m104. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher12
+		WebElement News_Item_Publisher12 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher12
+		JavascriptExecutor jse102212 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher12);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher12
+		String Publisher12 = News_Item_Publisher12.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher12);
+
+		// locate TrustApp_message12
+		WebElement TrustApp_message12 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+		// to highlight the TrustApp_message12
+		JavascriptExecutor jse1012 = (JavascriptExecutor) driver;
+		jse1012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message12);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message12
+		String messageText12 = TrustApp_message12.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
+
+		// expected output
+		String expectedOutput = "This post references The Economist, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+	// -------------------------------------------------------------------------------------------------------------
+
+	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 103)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER120004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1753011347279716725");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark12
+		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark12
+		JavascriptExecutor jse112 = (JavascriptExecutor) driver;
+		jse112.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark12);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark12
+		Actions actions112 = new Actions(driver);
+		actions112.moveToElement(TrustApp_mark12).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status12
+		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status12
+		JavascriptExecutor jse10012 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status12);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status12
+		String widgetstatus12 = Widget_Status12.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus12, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m105. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher12
+		WebElement News_Item_Publisher12 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher12
+		JavascriptExecutor jse102212 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher12);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher12
+		String Publisher12 = News_Item_Publisher12.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher12);
+
+		// locate TrustApp_message12
+		WebElement TrustApp_message12 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+		// to highlight the TrustApp_message12
+		JavascriptExecutor jse1012 = (JavascriptExecutor) driver;
+		jse1012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message12);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message12
+		String messageText12 = TrustApp_message12.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+	// -------------------------------------------------------------------------------------------------------------
+
+	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 104)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER120005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1753011882800148946");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark12
+		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark12
+		JavascriptExecutor jse112 = (JavascriptExecutor) driver;
+		jse112.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark12);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark12
+		Actions actions112 = new Actions(driver);
+		actions112.moveToElement(TrustApp_mark12).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status12
+		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status12
+		JavascriptExecutor jse10012 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status12);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status12
+		String widgetstatus12 = Widget_Status12.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus12, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m106. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher12
+		WebElement News_Item_Publisher12 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher12
+		JavascriptExecutor jse102212 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher12);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher12
+		String Publisher12 = News_Item_Publisher12.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher12);
+
+		// locate TrustApp_message12
+		WebElement TrustApp_message12 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+		// to highlight the TrustApp_message12
+		JavascriptExecutor jse1012 = (JavascriptExecutor) driver;
+		jse1012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message12);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message12
+		String messageText12 = TrustApp_message12.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
+
+		// expected output
+		String expectedOutput = "This post references The Economist, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+	// -------------------------------------------------------------------------------------------------------------
+
+	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 105)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative120006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1754397928012034440");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark12
+		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark12
+		JavascriptExecutor jse112 = (JavascriptExecutor) driver;
+		jse112.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark12);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark12
+		Actions actions112 = new Actions(driver);
+		actions112.moveToElement(TrustApp_mark12).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status12
+		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status12
+		JavascriptExecutor jse10012 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status12);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status12
+		String widgetstatus12 = Widget_Status12.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus12, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m107. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher12
+		WebElement News_Item_Publisher12 = driver.findElement(By.xpath("//a[normalize-space()='CBC News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher12
+		JavascriptExecutor jse102212 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher12);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher12
+		String Publisher12 = News_Item_Publisher12.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher12);
+
+		// locate TrustApp_message12
+		WebElement TrustApp_message12 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+		// to highlight the TrustApp_message12
+		JavascriptExecutor jse1012 = (JavascriptExecutor) driver;
+		jse1012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message12);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message12
+		String messageText12 = TrustApp_message12.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
+
+		// expected output
+		String expectedOutput = "This post references CBC News, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+	// -------------------------------------------------------------------------------------------------------------
+
+	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 106)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative120007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1754399074998972426");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark12
+		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark12
+		JavascriptExecutor jse112 = (JavascriptExecutor) driver;
+		jse112.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark12);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark12
+		Actions actions112 = new Actions(driver);
+		actions112.moveToElement(TrustApp_mark12).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status12
+		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status12
+		JavascriptExecutor jse10012 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status12);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status12
+		String widgetstatus12 = Widget_Status12.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus12, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m108. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher12
+		WebElement News_Item_Publisher12 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher12
+		JavascriptExecutor jse102212 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher12);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher12
+		String Publisher12 = News_Item_Publisher12.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher12);
+
+		// locate TrustApp_message12
+		WebElement TrustApp_message12 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+		// to highlight the TrustApp_message12
+		JavascriptExecutor jse1012 = (JavascriptExecutor) driver;
+		jse1012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message12);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message12
+		String messageText12 = TrustApp_message12.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+	// -------------------------------------------------------------------------------------------------------------
+
+	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 107)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative120008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1754399679721181694");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark12
+		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark12
+		JavascriptExecutor jse112 = (JavascriptExecutor) driver;
+		jse112.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark12);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark12
+		Actions actions112 = new Actions(driver);
+		actions112.moveToElement(TrustApp_mark12).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status12
+		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status12
+		JavascriptExecutor jse10012 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status12);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status12
+		String widgetstatus12 = Widget_Status12.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus12, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m109. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher12
+		WebElement News_Item_Publisher12 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher12
+		JavascriptExecutor jse102212 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher12);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher12
+		String Publisher12 = News_Item_Publisher12.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher12);
+
+		// locate TrustApp_message12
+		WebElement TrustApp_message12 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+		// to highlight the TrustApp_message12
+		JavascriptExecutor jse1012 = (JavascriptExecutor) driver;
+		jse1012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message12);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message12
+		String messageText12 = TrustApp_message12.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
+
+		// expected output
+		String expectedOutput = "This post references POLITICO, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+	// -------------------------------------------------------------------------------------------------------------
+
+	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 108)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative120009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1754400243666292986");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark12
+		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark12
+		JavascriptExecutor jse112 = (JavascriptExecutor) driver;
+		jse112.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark12);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark12
+		Actions actions112 = new Actions(driver);
+		actions112.moveToElement(TrustApp_mark12).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status12
+		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status12
+		JavascriptExecutor jse10012 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status12);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status12
+		String widgetstatus12 = Widget_Status12.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus12, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m110. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher12
+		WebElement News_Item_Publisher12 = driver.findElement(By.xpath("//a[normalize-space()='Fox News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher12
+		JavascriptExecutor jse102212 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher12);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher12
+		String Publisher12 = News_Item_Publisher12.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher12);
+
+		// locate TrustApp_message12
+		WebElement TrustApp_message12 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+		// to highlight the TrustApp_message12
+		JavascriptExecutor jse1012 = (JavascriptExecutor) driver;
+		jse1012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message12);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message12
+		String messageText12 = TrustApp_message12.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
+
+		// expected output
+		String expectedOutput = "This post references Fox News, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+	// -------------------------------------------------------------------------------------------------------------
+
+	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 109)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative120010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1753009390892757266");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark12
+		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark12
+		JavascriptExecutor jse112 = (JavascriptExecutor) driver;
+		jse112.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark12);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark12
+		Actions actions112 = new Actions(driver);
+		actions112.moveToElement(TrustApp_mark12).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status12
+		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status12
+		JavascriptExecutor jse10012 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status12);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status12
+		String widgetstatus12 = Widget_Status12.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus12, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m111. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher12
+		WebElement News_Item_Publisher12 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher12
+		JavascriptExecutor jse102212 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher12);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher12
+		String Publisher12 = News_Item_Publisher12.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher12);
+
+		// locate TrustApp_message12
+		WebElement TrustApp_message12 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+		// to highlight the TrustApp_message12
+		JavascriptExecutor jse1012 = (JavascriptExecutor) driver;
+		jse1012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message12);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message12
+		String messageText12 = TrustApp_message12.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
+
+		// expected output
+		String expectedOutput = "This post references The Economist, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+	// -------------------------------------------------------------------------------------------------------------
+
+	// KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 110)
+	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative120011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760539919133368586");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark12
+		WebElement TrustApp_mark12 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark12
+		JavascriptExecutor jse112 = (JavascriptExecutor) driver;
+		jse112.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark12);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark12
+		Actions actions112 = new Actions(driver);
+		actions112.moveToElement(TrustApp_mark12).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status12
+		WebElement Widget_Status12 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status12
+		JavascriptExecutor jse10012 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status12);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status12
+		String widgetstatus12 = Widget_Status12.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus12, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// green
+		System.out.print("\033[1m112. STATUS\033[0m: ");
+		System.out.print("\033[32m" + widgetstatus12 + "\033[0m"); // \033[32m sets color to green
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher12
+		WebElement News_Item_Publisher12 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher12
+		JavascriptExecutor jse102212 = (JavascriptExecutor) driver;
+		jse10012.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher12);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher12
+		String Publisher12 = News_Item_Publisher12.getText();
+
+		// Print the Publisher11
+		System.out.println("Publisher: " + Publisher12);
+
+		// locate TrustApp_message12
+		WebElement TrustApp_message12 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+		// to highlight the TrustApp_message12
+		JavascriptExecutor jse1012 = (JavascriptExecutor) driver;
+		jse1012.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message12);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message12
+		String messageText12 = TrustApp_message12.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText12);
+
+		// expected output
+		String expectedOutput = "This post references The Economist, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText12.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+	// -------------------------------------------------------------------------------------------------------------
+
 	// KNOWN_NEWS_ITEM_NO_CONNECTION
-	@Test(priority = 12)
-	public void KNOWN_NEWS_ITEM_NO_CONNECTION() throws InterruptedException {
+	@Test(priority = 111)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION130001() throws InterruptedException {
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1738064809608753627?s=20");
 		Thread.sleep(7000);
 
 		// locate TrustApp_mark13
 		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
 		Thread.sleep(1000);
-
+		//
 		// to highlight the TrustApp_mark13
 		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
 		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
@@ -1102,9 +10159,15 @@ public class Testng_UI {
 		// Get the text of Widget_Status13
 		String widgetstatus13 = Widget_Status13.getText();
 
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus13, expectedStatus, "Status does not match expected");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
-		System.out.print("\033[1m13. STATUS\033[0m: ");
+		System.out.print("\033[1m113. STATUS\033[0m: ");
 		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
 		System.out.println();
 		Thread.sleep(1000);
@@ -1141,20 +10204,942 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message13.isDisplayed();
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message13 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
 		} else {
-			System.out.println("TrustApp_message13 is not DISPLAYED");
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_NO_CONNECTION
+	@Test(priority = 112)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION130002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1744591958805299553");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark13
+		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+		//
+		// to highlight the TrustApp_mark13
+		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
+		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark13);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark13
+		Actions actions113 = new Actions(driver);
+		actions113.moveToElement(TrustApp_mark13).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status13
+		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status13
+		JavascriptExecutor jse10013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status13);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status13
+		String widgetstatus13 = Widget_Status13.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus13, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m114. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher13
+		WebElement News_Item_Publisher13 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher13
+		JavascriptExecutor jse102213 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher13);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher13
+		String Publisher13 = News_Item_Publisher13.getText();
+
+		// Print the Publisher13
+		System.out.println("Publisher: " + Publisher13);
+
+		// locate TrustApp_message13
+		WebElement TrustApp_message13 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message13
+		JavascriptExecutor jse1013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message13);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message13
+		String messageText13 = TrustApp_message13.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
+
+		// expected output
+		String expectedOutput = "This post references Al Jazeera English, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_NO_CONNECTION
+	@Test(priority = 113)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION130003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1738064809608753627?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark13
+		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+		//
+		// to highlight the TrustApp_mark13
+		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
+		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark13);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark13
+		Actions actions113 = new Actions(driver);
+		actions113.moveToElement(TrustApp_mark13).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status13
+		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status13
+		JavascriptExecutor jse10013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status13);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status13
+		String widgetstatus13 = Widget_Status13.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus13, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m115. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher13
+		WebElement News_Item_Publisher13 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher13
+		JavascriptExecutor jse102213 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher13);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher13
+		String Publisher13 = News_Item_Publisher13.getText();
+
+		// Print the Publisher13
+		System.out.println("Publisher: " + Publisher13);
+
+		// locate TrustApp_message13
+		WebElement TrustApp_message13 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message13
+		JavascriptExecutor jse1013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message13);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message13
+		String messageText13 = TrustApp_message13.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_NO_CONNECTION
+	@Test(priority = 114)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION130004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1738064809608753627?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark13
+		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+		//
+		// to highlight the TrustApp_mark13
+		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
+		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark13);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark13
+		Actions actions113 = new Actions(driver);
+		actions113.moveToElement(TrustApp_mark13).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status13
+		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status13
+		JavascriptExecutor jse10013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status13);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status13
+		String widgetstatus13 = Widget_Status13.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus13, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m116. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher13
+		WebElement News_Item_Publisher13 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher13
+		JavascriptExecutor jse102213 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher13);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher13
+		String Publisher13 = News_Item_Publisher13.getText();
+
+		// Print the Publisher13
+		System.out.println("Publisher: " + Publisher13);
+
+		// locate TrustApp_message13
+		WebElement TrustApp_message13 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message13
+		JavascriptExecutor jse1013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message13);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message13
+		String messageText13 = TrustApp_message13.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_NO_CONNECTION
+	@Test(priority = 115)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION130005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742510008426790943");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark13
+		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+		//
+		// to highlight the TrustApp_mark13
+		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
+		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark13);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark13
+		Actions actions113 = new Actions(driver);
+		actions113.moveToElement(TrustApp_mark13).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status13
+		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status13
+		JavascriptExecutor jse10013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status13);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status13
+		String widgetstatus13 = Widget_Status13.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus13, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m117. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher13
+		WebElement News_Item_Publisher13 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher13
+		JavascriptExecutor jse102213 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher13);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher13
+		String Publisher13 = News_Item_Publisher13.getText();
+
+		// Print the Publisher13
+		System.out.println("Publisher: " + Publisher13);
+
+		// locate TrustApp_message13
+		WebElement TrustApp_message13 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message13
+		JavascriptExecutor jse1013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message13);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message13
+		String messageText13 = TrustApp_message13.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_NO_CONNECTION
+	@Test(priority = 116)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION_Negative130006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745734538951811116");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark13
+		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+		//
+		// to highlight the TrustApp_mark13
+		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
+		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark13);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark13
+		Actions actions113 = new Actions(driver);
+		actions113.moveToElement(TrustApp_mark13).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status13
+		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status13
+		JavascriptExecutor jse10013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status13);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status13
+		String widgetstatus13 = Widget_Status13.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus13, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m118. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher13
+		WebElement News_Item_Publisher13 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher13
+		JavascriptExecutor jse102213 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher13);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher13
+		String Publisher13 = News_Item_Publisher13.getText();
+
+		// Print the Publisher13
+		System.out.println("Publisher: " + Publisher13);
+
+		// locate TrustApp_message13
+		WebElement TrustApp_message13 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message13
+		JavascriptExecutor jse1013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message13);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message13
+		String messageText13 = TrustApp_message13.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_NO_CONNECTION
+	@Test(priority = 117)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION_Negative130007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1738064809608753627?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark13
+		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+		//
+		// to highlight the TrustApp_mark13
+		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
+		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark13);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark13
+		Actions actions113 = new Actions(driver);
+		actions113.moveToElement(TrustApp_mark13).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status13
+		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status13
+		JavascriptExecutor jse10013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status13);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status13
+		String widgetstatus13 = Widget_Status13.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus13, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m119. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher13
+		WebElement News_Item_Publisher13 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher13
+		JavascriptExecutor jse102213 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher13);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher13
+		String Publisher13 = News_Item_Publisher13.getText();
+
+		// Print the Publisher13
+		System.out.println("Publisher: " + Publisher13);
+
+		// locate TrustApp_message13
+		WebElement TrustApp_message13 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message13
+		JavascriptExecutor jse1013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message13);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message13
+		String messageText13 = TrustApp_message13.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_NO_CONNECTION
+	@Test(priority = 118)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION_Negative130008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1752303286885994533");
+		Thread.sleep(10000);
+
+		// locate TrustApp_mark13
+		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+		//
+		// to highlight the TrustApp_mark13
+		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
+		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark13);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark13
+		Actions actions113 = new Actions(driver);
+		actions113.moveToElement(TrustApp_mark13).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status13
+		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status13
+		JavascriptExecutor jse10013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status13);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status13
+		String widgetstatus13 = Widget_Status13.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus13, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m120. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher13
+		WebElement News_Item_Publisher13 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher13
+		JavascriptExecutor jse102213 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher13);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher13
+		String Publisher13 = News_Item_Publisher13.getText();
+
+		// Print the Publisher13
+		System.out.println("Publisher: " + Publisher13);
+
+		// locate TrustApp_message13
+		WebElement TrustApp_message13 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message13
+		JavascriptExecutor jse1013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message13);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message13
+		String messageText13 = TrustApp_message13.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
+
+		// expected output
+		String expectedOutput = "This post references NPR, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_NO_CONNECTION
+	@Test(priority = 119)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION_Negative130009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1752306234416361763");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark13
+		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+		//
+		// to highlight the TrustApp_mark13
+		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
+		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark13);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark13
+		Actions actions113 = new Actions(driver);
+		actions113.moveToElement(TrustApp_mark13).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status13
+		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status13
+		JavascriptExecutor jse10013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status13);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status13
+		String widgetstatus13 = Widget_Status13.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus13, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m121. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher13
+		WebElement News_Item_Publisher13 = driver.findElement(By.xpath("//a[normalize-space()='The New York Times']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher13
+		JavascriptExecutor jse102213 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher13);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher13
+		String Publisher13 = News_Item_Publisher13.getText();
+
+		// Print the Publisher13
+		System.out.println("Publisher: " + Publisher13);
+
+		// locate TrustApp_message13
+		WebElement TrustApp_message13 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message13
+		JavascriptExecutor jse1013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message13);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message13
+		String messageText13 = TrustApp_message13.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
+
+		// expected output
+		String expectedOutput = "This post references The New York Times, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_NO_CONNECTION
+	@Test(priority = 120)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION_Negative130010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1752307542191902754");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark13
+		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+		//
+		// to highlight the TrustApp_mark13
+		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
+		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark13);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark13
+		Actions actions113 = new Actions(driver);
+		actions113.moveToElement(TrustApp_mark13).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status13
+		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status13
+		JavascriptExecutor jse10013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status13);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status13
+		String widgetstatus13 = Widget_Status13.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus13, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m122. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher13
+		WebElement News_Item_Publisher13 = driver.findElement(By.xpath("//a[normalize-space()='CBC News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher13
+		JavascriptExecutor jse102213 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher13);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher13
+		String Publisher13 = News_Item_Publisher13.getText();
+
+		// Print the Publisher13
+		System.out.println("Publisher: " + Publisher13);
+
+		// locate TrustApp_message13
+		WebElement TrustApp_message13 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message13
+		JavascriptExecutor jse1013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message13);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message13
+		String messageText13 = TrustApp_message13.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
+
+		// expected output
+		String expectedOutput = "This post references CBC News, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------
+	// KNOWN_NEWS_ITEM_NO_CONNECTION
+	@Test(priority = 121)
+	public void KNOWN_NEWS_ITEM_NO_CONNECTION_Negative130011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760542674568749399");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark13
+		WebElement TrustApp_mark13 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+		//
+		// to highlight the TrustApp_mark13
+		JavascriptExecutor jse113 = (JavascriptExecutor) driver;
+		jse113.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark13);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark13
+		Actions actions113 = new Actions(driver);
+		actions113.moveToElement(TrustApp_mark13).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status13
+		WebElement Widget_Status13 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status13
+		JavascriptExecutor jse10013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status13);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status13
+		String widgetstatus13 = Widget_Status13.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus13, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m123. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus13 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher13
+		WebElement News_Item_Publisher13 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher13
+		JavascriptExecutor jse102213 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher13);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher13
+		String Publisher13 = News_Item_Publisher13.getText();
+
+		// Print the Publisher13
+		System.out.println("Publisher: " + Publisher13);
+
+		// locate TrustApp_message13
+		WebElement TrustApp_message13 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message13
+		JavascriptExecutor jse1013 = (JavascriptExecutor) driver;
+		jse10013.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message13);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message13
+		String messageText13 = TrustApp_message13.getText();
+
+		// Print the text
+		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText13);
+
+		// expected output
+		String expectedOutput = "This post references The Economist, one of your trusted sources. However, the text of the post does not seem to connect to the reference.";
+
+		// Compare the actual text with the expected output
+		if (messageText13.equals(expectedOutput)) {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case PASSED");
+		} else {
+			System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
+			Assert.fail("KNOWN_NEWS_ITEM_NO_CONNECTION test case FAILED");
 		}
 	}
 
 	// ----------------------------------------------------------------------------
 	// UNVERIFIED_ATTACHMENT_ORIGIN
-	@Test(priority = 13)
-	public void UNVERIFIED_ATTACHMENT_ORIGIN() throws InterruptedException {
+	@Test(priority = 122)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN140001() throws InterruptedException {
 
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1745370148293206387");
 		Thread.sleep(7000);
@@ -1187,9 +11172,15 @@ public class Testng_UI {
 		// Get the text of Widget_Status14
 		String widgetstatus14 = Widget_Status14.getText();
 
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus14, expectedStatus, "Status does not match expected");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
-		System.out.print("\033[1m14. STATUS\033[0m: ");
+		System.out.print("\033[1m124. STATUS\033[0m: ");
 		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
 		System.out.println();
 
@@ -1209,20 +11200,782 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message14.isDisplayed();
+		// expected output
+		String expectedOutput = "This post implies it is from CNBC, one of your trusted sources. However, we could not verify the referenced link.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message14 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
 		} else {
-			System.out.println("TrustApp_message14 is not DISPLAYED");
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNVERIFIED_ATTACHMENT_ORIGIN
+	@Test(priority = 123)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN140002() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745370148293206387");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark14
+		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark14
+		JavascriptExecutor jse114 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark14);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark14
+		Actions actions114 = new Actions(driver);
+		actions114.moveToElement(TrustApp_mark14).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status14
+		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status14
+		JavascriptExecutor jse10014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status14);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status14
+		String widgetstatus14 = Widget_Status14.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus14, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m125. STATUS\033[0m: ");
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
+		System.out.println();
+
+		// locate TrustApp_message14
+		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message14
+		JavascriptExecutor jse1014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message14);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message14
+		String messageText14 = TrustApp_message14.getText();
+
+		// Print the text
+		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
+
+		// expected output
+		String expectedOutput = "This post implies it is from CNN, one of your trusted sources. However, we could not verify the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
+		} else {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+         Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNVERIFIED_ATTACHMENT_ORIGIN
+	@Test(priority = 124)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN140003() throws InterruptedException {
+
+		driver.get("https://twitter.com/Kushagra3837/status/1737691647314444773?s=20");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark14
+		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark14
+		JavascriptExecutor jse114 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark14);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark14
+		Actions actions114 = new Actions(driver);
+		actions114.moveToElement(TrustApp_mark14).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status14
+		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status14
+		JavascriptExecutor jse10014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status14);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status14
+		String widgetstatus14 = Widget_Status14.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus14, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m126. STATUS\033[0m: ");
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
+		System.out.println();
+
+		// locate TrustApp_message14
+		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message14
+		JavascriptExecutor jse1014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message14);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message14
+		String messageText14 = TrustApp_message14.getText();
+
+		// Print the text
+		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
+
+		// expected output
+		String expectedOutput = "This post implies it is from CNN, one of your trusted sources. However, we could not verify the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
+		} else {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNVERIFIED_ATTACHMENT_ORIGIN
+	@Test(priority = 125)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN140004() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1748309111337271729");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark14
+		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark14
+		JavascriptExecutor jse114 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark14);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark14
+		Actions actions114 = new Actions(driver);
+		actions114.moveToElement(TrustApp_mark14).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status14
+		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status14
+		JavascriptExecutor jse10014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status14);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status14
+		String widgetstatus14 = Widget_Status14.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus14, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m127. STATUS\033[0m: ");
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
+		System.out.println();
+
+		// locate TrustApp_message14
+		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message14
+		JavascriptExecutor jse1014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message14);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message14
+		String messageText14 = TrustApp_message14.getText();
+
+		// Print the text
+		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
+
+		// expected output
+		String expectedOutput = "This post implies it is from BBC, one of your trusted sources. However, we could not verify the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
+		} else {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNVERIFIED_ATTACHMENT_ORIGIN
+	@Test(priority = 126)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN140005() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1748310193073439078");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark14
+		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark14
+		JavascriptExecutor jse114 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark14);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark14
+		Actions actions114 = new Actions(driver);
+		actions114.moveToElement(TrustApp_mark14).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status14
+		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status14
+		JavascriptExecutor jse10014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status14);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status14
+		String widgetstatus14 = Widget_Status14.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus14, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m128. STATUS\033[0m: ");
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
+		System.out.println();
+
+		// locate TrustApp_message14
+		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message14
+		JavascriptExecutor jse1014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message14);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message14
+		String messageText14 = TrustApp_message14.getText();
+
+		// Print the text
+		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
+
+		// expected output
+		String expectedOutput = "This post implies it is from CNN, one of your trusted sources. However, we could not verify the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
+		} else {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNVERIFIED_ATTACHMENT_ORIGIN
+	@Test(priority = 127)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN_Negative140006() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1748310769458897064");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark14
+		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark14
+		JavascriptExecutor jse114 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark14);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark14
+		Actions actions114 = new Actions(driver);
+		actions114.moveToElement(TrustApp_mark14).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status14
+		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status14
+		JavascriptExecutor jse10014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status14);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status14
+		String widgetstatus14 = Widget_Status14.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Trusted";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus14, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m129. STATUS\033[0m: ");
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
+		System.out.println();
+
+		// locate TrustApp_message14
+		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message14
+		JavascriptExecutor jse1014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message14);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message14
+		String messageText14 = TrustApp_message14.getText();
+
+		// Print the text
+		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
+
+		// expected output
+		String expectedOutput = "This post implies it is from The Economist, one of your trusted sources. However, we could not verify the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
+		} else {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNVERIFIED_ATTACHMENT_ORIGIN
+	@Test(priority = 128)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN_Negative140007() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1752567084058333202");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark14
+		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark14
+		JavascriptExecutor jse114 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark14);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark14
+		Actions actions114 = new Actions(driver);
+		actions114.moveToElement(TrustApp_mark14).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status14
+		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status14
+		JavascriptExecutor jse10014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status14);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status14
+		String widgetstatus14 = Widget_Status14.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Trusted";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus14, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m130. STATUS\033[0m: ");
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
+		System.out.println();
+
+		// locate TrustApp_message14
+		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message14
+		JavascriptExecutor jse1014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message14);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message14
+		String messageText14 = TrustApp_message14.getText();
+
+		// Print the text
+		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
+
+		// expected output
+		String expectedOutput = "This post implies it is from POLITICO, one of your trusted sources. However, we could not verify the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
+		} else {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNVERIFIED_ATTACHMENT_ORIGIN
+	@Test(priority = 129)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN_Negative140008() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1752567977029816719");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark14
+		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark14
+		JavascriptExecutor jse114 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark14);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark14
+		Actions actions114 = new Actions(driver);
+		actions114.moveToElement(TrustApp_mark14).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status14
+		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status14
+		JavascriptExecutor jse10014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status14);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status14
+		String widgetstatus14 = Widget_Status14.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Trusted";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus14, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m131. STATUS\033[0m: ");
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
+		System.out.println();
+
+		// locate TrustApp_message14
+		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message14
+		JavascriptExecutor jse1014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message14);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message14
+		String messageText14 = TrustApp_message14.getText();
+
+		// Print the text
+		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
+
+		// expected output
+		String expectedOutput = "This post implies it is from CNBC, one of your trusted sources. However, we could not verify the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
+		} else {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNVERIFIED_ATTACHMENT_ORIGIN
+	@Test(priority = 130)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN_Negative140009() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustAppTesting/status/1752567977029816719");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark14
+		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark14
+		JavascriptExecutor jse114 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark14);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark14
+		Actions actions114 = new Actions(driver);
+		actions114.moveToElement(TrustApp_mark14).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status14
+		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status14
+		JavascriptExecutor jse10014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status14);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status14
+		String widgetstatus14 = Widget_Status14.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Trusted";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus14, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m132. STATUS\033[0m: ");
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
+		System.out.println();
+
+		// locate TrustApp_message14
+		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message14
+		JavascriptExecutor jse1014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message14);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message14
+		String messageText14 = TrustApp_message14.getText();
+
+		// Print the text
+		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
+
+		// expected output
+		String expectedOutput = "This post implies it is from CNBC, one of your trusted sources. However, we could not verify the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
+		} else {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNVERIFIED_ATTACHMENT_ORIGIN
+	@Test(priority = 131)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN_Negative140010() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustAppTesting/status/1752574432806043789");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark14
+		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark14
+		JavascriptExecutor jse114 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark14);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark14
+		Actions actions114 = new Actions(driver);
+		actions114.moveToElement(TrustApp_mark14).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status14
+		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status14
+		JavascriptExecutor jse10014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status14);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status14
+		String widgetstatus14 = Widget_Status14.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Trusted";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus14, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m133. STATUS\033[0m: ");
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
+		System.out.println();
+
+		// locate TrustApp_message14
+		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message14
+		JavascriptExecutor jse1014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message14);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message14
+		String messageText14 = TrustApp_message14.getText();
+
+		// Print the text
+		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
+
+		// expected output
+		String expectedOutput = "This post implies it is from Bloomberg, one of your trusted sources. However, we could not verify the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
+		} else {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNVERIFIED_ATTACHMENT_ORIGIN
+	@Test(priority = 132)
+	public void UNVERIFIED_ATTACHMENT_ORIGIN_Negative140011() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustAppTesting/status/1760546537220825200");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark14
+		WebElement TrustApp_mark14 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark14
+		JavascriptExecutor jse114 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark14);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark14
+		Actions actions114 = new Actions(driver);
+		actions114.moveToElement(TrustApp_mark14).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status14
+		WebElement Widget_Status14 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status14
+		JavascriptExecutor jse10014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status14);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status14
+		String widgetstatus14 = Widget_Status14.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Trusted";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus14, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m134. STATUS\033[0m: ");
+		System.out.print("\033[91m" + widgetstatus14 + "\033[0m"); // \033[91m sets color to red
+		System.out.println();
+
+		// locate TrustApp_message14
+		WebElement TrustApp_message14 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message14
+		JavascriptExecutor jse1014 = (JavascriptExecutor) driver;
+		jse114.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message14);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message14
+		String messageText14 = TrustApp_message14.getText();
+
+		// Print the text
+		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText14);
+
+		// expected output
+		String expectedOutput = "This post implies it is from CNN, one of your trusted sources. However, we could not verify the referenced link.";
+
+		// Compare the actual text with the expected output
+		if (messageText14.equals(expectedOutput)) {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
+		} else {
+			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
 		}
 	}
 
 	// ----------------------------------------------------------------------------------
 	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
-	@Test(priority = 14)
-	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER() throws InterruptedException {
+	@Test(priority = 133)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER150001() throws InterruptedException {
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1744614732441526369");
 		Thread.sleep(7000);
 
@@ -1254,9 +12007,15 @@ public class Testng_UI {
 		// Get the text of Widget_Status15
 		String widgetstatus15 = Widget_Status15.getText();
 
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus15, expectedStatus, "Status does not match expected");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
-		System.out.print("\033[1m15. STATUS\033[0m: ");
+		System.out.print("\033[1m135. STATUS\033[0m: ");
 		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
 		System.out.println();
 		Thread.sleep(1000);
@@ -1292,21 +12051,932 @@ public class Testng_UI {
 
 		// Print the text
 		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions CNN, one of your trusted source. However, we could not verify its connection with the link in the post.";
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message15.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message15 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED");
 		} else {
-			System.out.println("TrustApp_message15 is not DISPLAYED");
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
 		}
 	}
-//
+
+// ----------------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 134)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER150002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1744616198325629080");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark15
+		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark15
+		JavascriptExecutor jse115 = (JavascriptExecutor) driver;
+		jse115.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark15);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark15
+		Actions actions115 = new Actions(driver);
+		actions115.moveToElement(TrustApp_mark15).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status15
+		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status15
+		JavascriptExecutor jse10015 = (JavascriptExecutor) driver;
+		jse10015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status15);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status15
+		String widgetstatus15 = Widget_Status15.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus15, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m136. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher15
+		WebElement News_Item_Publisher15 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher15
+		JavascriptExecutor jse102215 = (JavascriptExecutor) driver;
+		jse102215.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher15);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher15
+		String Publisher15 = News_Item_Publisher15.getText();
+
+		// Print the Publisher15
+		System.out.println("Publisher: " + Publisher15);
+
+		// locate TrustApp_message15
+		WebElement TrustApp_message15 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message15
+		JavascriptExecutor jse1015 = (JavascriptExecutor) driver;
+		jse1015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message15);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message15
+		String messageText15 = TrustApp_message15.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions CNN, one of your trusted source. However, we could not verify its connection with the link in the post.";
+
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 135)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER150003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1744617181449458046");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark15
+		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark15
+		JavascriptExecutor jse115 = (JavascriptExecutor) driver;
+		jse115.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark15);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark15
+		Actions actions115 = new Actions(driver);
+		actions115.moveToElement(TrustApp_mark15).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status15
+		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status15
+		JavascriptExecutor jse10015 = (JavascriptExecutor) driver;
+		jse10015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status15);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status15
+		String widgetstatus15 = Widget_Status15.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus15, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m137. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher15
+		WebElement News_Item_Publisher15 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher15
+		JavascriptExecutor jse102215 = (JavascriptExecutor) driver;
+		jse102215.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher15);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher15
+		String Publisher15 = News_Item_Publisher15.getText();
+
+		// Print the Publisher15
+		System.out.println("Publisher: " + Publisher15);
+
+		// locate TrustApp_message15
+		WebElement TrustApp_message15 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message15
+		JavascriptExecutor jse1015 = (JavascriptExecutor) driver;
+		jse1015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message15);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message15
+		String messageText15 = TrustApp_message15.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions The Economist, one of your trusted source. However, we could not verify its connection with the link in the post.";
+
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 136)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER150004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1744618874627068014");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark15
+		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark15
+		JavascriptExecutor jse115 = (JavascriptExecutor) driver;
+		jse115.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark15);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark15
+		Actions actions115 = new Actions(driver);
+		actions115.moveToElement(TrustApp_mark15).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status15
+		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status15
+		JavascriptExecutor jse10015 = (JavascriptExecutor) driver;
+		jse10015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status15);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status15
+		String widgetstatus15 = Widget_Status15.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus15, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m138. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher15
+		WebElement News_Item_Publisher15 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher15
+		JavascriptExecutor jse102215 = (JavascriptExecutor) driver;
+		jse102215.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher15);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher15
+		String Publisher15 = News_Item_Publisher15.getText();
+
+		// Print the Publisher15
+		System.out.println("Publisher: " + Publisher15);
+
+		// locate TrustApp_message15
+		WebElement TrustApp_message15 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message15
+		JavascriptExecutor jse1015 = (JavascriptExecutor) driver;
+		jse1015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message15);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message15
+		String messageText15 = TrustApp_message15.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions POLITICO, one of your trusted source. However, we could not verify its connection with the link in the post.";
+
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 137)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER150005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1744619440170275109");
+		Thread.sleep(9000);
+
+		// locate TrustApp_mark15
+		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark15
+		JavascriptExecutor jse115 = (JavascriptExecutor) driver;
+		jse115.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark15);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark15
+		Actions actions115 = new Actions(driver);
+		actions115.moveToElement(TrustApp_mark15).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status15
+		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status15
+		JavascriptExecutor jse10015 = (JavascriptExecutor) driver;
+		jse10015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status15);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status15
+		String widgetstatus15 = Widget_Status15.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus15, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m139. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher15
+		WebElement News_Item_Publisher15 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher15
+		JavascriptExecutor jse102215 = (JavascriptExecutor) driver;
+		jse102215.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher15);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher15
+		String Publisher15 = News_Item_Publisher15.getText();
+
+		// Print the Publisher15
+		System.out.println("Publisher: " + Publisher15);
+
+		// locate TrustApp_message15
+		WebElement TrustApp_message15 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message15
+		JavascriptExecutor jse1015 = (JavascriptExecutor) driver;
+		jse1015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message15);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message15
+		String messageText15 = TrustApp_message15.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions CNN, one of your trusted source. However, we could not verify its connection with the link in the post.";
+
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 138)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative150006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747939852870373795");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark15
+		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark15
+		JavascriptExecutor jse115 = (JavascriptExecutor) driver;
+		jse115.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark15);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark15
+		Actions actions115 = new Actions(driver);
+		actions115.moveToElement(TrustApp_mark15).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status15
+		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status15
+		JavascriptExecutor jse10015 = (JavascriptExecutor) driver;
+		jse10015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status15);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status15
+		String widgetstatus15 = Widget_Status15.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus15, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m140. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher15
+		WebElement News_Item_Publisher15 = driver.findElement(By.xpath("//a[normalize-space()='BBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher15
+		JavascriptExecutor jse102215 = (JavascriptExecutor) driver;
+		jse102215.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher15);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher15
+		String Publisher15 = News_Item_Publisher15.getText();
+
+		// Print the Publisher15
+		System.out.println("Publisher: " + Publisher15);
+
+		// locate TrustApp_message15
+		WebElement TrustApp_message15 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message15
+		JavascriptExecutor jse1015 = (JavascriptExecutor) driver;
+		jse1015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message15);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message15
+		String messageText15 = TrustApp_message15.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions BBC, one of your trusted source. However, we could not verify its connection with the link in the post.";
+
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 139)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative150007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747939852870373795");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark15
+		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark15
+		JavascriptExecutor jse115 = (JavascriptExecutor) driver;
+		jse115.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark15);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark15
+		Actions actions115 = new Actions(driver);
+		actions115.moveToElement(TrustApp_mark15).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status15
+		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status15
+		JavascriptExecutor jse10015 = (JavascriptExecutor) driver;
+		jse10015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status15);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status15
+		String widgetstatus15 = Widget_Status15.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus15, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m141. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher15
+		WebElement News_Item_Publisher15 = driver.findElement(By.xpath("//a[normalize-space()='BBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher15
+		JavascriptExecutor jse102215 = (JavascriptExecutor) driver;
+		jse102215.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher15);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher15
+		String Publisher15 = News_Item_Publisher15.getText();
+
+		// Print the Publisher15
+		System.out.println("Publisher: " + Publisher15);
+
+		// locate TrustApp_message15
+		WebElement TrustApp_message15 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message15
+		JavascriptExecutor jse1015 = (JavascriptExecutor) driver;
+		jse1015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message15);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message15
+		String messageText15 = TrustApp_message15.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions BBC, one of your trusted source. However, we could not verify its connection with the link in the post.";
+
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 140)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative150008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747943537822306543");
+		Thread.sleep(9000);
+
+		// locate TrustApp_mark15
+		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark15
+		JavascriptExecutor jse115 = (JavascriptExecutor) driver;
+		jse115.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark15);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark15
+		Actions actions115 = new Actions(driver);
+		actions115.moveToElement(TrustApp_mark15).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status15
+		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status15
+		JavascriptExecutor jse10015 = (JavascriptExecutor) driver;
+		jse10015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status15);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status15
+		String widgetstatus15 = Widget_Status15.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus15, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m142. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher15
+		WebElement News_Item_Publisher15 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher15
+		JavascriptExecutor jse102215 = (JavascriptExecutor) driver;
+		jse102215.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher15);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher15
+		String Publisher15 = News_Item_Publisher15.getText();
+
+		// Print the Publisher15
+		System.out.println("Publisher: " + Publisher15);
+
+		// locate TrustApp_message15
+		WebElement TrustApp_message15 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message15
+		JavascriptExecutor jse1015 = (JavascriptExecutor) driver;
+		jse1015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message15);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message15
+		String messageText15 = TrustApp_message15.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions Al Jazeera English, one of your trusted source. However, we could not verify its connection with the link in the post.";
+
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 141)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative150009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752576804374679643");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark15
+		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark15
+		JavascriptExecutor jse115 = (JavascriptExecutor) driver;
+		jse115.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark15);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark15
+		Actions actions115 = new Actions(driver);
+		actions115.moveToElement(TrustApp_mark15).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status15
+		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status15
+		JavascriptExecutor jse10015 = (JavascriptExecutor) driver;
+		jse10015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status15);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status15
+		String widgetstatus15 = Widget_Status15.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus15, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m143. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher15
+		WebElement News_Item_Publisher15 = driver.findElement(By.xpath("//a[normalize-space()='CBC News']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher15
+		JavascriptExecutor jse102215 = (JavascriptExecutor) driver;
+		jse102215.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher15);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher15
+		String Publisher15 = News_Item_Publisher15.getText();
+
+		// Print the Publisher15
+		System.out.println("Publisher: " + Publisher15);
+
+		// locate TrustApp_message15
+		WebElement TrustApp_message15 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message15
+		JavascriptExecutor jse1015 = (JavascriptExecutor) driver;
+		jse1015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message15);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message15
+		String messageText15 = TrustApp_message15.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions CBC News, one of your trusted source. However, we could not verify its connection with the link in the post.";
+
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 142)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative150010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752578662443172014");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark15
+		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark15
+		JavascriptExecutor jse115 = (JavascriptExecutor) driver;
+		jse115.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark15);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark15
+		Actions actions115 = new Actions(driver);
+		actions115.moveToElement(TrustApp_mark15).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status15
+		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status15
+		JavascriptExecutor jse10015 = (JavascriptExecutor) driver;
+		jse10015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status15);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status15
+		String widgetstatus15 = Widget_Status15.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus15, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m144. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher15
+		WebElement News_Item_Publisher15 = driver.findElement(By.xpath("//a[normalize-space()='BBC']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher15
+		JavascriptExecutor jse102215 = (JavascriptExecutor) driver;
+		jse102215.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher15);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher15
+		String Publisher15 = News_Item_Publisher15.getText();
+
+		// Print the Publisher15
+		System.out.println("Publisher: " + Publisher15);
+
+		// locate TrustApp_message15
+		WebElement TrustApp_message15 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message15
+		JavascriptExecutor jse1015 = (JavascriptExecutor) driver;
+		jse1015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message15);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message15
+		String messageText15 = TrustApp_message15.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions BBC, one of your trusted source. However, we could not verify its connection with the link in the post.";
+
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
+	// ----------------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER
+	@Test(priority = 143)
+	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative150011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1744614732441526369");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark15
+		WebElement TrustApp_mark15 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark15
+		JavascriptExecutor jse115 = (JavascriptExecutor) driver;
+		jse115.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark15);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark15
+		Actions actions115 = new Actions(driver);
+		actions115.moveToElement(TrustApp_mark15).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status15
+		WebElement Widget_Status15 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status15
+		JavascriptExecutor jse10015 = (JavascriptExecutor) driver;
+		jse10015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status15);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status15
+		String widgetstatus15 = Widget_Status15.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus15, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m145. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus15 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher15
+		WebElement News_Item_Publisher15 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher15
+		JavascriptExecutor jse102215 = (JavascriptExecutor) driver;
+		jse102215.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher15);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher15
+		String Publisher15 = News_Item_Publisher15.getText();
+
+		// Print the Publisher15
+		System.out.println("Publisher: " + Publisher15);
+
+		// locate TrustApp_message15
+		WebElement TrustApp_message15 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message15
+		JavascriptExecutor jse1015 = (JavascriptExecutor) driver;
+		jse1015.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message15);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message15
+		String messageText15 = TrustApp_message15.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText15);
+		// expected output
+		String expectedOutput = "This post mentions CNN, one of your trusted source. However, we could not verify its connection with the link in the post.";
+
+		// Compare the actual text with the expected output
+		if (messageText15.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER test case PASSED (As expected)");
+
+		}
+	}
+
 	// ----------------------------------------------------------------------------------
 	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
-	@Test(priority = 15)
-	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED() throws InterruptedException {
+	@Test(priority = 144)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED160001() throws InterruptedException {
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1742157772085485819");
 		Thread.sleep(7000);
 
@@ -1338,9 +13008,15 @@ public class Testng_UI {
 		// Get the text of Widget_Status16
 		String widgetstatus16 = Widget_Status16.getText();
 
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus16, expectedStatus, "Status does not match expected");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
-		System.out.print("\033[1m16. STATUS\033[0m: ");
+		System.out.print("\033[1m146. STATUS\033[0m: ");
 		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
 		System.out.println();
 		Thread.sleep(1000);
@@ -1361,19 +13037,782 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message16.isDisplayed();
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message16 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED");
 		} else {
-			System.out.println("TrustApp_message16 is not DISPLAYED");
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED");
+			Assert.fail("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED");
 		}
 	}
-//	// --------------------------------------------------------------------------
 
-	@Test(priority = 16)
-	public void KNOWN_MATCHED_PUBLISHER_DOMAIN() throws InterruptedException {
+//		// --------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
+	@Test(priority = 145)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED160002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742157772085485819");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark16
+		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark16
+		JavascriptExecutor jse116 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark16);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark16
+		Actions actions116 = new Actions(driver);
+		actions116.moveToElement(TrustApp_mark16).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status16
+		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status16
+		JavascriptExecutor jse10016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status16);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status16
+		String widgetstatus16 = Widget_Status16.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus16, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m147. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message16
+		WebElement TrustApp_message16 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message16
+		JavascriptExecutor jse1016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message16);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message16
+		String messageText16 = TrustApp_message16.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
+
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
+
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED");
+			Assert.fail("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED");
+		}
+	}
+
+//			// --------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
+	@Test(priority = 146)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED160003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742443757583143407");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark16
+		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark16
+		JavascriptExecutor jse116 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark16);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark16
+		Actions actions116 = new Actions(driver);
+		actions116.moveToElement(TrustApp_mark16).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status16
+		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status16
+		JavascriptExecutor jse10016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status16);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status16
+		String widgetstatus16 = Widget_Status16.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus16, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m148. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message16
+		WebElement TrustApp_message16 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message16
+		JavascriptExecutor jse1016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message16);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message16
+		String messageText16 = TrustApp_message16.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
+
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
+
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED");
+			Assert.fail("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED");
+		}
+	}
+
+//			// --------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
+	@Test(priority = 147)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED160004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742157772085485819");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark16
+		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark16
+		JavascriptExecutor jse116 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark16);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark16
+		Actions actions116 = new Actions(driver);
+		actions116.moveToElement(TrustApp_mark16).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status16
+		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status16
+		JavascriptExecutor jse10016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status16);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status16
+		String widgetstatus16 = Widget_Status16.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus16, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m149. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message16
+		WebElement TrustApp_message16 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message16
+		JavascriptExecutor jse1016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message16);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message16
+		String messageText16 = TrustApp_message16.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
+
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
+
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED");
+			Assert.fail("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED");
+		}
+	}
+
+//			// --------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
+	@Test(priority = 148)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED160005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742513167438119386");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark16
+		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark16
+		JavascriptExecutor jse116 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark16);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark16
+		Actions actions116 = new Actions(driver);
+		actions116.moveToElement(TrustApp_mark16).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status16
+		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status16
+		JavascriptExecutor jse10016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status16);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status16
+		String widgetstatus16 = Widget_Status16.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus16, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m150. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message16
+		WebElement TrustApp_message16 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message16
+		JavascriptExecutor jse1016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message16);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message16
+		String messageText16 = TrustApp_message16.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
+
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
+
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED");
+			Assert.fail("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED");
+		}
+	}
+
+//			// --------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
+	@Test(priority = 149)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED_Negative160006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747944504810766531");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark16
+		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark16
+		JavascriptExecutor jse116 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark16);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark16
+		Actions actions116 = new Actions(driver);
+		actions116.moveToElement(TrustApp_mark16).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status16
+		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status16
+		JavascriptExecutor jse10016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status16);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status16
+		String widgetstatus16 = Widget_Status16.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus16, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m151. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message16
+		WebElement TrustApp_message16 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message16
+		JavascriptExecutor jse1016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message16);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message16
+		String messageText16 = TrustApp_message16.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
+
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
+
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED (As expected)");
+
+		}
+	}
+
+//			// --------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
+	@Test(priority = 150)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED_Negative160007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747945013588132199");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark16
+		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark16
+		JavascriptExecutor jse116 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark16);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark16
+		Actions actions116 = new Actions(driver);
+		actions116.moveToElement(TrustApp_mark16).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status16
+		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status16
+		JavascriptExecutor jse10016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status16);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status16
+		String widgetstatus16 = Widget_Status16.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus16, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m152. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message16
+		WebElement TrustApp_message16 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message16
+		JavascriptExecutor jse1016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message16);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message16
+		String messageText16 = TrustApp_message16.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
+
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
+
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED (As expected)");
+
+		}
+	}
+
+//			// --------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
+	@Test(priority = 151)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED_Negative160008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752583297454973285");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark16
+		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark16
+		JavascriptExecutor jse116 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark16);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark16
+		Actions actions116 = new Actions(driver);
+		actions116.moveToElement(TrustApp_mark16).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status16
+		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status16
+		JavascriptExecutor jse10016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status16);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status16
+		String widgetstatus16 = Widget_Status16.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus16, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m153. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message16
+		WebElement TrustApp_message16 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message16
+		JavascriptExecutor jse1016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message16);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message16
+		String messageText16 = TrustApp_message16.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
+
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
+
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED (As expected)");
+
+		}
+	}
+
+//			// --------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
+	@Test(priority = 152)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED_Negative160009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752585339045036487");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark16
+		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark16
+		JavascriptExecutor jse116 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark16);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark16
+		Actions actions116 = new Actions(driver);
+		actions116.moveToElement(TrustApp_mark16).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status16
+		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status16
+		JavascriptExecutor jse10016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status16);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status16
+		String widgetstatus16 = Widget_Status16.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus16, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m154. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message16
+		WebElement TrustApp_message16 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message16
+		JavascriptExecutor jse1016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message16);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message16
+		String messageText16 = TrustApp_message16.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
+
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
+
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED (As expected)");
+
+		}
+	}
+
+//			// --------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
+	@Test(priority = 153)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED_Negative160010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1752585844815233040");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark16
+		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark16
+		JavascriptExecutor jse116 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark16);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark16
+		Actions actions116 = new Actions(driver);
+		actions116.moveToElement(TrustApp_mark16).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status16
+		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status16
+		JavascriptExecutor jse10016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status16);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status16
+		String widgetstatus16 = Widget_Status16.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus16, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m155. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message16
+		WebElement TrustApp_message16 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message16
+		JavascriptExecutor jse1016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message16);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message16
+		String messageText16 = TrustApp_message16.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
+
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
+
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED (As expected)");
+
+		}
+	}
+
+//			// --------------------------------------------------------------------------
+	// UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED
+	@Test(priority = 154)
+	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED_Negative160011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760547786225791075");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark16
+		WebElement TrustApp_mark16 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark16
+		JavascriptExecutor jse116 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark16);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark16
+		Actions actions116 = new Actions(driver);
+		actions116.moveToElement(TrustApp_mark16).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status16
+		WebElement Widget_Status16 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status16
+		JavascriptExecutor jse10016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status16);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status16
+		String widgetstatus16 = Widget_Status16.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus16, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m156. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus16 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate TrustApp_message16
+		WebElement TrustApp_message16 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message16
+		JavascriptExecutor jse1016 = (JavascriptExecutor) driver;
+		jse116.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message16);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message16
+		String messageText16 = TrustApp_message16.getText();
+
+		// Print the text
+		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText16);
+
+		// expected output
+		String expectedOutput = "This post neither references nor mentions a source currently present in our sources list.";
+
+		// Compare the actual text with the expected output
+		if (messageText16.equals(expectedOutput)) {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED test case PASSED (As expected)");
+
+		}
+	}
+
+//			// --------------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 155)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN170001() throws InterruptedException {
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1745322114326966478");
 		Thread.sleep(7000);
 
@@ -1405,9 +13844,15 @@ public class Testng_UI {
 		// Get the text of Widget_Status17
 		String widgetstatus17 = Widget_Status17.getText();
 
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus17, expectedStatus, "Status does not match expected");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
-		System.out.print("\033[1m17. STATUS\033[0m: ");
+		System.out.print("\033[1m157. STATUS\033[0m: ");
 		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
 		System.out.println();
 		Thread.sleep(1000);
@@ -1444,19 +13889,942 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message17.isDisplayed();
+		// expected output
+		String expectedOutput = "This post references CNN, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from CNN.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message17is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED");
 		} else {
-			System.out.println("TrustApp_message17 is not DISPLAYED");
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED");
+			Assert.fail("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED");
 		}
 	}
 
-//	// ---------------------------------------------------------------------
-	@Test(priority = 17)
-	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER() throws InterruptedException {
+//		// ---------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 156)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN170002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742154844897513817");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark17
+		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark17
+		JavascriptExecutor jse117 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark17);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark17
+		Actions actions117 = new Actions(driver);
+		actions117.moveToElement(TrustApp_mark17).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status17
+		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status17
+		JavascriptExecutor jse10017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status17);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status17
+		String widgetstatus17 = Widget_Status17.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus17, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m158. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher17
+		WebElement News_Item_Publisher17 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher17
+		JavascriptExecutor jse102217 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher17);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher17
+		String Publisher17 = News_Item_Publisher17.getText();
+
+		// Print the Publisher17
+		System.out.println("Publisher: " + Publisher17);
+
+		// locate TrustApp_message17
+		WebElement TrustApp_message17 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message17
+		JavascriptExecutor jse1017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message17);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message17
+		String messageText17 = TrustApp_message17.getText();
+
+		// Print the text
+		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
+
+		// expected output
+		String expectedOutput = "This post references CNN, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED");
+		} else {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED");
+			Assert.fail("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED");
+		}
+	}
+
+//		// ---------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 157)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN170003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1742422582861643850");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark17
+		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark17
+		JavascriptExecutor jse117 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark17);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark17
+		Actions actions117 = new Actions(driver);
+		actions117.moveToElement(TrustApp_mark17).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status17
+		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status17
+		JavascriptExecutor jse10017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status17);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status17
+		String widgetstatus17 = Widget_Status17.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus17, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m159. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher17
+		WebElement News_Item_Publisher17 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher17
+		JavascriptExecutor jse102217 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher17);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher17
+		String Publisher17 = News_Item_Publisher17.getText();
+
+		// Print the Publisher17
+		System.out.println("Publisher: " + Publisher17);
+
+		// locate TrustApp_message17
+		WebElement TrustApp_message17 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message17
+		JavascriptExecutor jse1017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message17);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message17
+		String messageText17 = TrustApp_message17.getText();
+
+		// Print the text
+		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
+
+		// expected output
+		String expectedOutput = "This post references CNN, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED");
+		} else {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED");
+			Assert.fail("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED");
+		}
+	}
+
+//		// ---------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 158)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN170004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745343717664280648");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark17
+		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark17
+		JavascriptExecutor jse117 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark17);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark17
+		Actions actions117 = new Actions(driver);
+		actions117.moveToElement(TrustApp_mark17).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status17
+		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status17
+		JavascriptExecutor jse10017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status17);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status17
+		String widgetstatus17 = Widget_Status17.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus17, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m160. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher17
+		WebElement News_Item_Publisher17 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher17
+		JavascriptExecutor jse102217 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher17);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher17
+		String Publisher17 = News_Item_Publisher17.getText();
+
+		// Print the Publisher17
+		System.out.println("Publisher: " + Publisher17);
+
+		// locate TrustApp_message17
+		WebElement TrustApp_message17 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message17
+		JavascriptExecutor jse1017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message17);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message17
+		String messageText17 = TrustApp_message17.getText();
+
+		// Print the text
+		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
+
+		// expected output
+		String expectedOutput = "This post references CNN, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED");
+		} else {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED");
+			Assert.fail("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED");
+		}
+	}
+
+//		// ---------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 159)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN170005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1749405326976122955");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark17
+		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark17
+		JavascriptExecutor jse117 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark17);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark17
+		Actions actions117 = new Actions(driver);
+		actions117.moveToElement(TrustApp_mark17).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status17
+		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status17
+		JavascriptExecutor jse10017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status17);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status17
+		String widgetstatus17 = Widget_Status17.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus17, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m161. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher17
+		WebElement News_Item_Publisher17 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher17
+		JavascriptExecutor jse102217 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher17);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher17
+		String Publisher17 = News_Item_Publisher17.getText();
+
+		// Print the Publisher17
+		System.out.println("Publisher: " + Publisher17);
+
+		// locate TrustApp_message17
+		WebElement TrustApp_message17 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message17
+		JavascriptExecutor jse1017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message17);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message17
+		String messageText17 = TrustApp_message17.getText();
+
+		// Print the text
+		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
+
+		// expected output
+		String expectedOutput = "This post references POLITICO, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from POLITICO.";
+
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED");
+		} else {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED");
+			Assert.fail("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED");
+		}
+	}
+
+//		// ---------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 160)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN1_Negative170006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747946850118783241");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark17
+		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark17
+		JavascriptExecutor jse117 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark17);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark17
+		Actions actions117 = new Actions(driver);
+		actions117.moveToElement(TrustApp_mark17).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status17
+		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status17
+		JavascriptExecutor jse10017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status17);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status17
+		String widgetstatus17 = Widget_Status17.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus17, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m162. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher17
+		WebElement News_Item_Publisher17 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher17
+		JavascriptExecutor jse102217 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher17);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher17
+		String Publisher17 = News_Item_Publisher17.getText();
+
+		// Print the Publisher17
+		System.out.println("Publisher: " + Publisher17);
+
+		// locate TrustApp_message17
+		WebElement TrustApp_message17 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message17
+		JavascriptExecutor jse1017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message17);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message17
+		String messageText17 = TrustApp_message17.getText();
+
+		// Print the text
+		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
+
+		// expected output
+		String expectedOutput = "This post references POLITICO, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from POLITICO.";
+
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
+			
+		}
+	}
+
+//		// ---------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 161)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN1_Negative170007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745322114326966478");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark17
+		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark17
+		JavascriptExecutor jse117 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark17);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark17
+		Actions actions117 = new Actions(driver);
+		actions117.moveToElement(TrustApp_mark17).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status17
+		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status17
+		JavascriptExecutor jse10017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status17);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status17
+		String widgetstatus17 = Widget_Status17.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus17, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m163. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher17
+		WebElement News_Item_Publisher17 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher17
+		JavascriptExecutor jse102217 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher17);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher17
+		String Publisher17 = News_Item_Publisher17.getText();
+
+		// Print the Publisher17
+		System.out.println("Publisher: " + Publisher17);
+
+		// locate TrustApp_message17
+		WebElement TrustApp_message17 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message17
+		JavascriptExecutor jse1017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message17);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message17
+		String messageText17 = TrustApp_message17.getText();
+
+		// Print the text
+		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
+
+		// expected output
+		String expectedOutput = "This post references CNN, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
+			
+		}
+	}
+
+//		// ---------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 162)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN1_Negative170008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1755196233121972715");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark17
+		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark17
+		JavascriptExecutor jse117 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark17);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark17
+		Actions actions117 = new Actions(driver);
+		actions117.moveToElement(TrustApp_mark17).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status17
+		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status17
+		JavascriptExecutor jse10017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status17);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status17
+		String widgetstatus17 = Widget_Status17.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus17, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m164. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher17
+		WebElement News_Item_Publisher17 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher17
+		JavascriptExecutor jse102217 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher17);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher17
+		String Publisher17 = News_Item_Publisher17.getText();
+
+		// Print the Publisher17
+		System.out.println("Publisher: " + Publisher17);
+
+		// locate TrustApp_message17
+		WebElement TrustApp_message17 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message17
+		JavascriptExecutor jse1017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message17);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message17
+		String messageText17 = TrustApp_message17.getText();
+
+		// Print the text
+		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
+
+		// expected output
+		String expectedOutput = "This post references CNN, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
+			
+		}
+	}
+
+//		// ---------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 163)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN1_Negative170009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1755197807663690042");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark17
+		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark17
+		JavascriptExecutor jse117 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark17);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark17
+		Actions actions117 = new Actions(driver);
+		actions117.moveToElement(TrustApp_mark17).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status17
+		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status17
+		JavascriptExecutor jse10017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status17);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status17
+		String widgetstatus17 = Widget_Status17.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus17, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m165. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher17
+		WebElement News_Item_Publisher17 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher17
+		JavascriptExecutor jse102217 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher17);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher17
+		String Publisher17 = News_Item_Publisher17.getText();
+
+		// Print the Publisher17
+		System.out.println("Publisher: " + Publisher17);
+
+		// locate TrustApp_message17
+		WebElement TrustApp_message17 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message17
+		JavascriptExecutor jse1017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message17);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message17
+		String messageText17 = TrustApp_message17.getText();
+
+		// Print the text
+		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
+
+		// expected output
+		String expectedOutput = "This post references POLITICO, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from POLITICO.";
+
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
+			
+		}
+	}
+
+//		// ---------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 164)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN1_Negative170010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1755198624118591522");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark17
+		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark17
+		JavascriptExecutor jse117 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark17);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark17
+		Actions actions117 = new Actions(driver);
+		actions117.moveToElement(TrustApp_mark17).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status17
+		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status17
+		JavascriptExecutor jse10017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status17);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status17
+		String widgetstatus17 = Widget_Status17.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus17, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m166. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher17
+		WebElement News_Item_Publisher17 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher17
+		JavascriptExecutor jse102217 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher17);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher17
+		String Publisher17 = News_Item_Publisher17.getText();
+
+		// Print the Publisher17
+		System.out.println("Publisher: " + Publisher17);
+
+		// locate TrustApp_message17
+		WebElement TrustApp_message17 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message17
+		JavascriptExecutor jse1017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message17);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message17
+		String messageText17 = TrustApp_message17.getText();
+
+		// Print the text
+		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
+
+		// expected output
+		String expectedOutput = "This post references CNN, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
+			
+		}
+	}
+
+//		// ---------------------------------------------------------------------
+	// KNOWN_MATCHED_PUBLISHER_DOMAIN
+	@Test(priority = 165)
+	public void KNOWN_MATCHED_PUBLISHER_DOMAIN1_Negative170011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745322114326966478");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark17
+		WebElement TrustApp_mark17 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark17
+		JavascriptExecutor jse117 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark17);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark17
+		Actions actions117 = new Actions(driver);
+		actions117.moveToElement(TrustApp_mark17).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status17
+		WebElement Widget_Status17 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status17
+		JavascriptExecutor jse10017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status17);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status17
+		String widgetstatus17 = Widget_Status17.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus17, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m167. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus17 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher17
+		WebElement News_Item_Publisher17 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher17
+		JavascriptExecutor jse102217 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher17);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher17
+		String Publisher17 = News_Item_Publisher17.getText();
+
+		// Print the Publisher17
+		System.out.println("Publisher: " + Publisher17);
+
+		// locate TrustApp_message17
+		WebElement TrustApp_message17 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message17
+		JavascriptExecutor jse1017 = (JavascriptExecutor) driver;
+		jse117.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message17);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message17
+		String messageText17 = TrustApp_message17.getText();
+
+		// Print the text
+		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText17);
+
+		// expected output
+		String expectedOutput = "This post references CNN, one of your trusted sources. While we could not verify the exact referenced link, we have verified it originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText17.equals(expectedOutput)) {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
+			
+		}
+	}
+
+//		// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 166)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER180001() throws InterruptedException {
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1745321840896053345");
 		Thread.sleep(7000);
 
@@ -1488,9 +14856,15 @@ public class Testng_UI {
 		// Get the text of Widget_Status18
 		String widgetstatus18 = Widget_Status18.getText();
 
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus18, expectedStatus, "Status does not match expected");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
-		System.out.print("\033[1m18. STATUS\033[0m: ");
+		System.out.print("\033[1m168. STATUS\033[0m: ");
 		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
 		System.out.println();
 		Thread.sleep(1000);
@@ -1527,19 +14901,947 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message18.isDisplayed();
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. We could not verify the referenced link which originated from CNN.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message18 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED");
 		} else {
-			System.out.println("TrustApp_message18 is not DISPLAYED");
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED");
+			// expected output
 		}
 	}
 
 	// ---------------------------------------------------------------------
-	@Test(priority = 18)
-	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER() throws InterruptedException {
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 167)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER180002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745339217528459278");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark18
+		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark18
+		JavascriptExecutor jse118 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark18);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark18
+		Actions actions118 = new Actions(driver);
+		actions118.moveToElement(TrustApp_mark18).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status18
+		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status18
+		JavascriptExecutor jse10018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status18);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status18
+		String widgetstatus18 = Widget_Status18.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus18, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m169. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher18
+		WebElement News_Item_Publisher18 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher18
+		JavascriptExecutor jse102218 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher18);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher18
+		String Publisher18 = News_Item_Publisher18.getText();
+
+		// Print the Publisher18
+		System.out.println("Publisher: " + Publisher18);
+
+		// locate TrustApp_message18
+		WebElement TrustApp_message18 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message18
+		JavascriptExecutor jse1018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message18);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message18
+		String messageText18 = TrustApp_message18.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. We could not verify the referenced link which originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED");
+			// expected output
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 168)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER180003() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745321840896053345");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark18
+		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark18
+		JavascriptExecutor jse118 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark18);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark18
+		Actions actions118 = new Actions(driver);
+		actions118.moveToElement(TrustApp_mark18).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status18
+		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status18
+		JavascriptExecutor jse10018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status18);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status18
+		String widgetstatus18 = Widget_Status18.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus18, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m170. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher18
+		WebElement News_Item_Publisher18 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher18
+		JavascriptExecutor jse102218 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher18);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher18
+		String Publisher18 = News_Item_Publisher18.getText();
+
+		// Print the Publisher18
+		System.out.println("Publisher: " + Publisher18);
+
+		// locate TrustApp_message18
+		WebElement TrustApp_message18 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message18
+		JavascriptExecutor jse1018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message18);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message18
+		String messageText18 = TrustApp_message18.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. We could not verify the referenced link which originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED");
+			// expected output
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 169)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER180004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745338205518397721");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark18
+		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark18
+		JavascriptExecutor jse118 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark18);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark18
+		Actions actions118 = new Actions(driver);
+		actions118.moveToElement(TrustApp_mark18).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status18
+		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status18
+		JavascriptExecutor jse10018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status18);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status18
+		String widgetstatus18 = Widget_Status18.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus18, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m171. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher18
+		WebElement News_Item_Publisher18 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher18
+		JavascriptExecutor jse102218 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher18);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher18
+		String Publisher18 = News_Item_Publisher18.getText();
+
+		// Print the Publisher18
+		System.out.println("Publisher: " + Publisher18);
+
+		// locate TrustApp_message18
+		WebElement TrustApp_message18 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message18
+		JavascriptExecutor jse1018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message18);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message18
+		String messageText18 = TrustApp_message18.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
+
+		// expected output
+		String expectedOutput = "This post references The Washington Post, one of your trusted sources. We could not verify the referenced link which originated from POLITICO.";
+
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED");
+			// expected output
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 170)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER180005() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1745355793552007297");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark18
+		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark18
+		JavascriptExecutor jse118 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark18);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark18
+		Actions actions118 = new Actions(driver);
+		actions118.moveToElement(TrustApp_mark18).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status18
+		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status18
+		JavascriptExecutor jse10018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status18);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status18
+		String widgetstatus18 = Widget_Status18.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Suspicious";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus18, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m172. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher18
+		WebElement News_Item_Publisher18 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher18
+		JavascriptExecutor jse102218 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher18);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher18
+		String Publisher18 = News_Item_Publisher18.getText();
+
+		// Print the Publisher18
+		System.out.println("Publisher: " + Publisher18);
+
+		// locate TrustApp_message18
+		WebElement TrustApp_message18 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message18
+		JavascriptExecutor jse1018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message18);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message18
+		String messageText18 = TrustApp_message18.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
+
+		// expected output
+		String expectedOutput = "This post references POLITICO, one of your trusted sources. We could not verify the referenced link which originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED");
+			// expected output
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 171)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER_Negative180006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1747949712789913931");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark18
+		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark18
+		JavascriptExecutor jse118 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark18);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark18
+		Actions actions118 = new Actions(driver);
+		actions118.moveToElement(TrustApp_mark18).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status18
+		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status18
+		JavascriptExecutor jse10018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status18);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status18
+		String widgetstatus18 = Widget_Status18.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Trusted";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m173. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher18
+		WebElement News_Item_Publisher18 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher18
+		JavascriptExecutor jse102218 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher18);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher18
+		String Publisher18 = News_Item_Publisher18.getText();
+
+		// Print the Publisher18
+		System.out.println("Publisher: " + Publisher18);
+
+		// locate TrustApp_message18
+		WebElement TrustApp_message18 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message18
+		JavascriptExecutor jse1018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message18);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message18
+		String messageText18 = TrustApp_message18.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
+
+		// expected output
+		String expectedOutput = "This post references The Washington Post, one of your trusted sources. We could not verify the referenced link which originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 172)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER_Negative180007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1748311581782380933");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark18
+		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark18
+		JavascriptExecutor jse118 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark18);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark18
+		Actions actions118 = new Actions(driver);
+		actions118.moveToElement(TrustApp_mark18).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status18
+		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status18
+		JavascriptExecutor jse10018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status18);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status18
+		String widgetstatus18 = Widget_Status18.getText();
+
+		// Define the expected status text
+				String unexpectedStatus = "Trusted";
+
+				// Compare the actual status text with the expected status
+				Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m174. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher18
+		WebElement News_Item_Publisher18 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher18
+		JavascriptExecutor jse102218 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher18);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher18
+		String Publisher18 = News_Item_Publisher18.getText();
+
+		// Print the Publisher18
+		System.out.println("Publisher: " + Publisher18);
+
+		// locate TrustApp_message18
+		WebElement TrustApp_message18 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message18
+		JavascriptExecutor jse1018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message18);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message18
+		String messageText18 = TrustApp_message18.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
+
+		// expected output
+		String expectedOutput = "This post references BBC, one of your trusted sources. We could not verify the referenced link which originated from CNN.";
+
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 173)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER_Negative180008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1753305422310654059");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark18
+		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark18
+		JavascriptExecutor jse118 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark18);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark18
+		Actions actions118 = new Actions(driver);
+		actions118.moveToElement(TrustApp_mark18).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status18
+		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status18
+		JavascriptExecutor jse10018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status18);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status18
+		String widgetstatus18 = Widget_Status18.getText();
+
+		// Define the expected status text
+				String unexpectedStatus = "Trusted";
+
+				// Compare the actual status text with the expected status
+				Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m175. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher18
+		WebElement News_Item_Publisher18 = driver.findElement(By.xpath("//a[normalize-space()='Bloomberg']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher18
+		JavascriptExecutor jse102218 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher18);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher18
+		String Publisher18 = News_Item_Publisher18.getText();
+
+		// Print the Publisher18
+		System.out.println("Publisher: " + Publisher18);
+
+		// locate TrustApp_message18
+		WebElement TrustApp_message18 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message18
+		JavascriptExecutor jse1018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message18);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message18
+		String messageText18 = TrustApp_message18.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
+
+		// expected output
+		String expectedOutput = "This post references CNN, one of your trusted sources. We could not verify the referenced link which originated from Bloomberg.";
+
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 174)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER_Negative180009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1755116889292882039");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark18
+		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark18
+		JavascriptExecutor jse118 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark18);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark18
+		Actions actions118 = new Actions(driver);
+		actions118.moveToElement(TrustApp_mark18).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status18
+		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status18
+		JavascriptExecutor jse10018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status18);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status18
+		String widgetstatus18 = Widget_Status18.getText();
+
+		// Define the expected status text
+				String unexpectedStatus = "Trusted";
+
+				// Compare the actual status text with the expected status
+				Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m176. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher18
+		WebElement News_Item_Publisher18 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher18
+		JavascriptExecutor jse102218 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher18);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher18
+		String Publisher18 = News_Item_Publisher18.getText();
+
+		// Print the Publisher18
+		System.out.println("Publisher: " + Publisher18);
+
+		// locate TrustApp_message18
+		WebElement TrustApp_message18 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message18
+		JavascriptExecutor jse1018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message18);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message18
+		String messageText18 = TrustApp_message18.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
+
+		// expected output
+		String expectedOutput = "This post references CNBC, one of your trusted sources. We could not verify the referenced link which originated from POLITICO.";
+
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 175)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER_Negative180010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1755116596241072285");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark18
+		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark18
+		JavascriptExecutor jse118 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark18);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark18
+		Actions actions118 = new Actions(driver);
+		actions118.moveToElement(TrustApp_mark18).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status18
+		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status18
+		JavascriptExecutor jse10018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status18);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status18
+		String widgetstatus18 = Widget_Status18.getText();
+
+		// Define the expected status text
+				String unexpectedStatus = "Trusted";
+
+				// Compare the actual status text with the expected status
+				Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m177. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher18
+		WebElement News_Item_Publisher18 = driver.findElement(By.xpath("//a[normalize-space()='Bloomberg']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher18
+		JavascriptExecutor jse102218 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher18);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher18
+		String Publisher18 = News_Item_Publisher18.getText();
+
+		// Print the Publisher18
+		System.out.println("Publisher: " + Publisher18);
+
+		// locate TrustApp_message18
+		WebElement TrustApp_message18 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message18
+		JavascriptExecutor jse1018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message18);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message18
+		String messageText18 = TrustApp_message18.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
+
+		// expected output
+		String expectedOutput = "This post references The Guardian, one of your trusted sources. We could not verify the referenced link which originated from Bloomberg.";
+
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER
+	@Test(priority = 176)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER_Negative180011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760552456185098517");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark18
+		WebElement TrustApp_mark18 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark18
+		JavascriptExecutor jse118 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark18);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark18
+		Actions actions118 = new Actions(driver);
+		actions118.moveToElement(TrustApp_mark18).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status18
+		WebElement Widget_Status18 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status18
+		JavascriptExecutor jse10018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status18);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status18
+		String widgetstatus18 = Widget_Status18.getText();
+
+		// Define the expected status text
+				String unexpectedStatus = "Trusted";
+
+				// Compare the actual status text with the expected status
+				Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// red
+		System.out.print("\033[1m178. STATUS\033[0m: ");
+		System.out.print("\033[31m" + widgetstatus18 + "\033[0m"); // \033[31m sets color to red
+		System.out.println();
+		Thread.sleep(1000);
+
+		// locate News_Item_Publisher18
+		WebElement News_Item_Publisher18 = driver.findElement(By.xpath("//a[normalize-space()='Bloomberg']"));
+		Thread.sleep(1000);
+
+		// to highlight the News_Item_Publisher18
+		JavascriptExecutor jse102218 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher18);
+		Thread.sleep(1000);
+
+		// Get the text of News_Item_Publisher18
+		String Publisher18 = News_Item_Publisher18.getText();
+
+		// Print the Publisher18
+		System.out.println("Publisher: " + Publisher18);
+
+		// locate TrustApp_message18
+		WebElement TrustApp_message18 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message18
+		JavascriptExecutor jse1018 = (JavascriptExecutor) driver;
+		jse118.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message18);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message18
+		String messageText18 = TrustApp_message18.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText18);
+
+		// expected output
+		String expectedOutput = "This post references CNN, one of your trusted sources. We could not verify the referenced link which originated from Bloomberg.";
+
+		// Compare the actual text with the expected output
+		if (messageText18.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+
+//	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 177)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER190001() throws InterruptedException {
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1748238228241756526");
 		Thread.sleep(7000);
 
@@ -1571,9 +15873,15 @@ public class Testng_UI {
 		// Get the text of Widget_Status19
 		String widgetstatus19 = Widget_Status19.getText();
 
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus19, expectedStatus, "Status does not match expected");
+
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
-		System.out.print("\033[1m19. STATUS\033[0m: ");
+		System.out.print("\033[1m179. STATUS\033[0m: ");
 		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
 		System.out.println();
 		Thread.sleep(1000);
@@ -1610,2680 +15918,1031 @@ public class Testng_UI {
 		// Print the text
 		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message19.isDisplayed();
+		// expected output
+		String expectedOutput = "Default Message";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message19 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED");
 		} else {
-			System.out.println("TrustApp_message19 is not DISPLAYED");
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED");
 		}
 	}
 
 	// ---------------------------------------------------------------------
-	@Test(priority = 19)
-	public void NO_URL_TO_VERIFY1() throws InterruptedException {
-		driver.get("https://twitter.com/Kushagra3837/status/1737838697738129837");
-		Thread.sleep(7000);
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 178)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER190002() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1748237961744076998");
+		Thread.sleep(9000);
 
-		// locate TrustApp_mark20
-		WebElement TrustApp_mark20 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		// locate TrustApp_mark19
+		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
 		Thread.sleep(1000);
 
-		// to highlight the TrustApp_mark20
-		JavascriptExecutor jse120 = (JavascriptExecutor) driver;
-		jse120.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark20);
+		// to highlight the TrustApp_mark19
+		JavascriptExecutor jse119 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark19);
 		Thread.sleep(1000);
 
-		// Perform a hover action on TrustApp_mark20
-		Actions actions120 = new Actions(driver);
-		actions120.moveToElement(TrustApp_mark20).perform();
+		// Perform a hover action on TrustApp_mark19
+		Actions actions119 = new Actions(driver);
+		actions119.moveToElement(TrustApp_mark19).perform();
 		Thread.sleep(3000);
 
-		// locate Widget_Status20
-		WebElement Widget_Status20 = driver.findElement(By.xpath("//div[@class='tag']"));
+		// locate Widget_Status19
+		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
 		Thread.sleep(2000);
 
-		// to highlight the Widget_Status20
-		JavascriptExecutor jse10020 = (JavascriptExecutor) driver;
-		jse10020.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status20);
+		// to highlight the Widget_Status19
+		JavascriptExecutor jse10019 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status19);
 		Thread.sleep(1000);
 
-		// Get the text of Widget_Status20
-		String widgetstatus20 = Widget_Status20.getText();
+		// Get the text of Widget_Status19
+		String widgetstatus19 = Widget_Status19.getText();
 
-		// Print the status with only the word "STATUS" in bold and the widget status in grey
-		System.out.print("\033[1m20. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus20 + "\033[0m"); // \033[90m sets color to grey
-		System.out.println();
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
 
-		// locate TrustApp_message20
-		WebElement TrustApp_message20 = driver.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message20
-		JavascriptExecutor jse1020 = (JavascriptExecutor) driver;
-		jse1020.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message20);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message20
-		String messageText20 = TrustApp_message20.getText();
-
-		// Print the text
-		System.out.println("NO_URL_TO_VERIFY: " + messageText20);
-		
-	
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message20.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message20 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message20 is not DISPLAYED");
-		}
-	}
-	//---------------------------------------------------------------------
-
-	@Test(priority = 20)
-	public void CANNOT_VERIFY_IMAGE_ATTACHMENT1() throws InterruptedException {
-
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775226836971778?s=21");
-		 Thread.sleep(7000);
-		 
-		 // locate TrustApp_mark21
-		WebElement TrustApp_mark21 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark21
-		JavascriptExecutor jse121 = (JavascriptExecutor) driver;
-		jse121.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark21);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark21
-		Actions actions121 = new Actions(driver);
-		actions121.moveToElement(TrustApp_mark21).perform();
-		Thread.sleep(3000);
-
-		// locate Widget_Status21
-		WebElement Widget_Status21 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(2100);
-
-		// to highlight the Widget_Status21
-		JavascriptExecutor jse10021 = (JavascriptExecutor) driver;
-		jse121.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status21);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status21
-		String widgetstatus21 = Widget_Status21.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in grey
-		System.out.print("\033[1m21. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus21 + "\033[0m"); // \033[90m sets color to grey
-		System.out.println();
-
-		
-		// locate TrustApp_message21
-		WebElement TrustApp_message21 = driver.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message21
-		JavascriptExecutor jse1021 = (JavascriptExecutor) driver;
-		jse121.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message21);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message21
-		String messageText21 = TrustApp_message21.getText();
-
-		// Print the text
-		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText21);
-		
-	
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message21.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message21 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message21 is not DISPLAYED");
-		}
-	}
-
-	// --------------------------------------------------------------------------------------------------------------------------------------------------
-	@Test(priority = 21)
-	public void CANNOT_VERIFY_VIDEO_ATTACHMENT1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustAppTesting/status/1755906683946111011");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark22
-		WebElement TrustApp_mark22 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark22
-		JavascriptExecutor jse122 = (JavascriptExecutor) driver;
-		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark22);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark22
-		Actions actions122 = new Actions(driver);
-		actions122.moveToElement(TrustApp_mark22).perform();
-		Thread.sleep(1000);
-
-		// locate Widget_Status22
-		WebElement Widget_Status22 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(2200);
-
-		// to highlight the Widget_Status22
-		JavascriptExecutor jse10022 = (JavascriptExecutor) driver;
-		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status22);
-		Thread.sleep(1000);
-		
-
-
-		// Get the text of Widget_Status22
-		String widgetstatus22 = Widget_Status22.getText();
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus19, expectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
-		// red
-		System.out.print("\033[1m22. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus22 + "\033[0m"); 
+		// grey
+		System.out.print("\033[1m180. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
 		System.out.println();
 		Thread.sleep(1000);
-//
-//		// locate News_Item_Publisher22
-//		WebElement News_Item_Publisher22 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
+
+//		// locate News_Item_Publisher19
+//		WebElement News_Item_Publisher19 = driver.findElement(By.xpath(""));
 //		Thread.sleep(1000);
 //
-//		// to highlight the News_Item_Publisher22
-//		JavascriptExecutor jse102222 = (JavascriptExecutor) driver;
-//		jse122.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-//				News_Item_Publisher22);
+//		// to highlight the News_Item_Publisher19
+//		JavascriptExecutor jse102219 = (JavascriptExecutor) driver;
+//		jse102219.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher19);
 //		Thread.sleep(1000);
 //
-//		// Get the text of News_Item_Publisher22
-//		String Publisher22 = News_Item_Publisher22.getText();
+//		// Get the text of News_Item_Publisher19
+//		String Publisher19 = News_Item_Publisher19.getText();
 //
-//		// Print the Publisher22
-//		System.out.println("Publisher: " + Publisher22);
+//		// Print the Publisher19
+//		System.out.println("Publisher: " + Publisher19);
 
-		// locate TrustApp_message22
-		WebElement TrustApp_message22 = driver.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
+		// locate TrustApp_message19
+		WebElement TrustApp_message19 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
 		Thread.sleep(1000);
 
-		// to highlight the TrustApp_message22
-		JavascriptExecutor jse1022 = (JavascriptExecutor) driver;
-		jse122.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message22);
+		// to highlight the TrustApp_message19
+		JavascriptExecutor jse1019 = (JavascriptExecutor) driver;
+		jse1019.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message19);
 		Thread.sleep(1000);
 
-		// Get the text of TrustApp_message22
-		String messageText22 = TrustApp_message22.getText();
-
-		// Print the text
-		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText22);
-		
-	
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message22.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message22 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message22 is not DISPLAYED");
-		}
-	}
-
-//	// ---------------------------------------------------------------------
-	@Test(priority = 22)
-	public void PUBLISHER_MATCH2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1737775640005243004?s=20");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark23
-		WebElement TrustApp_mark23 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark23
-		JavascriptExecutor jse123 = (JavascriptExecutor) driver;
-		jse123.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark23);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark23
-		Actions actions123 = new Actions(driver);
-		actions123.moveToElement(TrustApp_mark23).perform();
-		Thread.sleep(3000);
-
-		// locate Widget_Status23
-		WebElement Widget_Status23 = driver.findElement(By.xpath("//div[@class='tag green']"));
-		Thread.sleep(2300);
-
-		// to highlight the Widget_Status23
-		JavascriptExecutor jse10023 = (JavascriptExecutor) driver;
-		jse123.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status23);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status23
-		String widgetstatus23 = Widget_Status23.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m23. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus23 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher23
-		WebElement News_Item_Publisher23 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher23
-		JavascriptExecutor jse102323 = (JavascriptExecutor) driver;
-		jse123.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher23);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher23
-		String Publisher23 = News_Item_Publisher23.getText();
-
-		// Print the Publisher23
-		System.out.println("Publisher: " + Publisher23);
-
-		// locate TrustApp_message23
-		WebElement TrustApp_message23 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message23
-		JavascriptExecutor jse1023 = (JavascriptExecutor) driver;
-		jse123.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message23);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message23
-		String messageText23 = TrustApp_message23.getText();
+		// Get the text of TrustApp_message19
+		String messageText19 = TrustApp_message19.getText();
 
 		// Print the text
-		System.out.println("PUBLISHER_MATCH: " + messageText23);
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message23.isDisplayed();
+		// expected output
+		String expectedOutput = "Default Message";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message23 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED");
 		} else {
-			System.out.println("TrustApp_message23 is not DISPLAYED");
-		}
-	}
-
-//	// ---------------------------------------------------------------------
-	@Test(priority = 23)
-	public void EXACT_HEADLINE_MATCH1() throws InterruptedException {
-
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1737777541266469017?s=20");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark24
-		WebElement TrustApp_mark24 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark24
-		JavascriptExecutor jse124 = (JavascriptExecutor) driver;
-		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark24);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark24
-		Actions actions124 = new Actions(driver);
-		actions124.moveToElement(TrustApp_mark24).perform();
-		Thread.sleep(3000);
-
-		// locate Widget_Status24
-		WebElement Widget_Status24 = driver.findElement(By.xpath("//div[@class='tag green']"));
-		Thread.sleep(2400);
-
-		// to highlight the Widget_Status24
-		JavascriptExecutor jse10024 = (JavascriptExecutor) driver;
-		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status24);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status24
-		String widgetstatus24 = Widget_Status24.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m24. STATUS\033[0m: ");
-		System.out.print("\033[32m" + widgetstatus24 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher24
-		WebElement News_Item_Publisher24 = driver.findElement(By.xpath("//a[normalize-space()='Fox News']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher24
-		JavascriptExecutor jse102424 = (JavascriptExecutor) driver;
-		jse124.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher24);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher24
-		String Publisher24 = News_Item_Publisher24.getText();
-
-		// Print the Publisher24
-		System.out.println("Publisher: " + Publisher24);
-
-		// locate TrustApp_message24
-		WebElement TrustApp_message24 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message24
-		JavascriptExecutor jse1024 = (JavascriptExecutor) driver;
-		jse124.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message24);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message24
-		String messageText24 = TrustApp_message24.getText();
-
-		// Print the text
-		System.out.println("EXACT_HEADLINE_MATCH: " + messageText24);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message24.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message24 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message24 is not DISPLAYED");
-		}
-	}
-//
-//	// ---------------------------------------------------------------------
-	@Test(priority = 24)
-	public void SEMANTIC_HEADLINE_MATCH1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustAppTesting/status/1752985276467609694");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark25
-		WebElement TrustApp_mark25 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark25
-		JavascriptExecutor jse125 = (JavascriptExecutor) driver;
-		jse125.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark25);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark25
-		Actions actions125 = new Actions(driver);
-		actions125.moveToElement(TrustApp_mark25).perform();
-		Thread.sleep(3000);
-
-		// locate Widget_Status25
-		WebElement Widget_Status25 = driver.findElement(By.xpath("//div[@class='tag green']"));
-		Thread.sleep(2500);
-
-		// to highlight the Widget_Status25
-		JavascriptExecutor jse10025 = (JavascriptExecutor) driver;
-		jse125.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status25);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status25
-		String widgetstatus25 = Widget_Status25.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m25. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus25 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher25
-		WebElement News_Item_Publisher25 = driver
-				.findElement(By.xpath("//a[normalize-space()='The Wall Street Journal']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher25
-		JavascriptExecutor jse102525 = (JavascriptExecutor) driver;
-		jse125.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher25);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher25
-		String Publisher25 = News_Item_Publisher25.getText();
-
-		// Print the Publisher25
-		System.out.println("Publisher: " + Publisher25);
-
-		// locate TrustApp_message25
-		WebElement TrustApp_message25 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message25
-		JavascriptExecutor jse1025 = (JavascriptExecutor) driver;
-		jse125.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message25);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message25
-		String messageText25 = TrustApp_message25.getText();
-
-		// Print the text
-		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText25);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message25.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message25 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message25 is not DISPLAYED");
-		}
-	}
-//
-//	// ---------------------------------------------------------------------
-	@Test(priority = 25)
-	public void SEMANTIC_HEADLINE_CONTRADICTION1() throws InterruptedException {
-		driver.get("https://twitter.com/Kushagra3837/status/1735733278332821781?s=20");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark26
-		WebElement TrustApp_mark26 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark26
-		JavascriptExecutor jse126 = (JavascriptExecutor) driver;
-		jse126.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark26);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark26
-		Actions actions126 = new Actions(driver);
-		actions126.moveToElement(TrustApp_mark26).perform();
-		Thread.sleep(3000);
-
-		// locate Widget_Status26
-		WebElement Widget_Status26 = driver.findElement(By.xpath("//div[@class='tag danger']"));
-		Thread.sleep(2600);
-
-		// to highlight the Widget_Status26
-		JavascriptExecutor jse10026 = (JavascriptExecutor) driver;
-		jse126.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status26);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status26
-		String widgetstatus26 = Widget_Status26.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m26. STATUS\033[0m: ");
-		System.out.print("\033[31m" + widgetstatus26 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher26
-		WebElement News_Item_Publisher26 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher26
-		JavascriptExecutor jse102626 = (JavascriptExecutor) driver;
-		jse126.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher26);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher26
-		String Publisher26 = News_Item_Publisher26.getText();
-
-		// Print the Publisher26
-		System.out.println("Publisher: " + Publisher26);
-
-		// locate TrustApp_message26
-		WebElement TrustApp_message26 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message26
-		JavascriptExecutor jse1026 = (JavascriptExecutor) driver;
-		jse126.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message26);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message26
-		String messageText26 = TrustApp_message26.getText();
-
-		// Print the text
-		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText26);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message26.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message26 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message26 is not DISPLAYED");
-		}
-	}
-//
-//	// ---------------------------------------------------------------------
-	@Test(priority = 26)
-	public void PUBLISHER_MATCH3() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742164277736112172");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark27
-		WebElement TrustApp_mark27 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark27
-		JavascriptExecutor jse127 = (JavascriptExecutor) driver;
-		jse127.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark27);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark27
-		Actions actions127 = new Actions(driver);
-		actions127.moveToElement(TrustApp_mark27).perform();
-		Thread.sleep(3000);
-
-		// locate Widget_Status27
-		WebElement Widget_Status27 = driver.findElement(By.xpath("//div[@class='tag green']"));
-		Thread.sleep(2700);
-
-		// to highlight the Widget_Status27
-		JavascriptExecutor jse10027 = (JavascriptExecutor) driver;
-		jse127.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status27);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status27
-		String widgetstatus27 = Widget_Status27.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m27. STATUS\033[0m: ");
-		System.out.print("\033[32m" + widgetstatus27 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher27
-		WebElement News_Item_Publisher27 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher27
-		JavascriptExecutor jse102727 = (JavascriptExecutor) driver;
-		jse127.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher27);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher27
-		String Publisher27 = News_Item_Publisher27.getText();
-
-		// Print the Publisher27
-		System.out.println("Publisher: " + Publisher27);
-
-		// locate TrustApp_message27
-		WebElement TrustApp_message27 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message27
-		JavascriptExecutor jse1027 = (JavascriptExecutor) driver;
-		jse127.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message27);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message27
-		String messageText27 = TrustApp_message27.getText();
-
-		// Print the text
-		System.out.println("PUBLISHER_MATCH: " + messageText27);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message27.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message27 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message27 is not DISPLAYED");
-		}
-	}
-
-//	// ---------------------------------------------------------------------
-	@Test(priority = 27)
-	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustAppTesting/status/1753010114510913589");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark28
-		WebElement TrustApp_mark28 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark28
-		JavascriptExecutor jse128 = (JavascriptExecutor) driver;
-		jse128.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark28);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark28
-		Actions actions128 = new Actions(driver);
-		actions128.moveToElement(TrustApp_mark28).perform();
-		Thread.sleep(3000);
-
-		// locate Widget_Status28
-		WebElement Widget_Status28 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(2800);
-
-		// to highlight the Widget_Status28
-		JavascriptExecutor jse10028 = (JavascriptExecutor) driver;
-		jse128.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status28);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status28
-		String widgetstatus28 = Widget_Status28.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m28. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus28 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher28
-		WebElement News_Item_Publisher28 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher28
-		JavascriptExecutor jse102828 = (JavascriptExecutor) driver;
-		jse128.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher28);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher28
-		String Publisher28 = News_Item_Publisher28.getText();
-
-		// Print the Publisher28
-		System.out.println("Publisher: " + Publisher28);
-
-		// locate TrustApp_message28
-		WebElement TrustApp_message28 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message28
-		JavascriptExecutor jse1028 = (JavascriptExecutor) driver;
-		jse128.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message28);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message28
-		String messageText28 = TrustApp_message28.getText();
-
-		// Print the text
-		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText28);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message28.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message28 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message28 is not DISPLAYED");
-		}
-	}
-//
-//	// ---------------------------------------------------------------------
-	@Test(priority = 28)
-	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustAppTesting/status/1753010114510913589");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark29
-		WebElement TrustApp_mark29 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark29
-		JavascriptExecutor jse129 = (JavascriptExecutor) driver;
-		jse129.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark29);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark29
-		Actions actions129 = new Actions(driver);
-		actions129.moveToElement(TrustApp_mark29).perform();
-		Thread.sleep(3000);
-
-		// locate Widget_Status29
-		WebElement Widget_Status29 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(2900);
-
-		// to highlight the Widget_Status29
-		JavascriptExecutor jse10029 = (JavascriptExecutor) driver;
-		jse129.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status29);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status29
-		String widgetstatus29 = Widget_Status29.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m29. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus29 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher29
-		WebElement News_Item_Publisher29 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher29
-		JavascriptExecutor jse102929 = (JavascriptExecutor) driver;
-		jse129.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher29);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher29
-		String Publisher29 = News_Item_Publisher29.getText();
-
-		// Print the Publisher29
-		System.out.println("Publisher: " + Publisher29);
-
-		// locate TrustApp_message29
-		WebElement TrustApp_message29 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message29
-		JavascriptExecutor jse1029 = (JavascriptExecutor) driver;
-		jse129.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message29);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message29
-		String messageText29 = TrustApp_message29.getText();
-
-		// Print the text
-		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText29);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message29.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message29 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message29 is not DISPLAYED");
-		}
-	}
-
-//	// ---------------------------------------------------------------------
-	@Test(priority = 29)
-	public void KNOWN_NEWS_ITEM_NO_CONNECTION1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1744591958805299553");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark30
-		WebElement TrustApp_mark30 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark30
-		JavascriptExecutor jse130 = (JavascriptExecutor) driver;
-		jse130.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark30);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark30
-		Actions actions130 = new Actions(driver);
-		actions130.moveToElement(TrustApp_mark30).perform();
-		Thread.sleep(3000);
-
-		// locate Widget_Status30
-		WebElement Widget_Status30 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(3000);
-
-		// to highlight the Widget_Status30
-		JavascriptExecutor jse10030 = (JavascriptExecutor) driver;
-		jse10030.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status30);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status30
-		String widgetstatus30 = Widget_Status30.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m30. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus30 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher30
-		WebElement News_Item_Publisher30 = driver.findElement(By.xpath("//a[normalize-space()='Al Jazeera English']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher30
-		JavascriptExecutor jse103030 = (JavascriptExecutor) driver;
-		jse10030.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher30);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher30
-		String Publisher30 = News_Item_Publisher30.getText();
-
-		// Print the Publisher30
-		System.out.println("Publisher: " + Publisher30);
-
-		// locate TrustApp_message30
-		WebElement TrustApp_message30 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message30
-		JavascriptExecutor jse1030 = (JavascriptExecutor) driver;
-		jse1030.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message30);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message30
-		String messageText30 = TrustApp_message30.getText();
-
-		// Print the text
-		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText30);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message30.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message30 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message30 is not DISPLAYED");
-		}
-	}
-//
-//	// ---------------------------------------------------------------------
-	@Test(priority = 30)
-	public void UNVERIFIED_ATTACHMENT_ORIGIN1() throws InterruptedException {
-		driver.get("https://twitter.com/Kushagra3837/status/1737691647314444773?s=20");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark31
-		WebElement TrustApp_mark31 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-//		// to highlight the TrustApp_mark31
-		JavascriptExecutor jse131 = (JavascriptExecutor) driver;
-		jse131.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark31);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark31
-		Actions actions131 = new Actions(driver);
-		actions131.moveToElement(TrustApp_mark31).perform();
-		Thread.sleep(3100);
-
-		// locate Widget_Status31
-		WebElement Widget_Status31 = driver.findElement(By.xpath("//div[@class='tag danger']"));
-		Thread.sleep(3100);
-
-		// to highlight the Widget_Status31
-		JavascriptExecutor jse10031 = (JavascriptExecutor) driver;
-		jse131.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status31);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status31
-		String widgetstatus31 = Widget_Status31.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m31. STATUS\033[0m: ");
-		System.out.print("\033[31m" + widgetstatus31 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		
-		// locate TrustApp_message31
-		WebElement TrustApp_message31 = driver
-				.findElement(By.xpath("//div[contains(text(),'This post implies it is from CNN, one of your trus')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message31
-		JavascriptExecutor jse1031 = (JavascriptExecutor) driver;
-		jse1031.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message31);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message31
-		String messageText31 = TrustApp_message31.getText();
-
-		// Print the text
-		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText31);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message31.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message31 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message31 is not DISPLAYED");
-		}
-	}
-
-//	// ---------------------------------------------------------------------
-	@Test(priority = 31)
-	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1744616198325629080");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark32
-		WebElement TrustApp_mark32 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark32
-		JavascriptExecutor jse132 = (JavascriptExecutor) driver;
-		jse132.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark32);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark32
-		Actions actions132 = new Actions(driver);
-		actions132.moveToElement(TrustApp_mark32).perform();
-		Thread.sleep(3200);
-
-		// locate Widget_Status32
-		WebElement Widget_Status32 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(3200);
-
-		// to highlight the Widget_Status32
-		JavascriptExecutor jse10032 = (JavascriptExecutor) driver;
-		jse10032.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status32);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status32
-		String widgetstatus32 = Widget_Status32.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m32. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus32 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher32
-		WebElement News_Item_Publisher32 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher32
-		JavascriptExecutor jse103232 = (JavascriptExecutor) driver;
-		jse103232.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher32);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher32
-		String Publisher32 = News_Item_Publisher32.getText();
-
-		// Print the Publisher32
-		System.out.println("Publisher: " + Publisher32);
-
-		// locate TrustApp_message32
-		WebElement TrustApp_message32 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message32
-		JavascriptExecutor jse1032 = (JavascriptExecutor) driver;
-		jse103232.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message32);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message32
-		String messageText32 = TrustApp_message32.getText();
-
-		// Print the text
-		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText32);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message32.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message32 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message32 is not DISPLAYED");
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED");
 		}
 	}
 
 	// ---------------------------------------------------------------------
-	@Test(priority = 32)
-	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742157772085485819");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark33
-		WebElement TrustApp_mark33 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark33
-		JavascriptExecutor jse133 = (JavascriptExecutor) driver;
-		jse133.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark33);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark33
-		Actions actions133 = new Actions(driver);
-		actions133.moveToElement(TrustApp_mark33).perform();
-		Thread.sleep(3300);
-
-		// locate Widget_Status33
-		WebElement Widget_Status33 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(3300);
-
-		// to highlight the Widget_Status33
-		JavascriptExecutor jse10033 = (JavascriptExecutor) driver;
-		jse133.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status33);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status33
-		String widgetstatus33 = Widget_Status33.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m33. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus33 + "\033[0m"); 
-		System.out.println();
-
-
-		// locate TrustApp_message33
-		WebElement TrustApp_message33 = driver
-				.findElement(By.xpath("//div[contains(text(),'This post neither references nor mentions a source')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message33
-		JavascriptExecutor jse1133 = (JavascriptExecutor) driver;
-		jse133.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message33);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message33
-		String messageText33 = TrustApp_message33.getText();
-
-		// Print the text
-		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText33);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message33.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message33 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message33 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 33)
-	public void KNOWN_MATCHED_PUBLISHER_DOMAIN1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742154844897513817");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark34
-		WebElement TrustApp_mark34 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark34
-		JavascriptExecutor jse134 = (JavascriptExecutor) driver;
-		jse134.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark34);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark34
-		Actions actions134 = new Actions(driver);
-		actions134.moveToElement(TrustApp_mark34).perform();
-		Thread.sleep(3400);
-
-		// locate Widget_Status34
-		WebElement Widget_Status34 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(3400);
-
-		// to highlight the Widget_Status34
-		JavascriptExecutor jse10034 = (JavascriptExecutor) driver;
-		jse10034.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status34);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status34
-		String widgetstatus34 = Widget_Status34.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m34. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus34 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher34
-		WebElement News_Item_Publisher34 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher34
-		JavascriptExecutor jse103434 = (JavascriptExecutor) driver;
-		jse103434.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher34);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher34
-		String Publisher34 = News_Item_Publisher34.getText();
-
-		// Print the Publisher34
-		System.out.println("Publisher: " + Publisher34);
-
-		// locate TrustApp_message34
-		WebElement TrustApp_message34 = driver
-				.findElement(By.xpath("//div[contains(text(),'This post references CNN, one of your trusted sour')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message34
-		JavascriptExecutor jse1134 = (JavascriptExecutor) driver;
-		jse1134.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message34);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message34
-		String messageText34 = TrustApp_message34.getText();
-
-		// Print the text
-		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText34);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message34.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message34 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message34 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 34)
-	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1745339217528459278");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark35
-		WebElement TrustApp_mark35 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark35
-		JavascriptExecutor jse135 = (JavascriptExecutor) driver;
-		jse135.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark35);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark35
-		Actions actions135 = new Actions(driver);
-		actions135.moveToElement(TrustApp_mark35).perform();
-		Thread.sleep(3500);
-
-		// locate Widget_Status35
-		WebElement Widget_Status35 = driver.findElement(By.xpath("//div[@class='tag danger']"));
-		Thread.sleep(3500);
-
-		// to highlight the Widget_Status35
-		JavascriptExecutor jse10035 = (JavascriptExecutor) driver;
-		jse10035.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status35);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status35
-		String widgetstatus35 = Widget_Status35.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m35. STATUS\033[0m: ");
-		System.out.print("\033[31m" + widgetstatus35 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher35
-		WebElement News_Item_Publisher35 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher35
-		JavascriptExecutor jse103535 = (JavascriptExecutor) driver;
-		jse103535.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher35);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher35
-		String Publisher35 = News_Item_Publisher35.getText();
-
-		// Print the Publisher35
-		System.out.println("Publisher: " + Publisher35);
-
-		// locate TrustApp_message35
-		WebElement TrustApp_message35 = driver
-				.findElement(By.xpath("//div[contains(text(),'This post references Reuters, one of your trusted ')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message35
-		JavascriptExecutor jse1135 = (JavascriptExecutor) driver;
-		jse103535.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message35);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message35
-		String messageText35 = TrustApp_message35.getText();
-
-		// Print the text
-		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText35);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message35.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message35 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message35 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 35)
-	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER1() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742127483397267594");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark36
-		WebElement TrustApp_mark36 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark36
-		JavascriptExecutor jse136 = (JavascriptExecutor) driver;
-		jse136.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark36);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark36
-		Actions actions136 = new Actions(driver);
-		actions136.moveToElement(TrustApp_mark36).perform();
-		Thread.sleep(3600);
-
-		// locate Widget_Status36
-		WebElement Widget_Status36 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(3600);
-
-		// to highlight the Widget_Status36
-		JavascriptExecutor jse10036 = (JavascriptExecutor) driver;
-		jse10036.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status36);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status36
-		String widgetstatus36 = Widget_Status36.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m36. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus36 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher36
-		WebElement News_Item_Publisher36 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher36
-		JavascriptExecutor jse103636 = (JavascriptExecutor) driver;
-		jse103636.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher36);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher36
-		String Publisher36 = News_Item_Publisher36.getText();
-
-		// Print the Publisher36
-		System.out.println("Publisher: " + Publisher36);
-
-		// locate TrustApp_message36
-		WebElement TrustApp_message36 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message36
-		JavascriptExecutor jse1136 = (JavascriptExecutor) driver;
-		jse103636.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message36);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message36
-		String messageText36 = TrustApp_message36.getText();
-
-		// Print the text
-		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText36);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message36.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message36 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message36 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 36)
-	public void NO_URL_TO_VERIFY2() throws InterruptedException {
-		driver.get("https://twitter.com/Kushagra3837/status/1737838697738129837");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark37
-		WebElement TrustApp_mark37 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark37
-		JavascriptExecutor jse137 = (JavascriptExecutor) driver;
-		jse137.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark37);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark37
-		Actions actions137 = new Actions(driver);
-		actions137.moveToElement(TrustApp_mark37).perform();
-		Thread.sleep(3700);
-
-		// locate Widget_Status37
-		WebElement Widget_Status37 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(3700);
-
-		// to highlight the Widget_Status37
-		JavascriptExecutor jse10037 = (JavascriptExecutor) driver;
-		jse137.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status37);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status37
-		String widgetstatus37 = Widget_Status37.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m37. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus37 + "\033[0m"); // \037[37m sets color to green
-		System.out.println();
-
-		// locate TrustApp_message37
-		WebElement TrustApp_message37 = driver
-				.findElement(By.xpath("//div[contains(text(),'This post does not have any reference for us to ve')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message37
-		JavascriptExecutor jse1137 = (JavascriptExecutor) driver;
-		jse137.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message37);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message37
-		String messageText37 = TrustApp_message37.getText();
-
-		// Print the text
-		System.out.println("NO_URL_TO_VERIFY: " + messageText37);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message37.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message37 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message37 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 37)
-	public void CANNOT_VERIFY_IMAGE_ATTACHMENT2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742141779170758819");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark38
-		WebElement TrustApp_mark38 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark38
-		JavascriptExecutor jse138 = (JavascriptExecutor) driver;
-		jse138.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark38);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark38
-		Actions actions138 = new Actions(driver);
-		actions138.moveToElement(TrustApp_mark38).perform();
-		Thread.sleep(3800);
-
-		// locate Widget_Status38
-		WebElement Widget_Status38 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(3800);
-
-		// to highlight the Widget_Status38
-		JavascriptExecutor jse10038 = (JavascriptExecutor) driver;
-		jse138.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status38);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status38
-		String widgetstatus38 = Widget_Status38.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m38. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus38 + "\033[0m"); // \038[38m sets color to green
-		System.out.println();
-
-		
-		// locate TrustApp_message38
-		WebElement TrustApp_message38 = driver
-				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message38
-		JavascriptExecutor jse1138 = (JavascriptExecutor) driver;
-		jse138.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message38);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message38
-		String messageText38 = TrustApp_message38.getText();
-
-		// Print the text
-		System.out.println("CANNOT_VERIFY_IMAGE_ATTACHMENT: " + messageText38);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message38.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message38 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message38 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 38)
-	public void CANNOT_VERIFY_VIDEO_ATTACHMENT2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustAppTesting/status/1757359834570121700");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark39
-		WebElement TrustApp_mark39 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark39
-		JavascriptExecutor jse139 = (JavascriptExecutor) driver;
-		jse139.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark39);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark39
-		Actions actions139 = new Actions(driver);
-		actions139.moveToElement(TrustApp_mark39).perform();
-		Thread.sleep(3900);
-
-		// locate Widget_Status39
-		WebElement Widget_Status39 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(3900);
-
-		// to highlight the Widget_Status39
-		JavascriptExecutor jse10039 = (JavascriptExecutor) driver;
-		jse139.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status39);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status39
-		String widgetstatus39 = Widget_Status39.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m39. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus39 + "\033[0m"); // \039[39m sets color to green
-		System.out.println();
-
-		
-		// locate TrustApp_message39
-		WebElement TrustApp_message39 = driver
-				.findElement(By.xpath("//div[contains(text(),'The attachment for this post is an image, and Trus')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message39
-		JavascriptExecutor jse1139 = (JavascriptExecutor) driver;
-		jse139.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message39);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message39
-		String messageText39 = TrustApp_message39.getText();
-
-		// Print the text
-		System.out.println("CANNOT_VERIFY_VIDEO_ATTACHMENT: " + messageText39);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message39.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message39 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message39 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 39)
-	public void PUBLISHER_MATCH4() throws InterruptedException {
-		driver.get("https://twitter.com/TrustAppTesting/status/1757366259140755898");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark40
-		WebElement TrustApp_mark40 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark40
-		JavascriptExecutor jse140 = (JavascriptExecutor) driver;
-		jse140.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark40);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark40
-		Actions actions140 = new Actions(driver);
-		actions140.moveToElement(TrustApp_mark40).perform();
-		Thread.sleep(4000);
-
-		// locate Widget_Status40
-		WebElement Widget_Status40 = driver.findElement(By.xpath("//div[@class='tag green']"));
-		Thread.sleep(4000);
-
-		// to highlight the Widget_Status40
-		JavascriptExecutor jse10040 = (JavascriptExecutor) driver;
-		jse140.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status40);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status40
-		String widgetstatus40 = Widget_Status40.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m40. STATUS\033[0m: ");
-		System.out.print("\033[32m" + widgetstatus40 + "\033[0m"); // \040[40m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher40
-		WebElement News_Item_Publisher40 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher40
-		JavascriptExecutor jse104040 = (JavascriptExecutor) driver;
-		jse140.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher40);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher40
-		String Publisher40 = News_Item_Publisher40.getText();
-
-		// Print the Publisher40
-		System.out.println("Publisher: " + Publisher40);
-
-		// locate TrustApp_message40
-		WebElement TrustApp_message40 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message40
-		JavascriptExecutor jse1140 = (JavascriptExecutor) driver;
-		jse140.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message40);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message40
-		String messageText40 = TrustApp_message40.getText();
-
-		// Print the text
-		System.out.println("PUBLISHER_MATCH: " + messageText40);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message40.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message40 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message40 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 40)
-	public void EXACT_HEADLINE_MATCH2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742151531737088311");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark41
-		WebElement TrustApp_mark41 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark41
-		JavascriptExecutor jse141 = (JavascriptExecutor) driver;
-		jse141.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark41);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark41
-		Actions actions141 = new Actions(driver);
-		actions141.moveToElement(TrustApp_mark41).perform();
-		Thread.sleep(4100);
-
-		// locate Widget_Status41
-		WebElement Widget_Status41 = driver.findElement(By.xpath("//div[@class='tag green']"));
-		Thread.sleep(4100);
-
-		// to highlight the Widget_Status41
-		JavascriptExecutor jse10041 = (JavascriptExecutor) driver;
-		jse141.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status41);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status41
-		String widgetstatus41 = Widget_Status41.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m41. STATUS\033[0m: ");
-		System.out.print("\033[32m" + widgetstatus41 + "\033[0m"); // \041[41m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher41
-		WebElement News_Item_Publisher41 = driver.findElement(By.xpath("//a[normalize-space()='CNBC']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher41
-		JavascriptExecutor jse104141 = (JavascriptExecutor) driver;
-		jse104141.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher41);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher41
-		String Publisher41 = News_Item_Publisher41.getText();
-
-		// Print the Publisher41
-		System.out.println("Publisher: " + Publisher41);
-
-		// locate TrustApp_message41
-		WebElement TrustApp_message41 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message41
-		JavascriptExecutor jse1141 = (JavascriptExecutor) driver;
-		jse104141.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message41);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message41
-		String messageText41 = TrustApp_message41.getText();
-
-		// Print the text
-		System.out.println("EXACT_HEADLINE_MATCH: " + messageText41);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message41.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message41 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message41 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 41)
-	public void SEMANTIC_HEADLINE_MATCH2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustAppTesting/status/1752952096771465711");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark42
-		WebElement TrustApp_mark42 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark42
-		JavascriptExecutor jse142 = (JavascriptExecutor) driver;
-		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark42);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark42
-		Actions actions142 = new Actions(driver);
-		actions142.moveToElement(TrustApp_mark42).perform();
-		Thread.sleep(4200);
-
-		// locate Widget_Status42
-		WebElement Widget_Status42 = driver.findElement(By.xpath("//div[@class='tag green']"));
-		Thread.sleep(4200);
-
-		// to highlight the Widget_Status42
-		JavascriptExecutor jse10042 = (JavascriptExecutor) driver;
-		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status42);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status42
-		String widgetstatus42 = Widget_Status42.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m42. STATUS\033[0m: ");
-		System.out.print("\033[32m" + widgetstatus42 + "\033[0m"); // \042[42m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher42
-		WebElement News_Item_Publisher42 = driver.findElement(By.xpath("(//a[normalize-space()='The Economist'])[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher42
-		JavascriptExecutor jse104242 = (JavascriptExecutor) driver;
-		jse142.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher42);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher42
-		String Publisher42 = News_Item_Publisher42.getText();
-
-		// Print the Publisher42
-		System.out.println("Publisher: " + Publisher42);
-
-		// locate TrustApp_message42
-		WebElement TrustApp_message42 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message42
-		JavascriptExecutor jse1142 = (JavascriptExecutor) driver;
-		jse142.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message42);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message42
-		String messageText42 = TrustApp_message42.getText();
-
-		// Print the text
-		System.out.println("SEMANTIC_HEADLINE_MATCH: " + messageText42);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message42.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message42 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message42 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 42)
-	public void SEMANTIC_HEADLINE_CONTRADICTION2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742495649491304865");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark43
-		WebElement TrustApp_mark43 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark43
-		JavascriptExecutor jse143 = (JavascriptExecutor) driver;
-		jse143.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark43);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark43
-		Actions actions143 = new Actions(driver);
-		actions143.moveToElement(TrustApp_mark43).perform();
-		Thread.sleep(4300);
-
-		// locate Widget_Status43
-		WebElement Widget_Status43 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(4300);
-
-		// to highlight the Widget_Status43
-		JavascriptExecutor jse10043 = (JavascriptExecutor) driver;
-		jse143.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status43);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status43
-		String widgetstatus43 = Widget_Status43.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m43. STATUS\033[0m: ");
-		System.out.print("\033[32m" + widgetstatus43 + "\033[0m"); // \042[42m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher43
-		WebElement News_Item_Publisher43 = driver.findElement(By.xpath("(//a[normalize-space()='The Economist'])[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher43
-		JavascriptExecutor jse104343 = (JavascriptExecutor) driver;
-		jse143.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher43);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher43
-		String Publisher43 = News_Item_Publisher43.getText();
-
-		// Print the Publisher43
-		System.out.println("Publisher: " + Publisher43);
-
-		// locate TrustApp_message43
-		WebElement TrustApp_message43 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message43
-		JavascriptExecutor jse1143 = (JavascriptExecutor) driver;
-		jse143.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message43);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message43
-		String messageText43 = TrustApp_message43.getText();
-
-		// Print the text
-		System.out.println("SEMANTIC_HEADLINE_CONTRADICTION: " + messageText43);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message43.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message43 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message43 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 43)
-	public void PUBLISHER_MATCH5() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742430282496495876");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark44
-		WebElement TrustApp_mark44 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark44
-		JavascriptExecutor jse144 = (JavascriptExecutor) driver;
-		jse144.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark44);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark44
-		Actions actions144 = new Actions(driver);
-		actions144.moveToElement(TrustApp_mark44).perform();
-		Thread.sleep(4400);
-
-		// locate Widget_Status44
-		WebElement Widget_Status44 = driver.findElement(By.xpath("//div[@class='tag green']"));
-		Thread.sleep(4400);
-
-		// to highlight the Widget_Status44
-		JavascriptExecutor jse10044 = (JavascriptExecutor) driver;
-		jse144.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status44);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status44
-		String widgetstatus44 = Widget_Status44.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m44. STATUS\033[0m: ");
-		System.out.print("\033[32m" + widgetstatus44 + "\033[0m"); // \042[42m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher44
-		WebElement News_Item_Publisher44 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher44
-		JavascriptExecutor jse104444 = (JavascriptExecutor) driver;
-		jse144.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher44);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher44
-		String Publisher44 = News_Item_Publisher44.getText();
-
-		// Print the Publisher44
-		System.out.println("Publisher: " + Publisher44);
-
-		// locate TrustApp_message44
-		WebElement TrustApp_message44 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message44
-		JavascriptExecutor jse1144 = (JavascriptExecutor) driver;
-		jse144.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message44);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message44
-		String messageText44 = TrustApp_message44.getText();
-
-		// Print the text
-		System.out.println("PUBLISHER_MATCH: " + messageText44);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message44.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message44 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message44 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 44)
-	public void KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742433135424319884");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark45
-		WebElement TrustApp_mark45 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark45
-		JavascriptExecutor jse145 = (JavascriptExecutor) driver;
-		jse145.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark45);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark45
-		Actions actions145 = new Actions(driver);
-		actions145.moveToElement(TrustApp_mark45).perform();
-		Thread.sleep(4500);
-
-		// locate Widget_Status45
-		WebElement Widget_Status45 = driver.findElement(By.xpath("//div[@class='tag danger']"));
-		Thread.sleep(4500);
-
-		// to highlight the Widget_Status45
-		JavascriptExecutor jse10045 = (JavascriptExecutor) driver;
-		jse10045.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status45);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status45
-		String widgetstatus45 = Widget_Status45.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m45. STATUS\033[0m: ");
-		System.out.print("\033[31m" + widgetstatus45 + "\033[0m"); // \042[42m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher45
-		WebElement News_Item_Publisher45 = driver.findElement(By.xpath("//a[normalize-space()='NPR']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher45
-		JavascriptExecutor jse104545 = (JavascriptExecutor) driver;
-		jse104545.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher45);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher45
-		String Publisher45 = News_Item_Publisher45.getText();
-
-		// Print the Publisher45
-		System.out.println("Publisher: " + Publisher45);
-
-		// locate TrustApp_message45
-		WebElement TrustApp_message45 = driver
-				.findElement(By.xpath("//div[contains(text(),'The text of the post mentions BBC, one of your tru')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message45
-		JavascriptExecutor jse1145 = (JavascriptExecutor) driver;
-		jse104545.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message45);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message45
-		String messageText45 = TrustApp_message45.getText();
-
-		// Print the text
-		System.out.println("KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER: " + messageText45);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message45.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message45 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message45 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 45)
-	public void KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustAppTesting/status/1753010685858947287");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark46
-		WebElement TrustApp_mark46 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark46
-		JavascriptExecutor jse146 = (JavascriptExecutor) driver;
-		jse146.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark46);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark46
-		Actions actions146 = new Actions(driver);
-		actions146.moveToElement(TrustApp_mark46).perform();
-		Thread.sleep(4600);
-
-		// locate Widget_Status46
-		WebElement Widget_Status46 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(4600);
-
-		// to highlight the Widget_Status46
-		JavascriptExecutor jse10046 = (JavascriptExecutor) driver;
-		jse146.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status46);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status46
-		String widgetstatus46 = Widget_Status46.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m46. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus46 + "\033[0m"); // \042[42m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher46
-		WebElement News_Item_Publisher46 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher46
-		JavascriptExecutor jse104646 = (JavascriptExecutor) driver;
-		jse104646.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher46);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher46
-		String Publisher46 = News_Item_Publisher46.getText();
-
-		// Print the Publisher46
-		System.out.println("Publisher: " + Publisher46);
-
-		// locate TrustApp_message46
-		WebElement TrustApp_message46 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message46
-		JavascriptExecutor jse1146 = (JavascriptExecutor) driver;
-		jse104646.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message46);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message46
-		String messageText46 = TrustApp_message46.getText();
-
-		// Print the text
-		System.out.println("KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText46);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message46.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message46 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message46 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 46)
-	public void KNOWN_NEWS_ITEM_NO_CONNECTION2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742504998133502353");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark47
-		WebElement TrustApp_mark47 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark47
-		JavascriptExecutor jse147 = (JavascriptExecutor) driver;
-		jse147.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark47);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark47
-		Actions actions147 = new Actions(driver);
-		actions147.moveToElement(TrustApp_mark47).perform();
-		Thread.sleep(4700);
-
-		// locate Widget_Status47
-		WebElement Widget_Status47 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(4700);
-
-		// to highlight the Widget_Status47
-		JavascriptExecutor jse10047 = (JavascriptExecutor) driver;
-		jse10047.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status47);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status47
-		String widgetstatus47 = Widget_Status47.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m47. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus47 + "\033[0m"); // \042[42m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher47
-		WebElement News_Item_Publisher47 = driver.findElement(By.xpath("//a[normalize-space()='The New York Times']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher47
-		JavascriptExecutor jse104747 = (JavascriptExecutor) driver;
-		jse104747.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher47);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher47
-		String Publisher47 = News_Item_Publisher47.getText();
-
-		// Print the Publisher47
-		System.out.println("Publisher: " + Publisher47);
-
-		// locate TrustApp_message47
-		WebElement TrustApp_message47 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message47
-		JavascriptExecutor jse1147 = (JavascriptExecutor) driver;
-		jse104747.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message47);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message47
-		String messageText47 = TrustApp_message47.getText();
-
-		// Print the text
-		System.out.println("KNOWN_NEWS_ITEM_NO_CONNECTION: " + messageText47);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message47.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message47 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message47 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 47)
-	public void UNVERIFIED_ATTACHMENT_ORIGIN2() throws InterruptedException {
-		driver.get("https://twitter.com/Kushagra3837/status/1737691647314444773?s=20");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark48
-		WebElement TrustApp_mark48 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark48
-		JavascriptExecutor jse148 = (JavascriptExecutor) driver;
-		jse148.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark48);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark48
-		Actions actions148 = new Actions(driver);
-		actions148.moveToElement(TrustApp_mark48).perform();
-		Thread.sleep(1000);
-
-		// locate Widget_Status48
-		WebElement Widget_Status48 = driver.findElement(By.xpath("//div[@class='tag danger']"));
-		Thread.sleep(1000);
-
-		// to highlight the Widget_Status48
-		JavascriptExecutor jse10048 = (JavascriptExecutor) driver;
-		jse10048.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status48);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status48
-		String widgetstatus48 = Widget_Status48.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m48. STATUS\033[0m: ");
-		System.out.print("\033[31m" + widgetstatus48 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate TrustApp_message48
-		WebElement TrustApp_message48 = driver
-				.findElement(By.xpath("//div[contains(text(),'This post implies it is from CNN, one of your trus')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message48
-		JavascriptExecutor jse1148 = (JavascriptExecutor) driver;
-		jse1148.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message48);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message48
-		String messageText48 = TrustApp_message48.getText();
-
-		// Print the text
-		System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN: " + messageText48);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message48.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message48 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message48 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 48)
-	public void UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1744617181449458046");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark49
-		WebElement TrustApp_mark49 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark49
-		JavascriptExecutor jse149 = (JavascriptExecutor) driver;
-		jse149.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark49);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark
-		Actions actions150 = new Actions(driver);
-		actions150.moveToElement(TrustApp_mark49).perform();
-		Thread.sleep(5000);
-
-		// locate Widget_Status49
-		WebElement Widget_Status49 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(5000);
-
-		// to highlight the Widget_Status49
-		JavascriptExecutor jse10049 = (JavascriptExecutor) driver;
-		jse149.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status49);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status49
-		String widgetstatus49 = Widget_Status49.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m49. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus49 + "\033[0m"); // \033[32m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher49
-		WebElement News_Item_Publisher49 = driver.findElement(By.xpath("//a[normalize-space()='The Economist']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher49
-		JavascriptExecutor jse105049 = (JavascriptExecutor) driver;
-		jse149.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher49);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher49
-		String Publisher49 = News_Item_Publisher49.getText();
-
-		// Print the Publisher49
-		System.out.println("Publisher: " + Publisher49);
-
-		// locate TrustApp_message49
-		WebElement TrustApp_message49 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message49
-		JavascriptExecutor jse1149 = (JavascriptExecutor) driver;
-		jse149.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message49);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message49
-		String messageText49 = TrustApp_message49.getText();
-
-		// Print the text
-		System.out.println("UNKNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER: " + messageText49);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message49.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message49 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message49 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 49)
-	public void UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742443757583143407");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark50
-		WebElement TrustApp_mark50 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark50
-		JavascriptExecutor jse150 = (JavascriptExecutor) driver;
-		jse150.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark50);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark50
-		Actions actions1150 = new Actions(driver);
-		actions1150.moveToElement(TrustApp_mark50).perform();
-		Thread.sleep(5000);
-
-		// locate Widget_Status50
-		WebElement Widget_Status50 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(5000);
-
-		// to highlight the Widget_Status50
-		JavascriptExecutor jse10050 = (JavascriptExecutor) driver;
-		jse10050.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status50);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status50
-		String widgetstatus50 = Widget_Status50.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m50. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus50 + "\033[0m"); // \042[42m sets color to green
-		System.out.println();
-
-		// locate TrustApp_message50
-		WebElement TrustApp_message50 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message50
-		JavascriptExecutor jse1150 = (JavascriptExecutor) driver;
-		jse1150.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message50);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message50
-		String messageText50 = TrustApp_message50.getText();
-
-		// Print the text
-		System.out.println("UNKNOWN_NEWS_ITEM_NO_PUBLISHER_MENTIONED: " + messageText50);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message50.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message50 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message50 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 50)
-	public void KNOWN_MATCHED_PUBLISHER_DOMAIN2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1742422582861643850");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark51
-		WebElement TrustApp_mark51 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark51
-		JavascriptExecutor jse151 = (JavascriptExecutor) driver;
-		jse151.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark51);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark51
-		Actions actions1151 = new Actions(driver);
-		actions1151.moveToElement(TrustApp_mark51).perform();
-		Thread.sleep(5100);
-
-		// locate Widget_Status51
-		WebElement Widget_Status51 = driver.findElement(By.xpath("//div[@class='tag']"));
-		Thread.sleep(5100);
-
-		// to highlight the Widget_Status51
-		JavascriptExecutor jse10051 = (JavascriptExecutor) driver;
-		jse10051.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status51);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status51
-		String widgetstatus51 = Widget_Status51.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m51. STATUS\033[0m: ");
-		System.out.print("\033[90m" + widgetstatus51 + "\033[0m"); // \042[42m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher51
-		WebElement News_Item_Publisher51 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher51
-		JavascriptExecutor jse105151 = (JavascriptExecutor) driver;
-		jse105151.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher51);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher51
-		String Publisher51 = News_Item_Publisher51.getText();
-
-		// Print the Publisher51
-		System.out.println("Publisher: " + Publisher51);
-
-		// locate TrustApp_message51
-		WebElement TrustApp_message51 = driver.findElement(By.xpath("//div[@class='text']//div[1]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message51
-		JavascriptExecutor jse1151 = (JavascriptExecutor) driver;
-		jse105151.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message51);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message51
-		String messageText51 = TrustApp_message51.getText();
-
-		// Print the text
-		System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN: " + messageText51);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message51.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message51 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message51 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 51)
-	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER2() throws InterruptedException {
-		driver.get("https://twitter.com/TrustApp_Tsting/status/1745323107437457564");
-		Thread.sleep(7000);
-
-		// locate TrustApp_mark52
-		WebElement TrustApp_mark52 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_mark52
-		JavascriptExecutor jse152 = (JavascriptExecutor) driver;
-		jse152.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark52);
-		Thread.sleep(1000);
-
-		// Perform a hover action on TrustApp_mark52
-		Actions actions1152 = new Actions(driver);
-		actions1152.moveToElement(TrustApp_mark52).perform();
-		Thread.sleep(5200);
-
-		// locate Widget_Status52
-		WebElement Widget_Status52 = driver.findElement(By.xpath("//div[@class='tag danger']"));
-		Thread.sleep(5200);
-
-		// to highlight the Widget_Status52
-		JavascriptExecutor jse10052 = (JavascriptExecutor) driver;
-		jse10052.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status52);
-		Thread.sleep(1000);
-
-		// Get the text of Widget_Status52
-		String widgetstatus52 = Widget_Status52.getText();
-
-		// Print the status with only the word "STATUS" in bold and the widget status in
-		// green
-		System.out.print("\033[1m52. STATUS\033[0m: ");
-		System.out.print("\033[31m" + widgetstatus52 + "\033[0m"); // \042[42m sets color to green
-		System.out.println();
-
-		// locate News_Item_Publisher52
-		WebElement News_Item_Publisher52 = driver.findElement(By.xpath("//a[normalize-space()='POLITICO']"));
-		Thread.sleep(1000);
-
-		// to highlight the News_Item_Publisher52
-		JavascriptExecutor jse105252 = (JavascriptExecutor) driver;
-		jse105252.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
-				News_Item_Publisher52);
-		Thread.sleep(1000);
-
-		// Get the text of News_Item_Publisher52
-		String Publisher52 = News_Item_Publisher52.getText();
-
-		// Print the Publisher52
-		System.out.println("Publisher: " + Publisher52);
-
-		// locate TrustApp_message52
-		WebElement TrustApp_message52 = driver
-				.findElement(By.xpath("//div[contains(text(),'This post references NPR, one of your trusted sour')]"));
-		Thread.sleep(1000);
-
-		// to highlight the TrustApp_message52
-		JavascriptExecutor jse1152 = (JavascriptExecutor) driver;
-		jse105252.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message52);
-		Thread.sleep(1000);
-
-		// Get the text of TrustApp_message52
-		String messageText52 = TrustApp_message52.getText();
-
-		// Print the text
-		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText52);
-
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message52.isDisplayed();
-
-		if (res3 == true) {
-			System.out.println("TrustApp_message52 is DISPLAYED");
-		} else {
-			System.out.println("TrustApp_message52 is not DISPLAYED");
-		}
-	}
-
-	// ---------------------------------------------------------------------
-	@Test(priority = 52)
-	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER3() throws InterruptedException {
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 179)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER190003() throws InterruptedException {
 		driver.get("https://twitter.com/TrustApp_Tsting/status/1749722038195863608");
+		Thread.sleep(9000);
+
+		// locate TrustApp_mark19
+		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark19
+		JavascriptExecutor jse119 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark19);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark19
+		Actions actions119 = new Actions(driver);
+		actions119.moveToElement(TrustApp_mark19).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status19
+		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status19
+		JavascriptExecutor jse10019 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status19);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status19
+		String widgetstatus19 = Widget_Status19.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus19, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m181. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+//		// locate News_Item_Publisher19
+//		WebElement News_Item_Publisher19 = driver.findElement(By.xpath(""));
+//		Thread.sleep(1000);
+//
+//		// to highlight the News_Item_Publisher19
+//		JavascriptExecutor jse102219 = (JavascriptExecutor) driver;
+//		jse102219.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher19);
+//		Thread.sleep(1000);
+//
+//		// Get the text of News_Item_Publisher19
+//		String Publisher19 = News_Item_Publisher19.getText();
+//
+//		// Print the Publisher19
+//		System.out.println("Publisher: " + Publisher19);
+
+		// locate TrustApp_message19
+		WebElement TrustApp_message19 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message19
+		JavascriptExecutor jse1019 = (JavascriptExecutor) driver;
+		jse1019.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message19);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message19
+		String messageText19 = TrustApp_message19.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
+
+		// expected output
+		String expectedOutput = "Default Message";
+
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 180)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER190004() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1749727850976981031");
 		Thread.sleep(7000);
 
-		// locate TrustApp_mark53
-		WebElement TrustApp_mark53 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		// locate TrustApp_mark19
+		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
 		Thread.sleep(1000);
 
-		// to highlight the TrustApp_mark53
-		JavascriptExecutor jse153 = (JavascriptExecutor) driver;
-		jse153.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_mark53);
+		// to highlight the TrustApp_mark19
+		JavascriptExecutor jse119 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark19);
 		Thread.sleep(1000);
 
-		// Perform a hover action on TrustApp_mark53
-		Actions actions1153 = new Actions(driver);
-		actions1153.moveToElement(TrustApp_mark53).perform();
+		// Perform a hover action on TrustApp_mark19
+		Actions actions119 = new Actions(driver);
+		actions119.moveToElement(TrustApp_mark19).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status19
+		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status19
+		JavascriptExecutor jse10019 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status19);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status19
+		String widgetstatus19 = Widget_Status19.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus19, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m182. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+//		// locate News_Item_Publisher19
+//		WebElement News_Item_Publisher19 = driver.findElement(By.xpath(""));
+//		Thread.sleep(1000);
+//
+//		// to highlight the News_Item_Publisher19
+//		JavascriptExecutor jse102219 = (JavascriptExecutor) driver;
+//		jse102219.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher19);
+//		Thread.sleep(1000);
+//
+//		// Get the text of News_Item_Publisher19
+//		String Publisher19 = News_Item_Publisher19.getText();
+//
+//		// Print the Publisher19
+//		System.out.println("Publisher: " + Publisher19);
+
+		// locate TrustApp_message19
+		WebElement TrustApp_message19 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message19
+		JavascriptExecutor jse1019 = (JavascriptExecutor) driver;
+		jse1019.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message19);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message19
+		String messageText19 = TrustApp_message19.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
+
+		// expected output
+		String expectedOutput = "Default Message";
+
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 181)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER190005() throws InterruptedException {
+
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1749737848687763949");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark19
+		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark19
+		JavascriptExecutor jse119 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark19);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark19
+		Actions actions119 = new Actions(driver);
+		actions119.moveToElement(TrustApp_mark19).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status19
+		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status19
+		JavascriptExecutor jse10019 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status19);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status19
+		String widgetstatus19 = Widget_Status19.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus19, expectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m183. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+//		// locate News_Item_Publisher19
+//		WebElement News_Item_Publisher19 = driver.findElement(By.xpath(""));
+//		Thread.sleep(1000);
+//
+//		// to highlight the News_Item_Publisher19
+//		JavascriptExecutor jse102219 = (JavascriptExecutor) driver;
+//		jse102219.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher19);
+//		Thread.sleep(1000);
+//
+//		// Get the text of News_Item_Publisher19
+//		String Publisher19 = News_Item_Publisher19.getText();
+//
+//		// Print the Publisher19
+//		System.out.println("Publisher: " + Publisher19);
+
+		// locate TrustApp_message19
+		WebElement TrustApp_message19 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message19
+		JavascriptExecutor jse1019 = (JavascriptExecutor) driver;
+		jse1019.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message19);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message19
+		String messageText19 = TrustApp_message19.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
+
+		// expected output
+		String expectedOutput = "Default Message";
+
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED");
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 182)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER_Negative190006() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1749738956889932261");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark19
+		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark19
+		JavascriptExecutor jse119 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark19);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark19
+		Actions actions119 = new Actions(driver);
+		actions119.moveToElement(TrustApp_mark19).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status19
+		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status19
+		JavascriptExecutor jse10019 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status19);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status19
+		String widgetstatus19 = Widget_Status19.getText();
+
+		// Define the expected status text
+		String unexpectedStatus = "Conclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m184. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+//		// locate News_Item_Publisher19
+//		WebElement News_Item_Publisher19 = driver.findElement(By.xpath(""));
+//		Thread.sleep(1000);
+//
+//		// to highlight the News_Item_Publisher19
+//		JavascriptExecutor jse102219 = (JavascriptExecutor) driver;
+//		jse102219.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher19);
+//		Thread.sleep(1000);
+//
+//		// Get the text of News_Item_Publisher19
+//		String Publisher19 = News_Item_Publisher19.getText();
+//
+//		// Print the Publisher19
+//		System.out.println("Publisher: " + Publisher19);
+
+		// locate TrustApp_message19
+		WebElement TrustApp_message19 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message19
+		JavascriptExecutor jse1019 = (JavascriptExecutor) driver;
+		jse1019.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message19);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message19
+		String messageText19 = TrustApp_message19.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
+
+		// expected output
+		String expectedOutput = "Default Message";
+
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 183)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER_Negative190007() throws InterruptedException {
+		driver.get("https://twitter.com/TrustApp_Tsting/status/1749739541378777460");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark19
+		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark19
+		JavascriptExecutor jse119 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark19);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark19
+		Actions actions119 = new Actions(driver);
+		actions119.moveToElement(TrustApp_mark19).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status19
+		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status19
+		JavascriptExecutor jse10019 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status19);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status19
+		String widgetstatus19 = Widget_Status19.getText();
+
+		// Define the expected status text
+				String unexpectedStatus = "Conclusive";
+
+				// Compare the actual status text with the expected status
+				Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m185. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+//		// locate News_Item_Publisher19
+//		WebElement News_Item_Publisher19 = driver.findElement(By.xpath(""));
+//		Thread.sleep(1000);
+//
+//		// to highlight the News_Item_Publisher19
+//		JavascriptExecutor jse102219 = (JavascriptExecutor) driver;
+//		jse102219.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher19);
+//		Thread.sleep(1000);
+//
+//		// Get the text of News_Item_Publisher19
+//		String Publisher19 = News_Item_Publisher19.getText();
+//
+//		// Print the Publisher19
+//		System.out.println("Publisher: " + Publisher19);
+
+		// locate TrustApp_message19
+		WebElement TrustApp_message19 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message19
+		JavascriptExecutor jse1019 = (JavascriptExecutor) driver;
+		jse1019.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message19);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message19
+		String messageText19 = TrustApp_message19.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
+
+		// expected output
+		String expectedOutput = "Default Message";
+
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 184)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER_Negative190008() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1755119127277052060");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark19
+		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark19
+		JavascriptExecutor jse119 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark19);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark19
+		Actions actions119 = new Actions(driver);
+		actions119.moveToElement(TrustApp_mark19).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status19
+		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status19
+		JavascriptExecutor jse10019 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status19);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status19
+		String widgetstatus19 = Widget_Status19.getText();
+
+		// Define the expected status text
+				String unexpectedStatus = "Conclusive";
+
+				// Compare the actual status text with the expected status
+				Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m186. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+//		// locate News_Item_Publisher19
+//		WebElement News_Item_Publisher19 = driver.findElement(By.xpath(""));
+//		Thread.sleep(1000);
+//
+//		// to highlight the News_Item_Publisher19
+//		JavascriptExecutor jse102219 = (JavascriptExecutor) driver;
+//		jse102219.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher19);
+//		Thread.sleep(1000);
+//
+//		// Get the text of News_Item_Publisher19
+//		String Publisher19 = News_Item_Publisher19.getText();
+//
+//		// Print the Publisher19
+//		System.out.println("Publisher: " + Publisher19);
+
+		// locate TrustApp_message19
+		WebElement TrustApp_message19 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message19
+		JavascriptExecutor jse1019 = (JavascriptExecutor) driver;
+		jse1019.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message19);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message19
+		String messageText19 = TrustApp_message19.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
+
+		// expected output
+		String expectedOutput = "Default Message";
+
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	
+	}
+	
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 185)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER_Negative190009() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1755123107751133458");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark19
+		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark19
+		JavascriptExecutor jse119 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark19);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark19
+		Actions actions119 = new Actions(driver);
+		actions119.moveToElement(TrustApp_mark19).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status19
+		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status19
+		JavascriptExecutor jse10019 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status19);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status19
+		String widgetstatus19 = Widget_Status19.getText();
+
+		// Define the expected status text
+				String unexpectedStatus = "Conclusive";
+
+				// Compare the actual status text with the expected status
+				Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m187. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+//		// locate News_Item_Publisher19
+//		WebElement News_Item_Publisher19 = driver.findElement(By.xpath(""));
+//		Thread.sleep(1000);
+//
+//		// to highlight the News_Item_Publisher19
+//		JavascriptExecutor jse102219 = (JavascriptExecutor) driver;
+//		jse102219.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher19);
+//		Thread.sleep(1000);
+//
+//		// Get the text of News_Item_Publisher19
+//		String Publisher19 = News_Item_Publisher19.getText();
+//
+//		// Print the Publisher19
+//		System.out.println("Publisher: " + Publisher19);
+
+		// locate TrustApp_message19
+		WebElement TrustApp_message19 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message19
+		JavascriptExecutor jse1019 = (JavascriptExecutor) driver;
+		jse1019.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message19);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message19
+		String messageText19 = TrustApp_message19.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
+
+		// expected output
+		String expectedOutput = "Default Message";
+
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+	
+
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 186)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER_Negative190010() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1755205416219189405");
+		Thread.sleep(10000);
+
+		// locate TrustApp_mark19
+		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark19
+		JavascriptExecutor jse119 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark19);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark19
+		Actions actions119 = new Actions(driver);
+		actions119.moveToElement(TrustApp_mark19).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status19
+		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status19
+		JavascriptExecutor jse10019 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status19);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status19
+		String widgetstatus19 = Widget_Status19.getText();
+
+		// Define the expected status text
+				String unexpectedStatus = "Conclusive";
+
+				// Compare the actual status text with the expected status
+				Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m188. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+//		// locate News_Item_Publisher19
+//		WebElement News_Item_Publisher19 = driver.findElement(By.xpath(""));
+//		Thread.sleep(1000);
+//
+//		// to highlight the News_Item_Publisher19
+//		JavascriptExecutor jse102219 = (JavascriptExecutor) driver;
+//		jse102219.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher19);
+//		Thread.sleep(1000);
+//
+//		// Get the text of News_Item_Publisher19
+//		String Publisher19 = News_Item_Publisher19.getText();
+//
+//		// Print the Publisher19
+//		System.out.println("Publisher: " + Publisher19);
+
+		// locate TrustApp_message19
+		WebElement TrustApp_message19 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message19
+		JavascriptExecutor jse1019 = (JavascriptExecutor) driver;
+		jse1019.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message19);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message19
+		String messageText19 = TrustApp_message19.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
+
+		// expected output
+		String expectedOutput = "Default Message";
+
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+	// ---------------------------------------------------------------------
+	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
+	@Test(priority = 187)
+	public void KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER_Negative190011() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760557375079977445");
+		Thread.sleep(10000);
+
+		// locate TrustApp_mark19
+		WebElement TrustApp_mark19 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark19
+		JavascriptExecutor jse119 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark19);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark19
+		Actions actions119 = new Actions(driver);
+		actions119.moveToElement(TrustApp_mark19).perform();
+		Thread.sleep(3000);
+
+		// locate Widget_Status19
+		WebElement Widget_Status19 = driver.findElement(By.xpath("//div[@class='tag']"));
+		Thread.sleep(2000);
+
+		// to highlight the Widget_Status19
+		JavascriptExecutor jse10019 = (JavascriptExecutor) driver;
+		jse119.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status19);
+		Thread.sleep(1000);
+
+		// Get the text of Widget_Status19
+		String widgetstatus19 = Widget_Status19.getText();
+
+		// Define the expected status text
+				String unexpectedStatus = "Conclusive";
+
+				// Compare the actual status text with the expected status
+				Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+
+		// Print the status with only the word "STATUS" in bold and the widget status in
+		// grey
+		System.out.print("\033[1m189. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus19 + "\033[0m"); // \033[90m sets color to grey
+		System.out.println();
+		Thread.sleep(1000);
+
+//		// locate News_Item_Publisher19
+//		WebElement News_Item_Publisher19 = driver.findElement(By.xpath(""));
+//		Thread.sleep(1000);
+//
+//		// to highlight the News_Item_Publisher19
+//		JavascriptExecutor jse102219 = (JavascriptExecutor) driver;
+//		jse102219.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+//				News_Item_Publisher19);
+//		Thread.sleep(1000);
+//
+//		// Get the text of News_Item_Publisher19
+//		String Publisher19 = News_Item_Publisher19.getText();
+//
+//		// Print the Publisher19
+//		System.out.println("Publisher: " + Publisher19);
+
+		// locate TrustApp_message19
+		WebElement TrustApp_message19 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message19
+		JavascriptExecutor jse1019 = (JavascriptExecutor) driver;
+		jse1019.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message19);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message19
+		String messageText19 = TrustApp_message19.getText();
+
+		// Print the text
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER: " + messageText19);
+
+		// expected output
+		String expectedOutput = "Default Message";
+
+		// Compare the actual text with the expected output
+		if (messageText19.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
+		} else {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
+			
+		}
+	}
+	
+
+	// ---------------------------------------------------------------------
+	@Test(priority = 188)
+	public void KNOWN_PUBLISHER_DOMAIN_DIFFERENT_MENTIONED_PUBLISHER200001() throws InterruptedException {
+		driver.get("https://twitter.com/TrustAppTesting/status/1760204142537056559");
+		Thread.sleep(7000);
+
+		// locate TrustApp_mark54
+		WebElement TrustApp_mark54 = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_mark54
+		JavascriptExecutor jse154 = (JavascriptExecutor) driver;
+		jse154.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_mark54);
+		Thread.sleep(1000);
+
+		// Perform a hover action on TrustApp_mark54
+		Actions actions1154 = new Actions(driver);
+		actions1154.moveToElement(TrustApp_mark54).perform();
 		Thread.sleep(5300);
 
-		// locate Widget_Status53
-		WebElement Widget_Status53 = driver.findElement(By.xpath("//div[@class='tag danger']"));
+		// locate Widget_Status54
+		WebElement Widget_Status54 = driver.findElement(By.xpath("//div[@class='tag']"));
 		Thread.sleep(5300);
 
-		// to highlight the Widget_Status53
-		JavascriptExecutor jse10053 = (JavascriptExecutor) driver;
-		jse10053.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				Widget_Status53);
+		// to highlight the Widget_Status54
+		JavascriptExecutor jse10054 = (JavascriptExecutor) driver;
+		jse10054.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				Widget_Status54);
 		Thread.sleep(1000);
 
 		// Get the text of Widget_Status53
-		String widgetstatus53 = Widget_Status53.getText();
+		String widgetstatus54 = Widget_Status54.getText();
+
+		// Define the expected status text
+		String expectedStatus = "Inconclusive";
+
+		// Compare the actual status text with the expected status
+		Assert.assertEquals(widgetstatus54, expectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// green
-		System.out.print("\033[1m53. STATUS\033[0m: ");
-		System.out.print("\033[32m" + widgetstatus53 + "\033[0m"); // \042[42m sets color to green
+		System.out.print("\033[1m190. STATUS\033[0m: ");
+		System.out.print("\033[90m" + widgetstatus54 + "\033[0m"); // \042[42m sets color to green
 		System.out.println();
 
-		// locate TrustApp_message53
-		WebElement TrustApp_message53 = driver.findElement(By.xpath("//div[contains(text(),'Default Message')]"));
+		// locate News_Item_Publisher54
+		WebElement News_Item_Publisher54 = driver.findElement(By.xpath("//a[normalize-space()='CNN']"));
 		Thread.sleep(1000);
 
-		// to highlight the TrustApp_message53
-		JavascriptExecutor jse1153 = (JavascriptExecutor) driver;
-		jse1153.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
-				TrustApp_message53);
+		// to highlight the News_Item_Publisher54
+		JavascriptExecutor jse105254 = (JavascriptExecutor) driver;
+		jse105254.executeScript("arguments[0].setAttribute('style','background: yellow; border: 4px solid red;')",
+				News_Item_Publisher54);
 		Thread.sleep(1000);
 
-		// Get the text of TrustApp_message53
-		String messageText53 = TrustApp_message53.getText();
+		// Get the text of News_Item_Publisher54
+		String Publisher54 = News_Item_Publisher54.getText();
+
+		// Print the Publisher52
+		System.out.println("Publisher: " + Publisher54);
+
+		// locate TrustApp_message54
+		WebElement TrustApp_message54 = driver
+				.findElement(By.xpath("//div[contains(text(),'This post mentions BBC, one of your trusted source')]"));
+		Thread.sleep(1000);
+
+		// to highlight the TrustApp_message54
+		JavascriptExecutor jse1154 = (JavascriptExecutor) driver;
+		jse1154.executeScript("arguments[0].setAttribute('style','background: pink; border: 4px solid red;')",
+				TrustApp_message54);
+		Thread.sleep(1000);
+
+		// Get the text of TrustApp_message54
+		String messageText54 = TrustApp_message54.getText();
 
 		// Print the text
-		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER: " + messageText53);
+		System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_MENTIONED_PUBLISHER: " + messageText54);
 
-		// is DISPLAYED or not
-		boolean res3 = TrustApp_message53.isDisplayed();
+		// expected output
+		String expectedOutput = "This post mentions BBC, one of your trusted sources. We could not verify the referenced link which originated from CNN.";
 
-		if (res3 == true) {
-			System.out.println("TrustApp_message53 is DISPLAYED");
+		// Compare the actual text with the expected output
+		if (messageText54.equals(expectedOutput)) {
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_MENTIONED_PUBLISHER test case PASSED");
 		} else {
-			System.out.println("TrustApp_message53 is not DISPLAYED");
+			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_MENTIONED_PUBLISHER test case FAILED");
+			Assert.fail("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_MENTIONED_PUBLISHER test case FAILED");
 		}
 	}
-
-	// ---------------------------------------------------------------------
-//	@Test(priority = 53)
-//	public void KNOWN_MATCHED_PUBLISHER_DOMAIN() throws InterruptedException {
-//		
-//	
-//		// is DISPLAYED or not
-//		boolean res3 = TrustApp_message54.isDisplayed();
-//
-//		if (res3 == true) {
-//			System.out.println("TrustApp_message54 is DISPLAYED");
-//		} else {
-//			System.out.println("TrustApp_message54 is not DISPLAYED");
-//		}
-//	}
-//	
 
 }

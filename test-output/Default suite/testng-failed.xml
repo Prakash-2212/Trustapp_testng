@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="Testng_UI">
+        <methods>
+          <include name="UNVERIFIED_ATTACHMENT_ORIGIN140002"/>
+          <include name="KNOWN_NEWS_ITEM_NO_CONNECTION130005"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT5004"/>
+          <include name="maximizeWindow"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT5005"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT5002"/>
+          <include name="KNOWN_MATCHED_PUBLISHER_DOMAIN170001"/>
+          <include name="KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER_Negative110007"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT5001"/>
+          <include name="KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER120005"/>
+          <include name="PUBLISHER_MATCH10004"/>
+          <include name="setUp"/>
+          <include name="SEMANTIC_HEADLINE_CONTRADICTION90005"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT5003"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5011"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5010"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5009"/>
+          <include name="KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER_Negative110006"/>
+          <include name="KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative120007"/>
+          <include name="tearDown"/>
+          <include name="SEMANTIC_HEADLINE_CONTRADICTION_Negative90009"/>
+          <include name="KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER180002"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5006"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5008"/>
+          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5007"/>
+          <include name="KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER190005"/>
+        </methods>
+      </class> <!-- Testng_UI -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
