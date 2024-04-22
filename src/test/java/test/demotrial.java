@@ -11,10 +11,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
+<<<<<<< HEAD
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.io.File;
 
+=======
+>>>>>>> 98ace70849b9880cc66977ec57c28651ac678225
 
 
 public class demotrial {
@@ -24,6 +27,7 @@ public class demotrial {
 	  public static void main(String[] args) throws InterruptedException {
 	        // Set the path to the ChromeDriver executable.
 	    	
+<<<<<<< HEAD
 		  System.setProperty("webdriver.chrome.driver", "C:\\Users\\praka\\Downloads\\chromedriver-win64\\chromedriver.exe");
 
 	    	WebDriverManager.chromedriver().setup();
@@ -31,6 +35,17 @@ public class demotrial {
 	    	options.addExtensions(new File("./Extensions1/TrustApp 1.1.14.0.crx"));
 	    	WebDriver driver = new ChromeDriver(options);
 
+=======
+	    	System.setProperty("webdriver.chrome.driver",
+					"C:\\Users\\praka\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
+
+	        // Create an instance of ChromeOptions.
+	        ChromeOptions options = new ChromeOptions();
+	        options.addExtensions(new File("./Extensions/TrustApp 1.1.12.0.crx"));
+
+	        // Create an instance of ChromeDriver with the options.
+	        WebDriver driver = new ChromeDriver(options);
+>>>>>>> 98ace70849b9880cc66977ec57c28651ac678225
 
 	        // Navigate to a website (replace with the desired URL).
 	        driver.get("https://twitter.com/home");
@@ -51,7 +66,11 @@ public class demotrial {
 
 	        Username.click();
 	        Username.clear();
+<<<<<<< HEAD
 	        Username.sendKeys("TrustAppTesting");
+=======
+	        Username.sendKeys("TrustApp_Tsting");
+>>>>>>> 98ace70849b9880cc66977ec57c28651ac678225
 	        Thread.sleep(3000);
 
 	        // locate Next
@@ -143,7 +162,11 @@ public class demotrial {
 	        Thread.sleep(3000);
 
 	        // locate TrustApp_mark
+<<<<<<< HEAD
 	        WebElement TrustApp_mark = driver.findElement(By.xpath("(//img[@alt='TrustApp mark'])[1]"));
+=======
+	        WebElement TrustApp_mark = driver.findElement(By.xpath("//div//img[@alt='TrustApp mark']"));
+>>>>>>> 98ace70849b9880cc66977ec57c28651ac678225
 
 	        // to highlight the TrustApp_mark
 	        JavascriptExecutor jse7 = (JavascriptExecutor) driver;
@@ -310,7 +333,11 @@ public class demotrial {
 	        Post_text.click();
 	        Post_text.clear();
 	        
+<<<<<<< HEAD
 	        Post_text.sendKeys("  https://www.economist.com/interactive/international/2023/08/03/western-values-are-steadily-diverging-from-the-rest-of-the-world");
+=======
+	        Post_text.sendKeys("https://www.economist.com/interactive/international/2023/08/03/western-values-are-steadily-diverging-from-the-rest-of-the-world");
+>>>>>>> 98ace70849b9880cc66977ec57c28651ac678225
 	        
 	        Thread.sleep(4000);
 	        
@@ -441,7 +468,11 @@ public class demotrial {
 	         
 	         
 		        // locate Status
+<<<<<<< HEAD
 		        WebElement Status = driver.findElement(By.xpath("//img[@alt='TrustApp mark']"));
+=======
+		        WebElement Status = driver.findElement(By.xpath("$(\"div[id='id__3q495uh7v56'] img[alt='TrustApp mark']\")"));
+>>>>>>> 98ace70849b9880cc66977ec57c28651ac678225
 		        
 //		      //div[@id='id__5zzp422edck']//img[@alt='TrustApp mark']
 //		      //div[@id='id__3fcwomipzfh']//img[@alt='TrustApp mark']
@@ -698,6 +729,7 @@ public class demotrial {
 	    }
 	
 }
+<<<<<<< HEAD
 
 
 
@@ -710,3 +742,5 @@ public class demotrial {
 
 
 
+=======
+>>>>>>> 98ace70849b9880cc66977ec57c28651ac678225

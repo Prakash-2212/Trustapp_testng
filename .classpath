@@ -37,6 +37,7 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="src" path="/Digitali_New_UI_All_pages"/>
 	<classpathentry kind="lib" path="C:/Users/praka/Downloads/selenium-server-4.16.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/praka/Downloads/selenium-java-4.16.0.zip"/>
@@ -135,5 +136,7 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
+=======
+>>>>>>> 98ace70849b9880cc66977ec57c28651ac678225
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
