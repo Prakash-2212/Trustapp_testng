@@ -3,36 +3,59 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Testng_UI">
+      <class name="username_match">
         <methods>
-          <include name="UNVERIFIED_ATTACHMENT_ORIGIN140002"/>
-          <include name="KNOWN_NEWS_ITEM_NO_CONNECTION130005"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT5004"/>
-          <include name="maximizeWindow"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT5005"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT5002"/>
-          <include name="KNOWN_MATCHED_PUBLISHER_DOMAIN170001"/>
-          <include name="KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER_Negative110007"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT5001"/>
-          <include name="KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER120005"/>
-          <include name="PUBLISHER_MATCH10004"/>
-          <include name="setUp"/>
-          <include name="SEMANTIC_HEADLINE_CONTRADICTION90005"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT5003"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5011"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5010"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5009"/>
-          <include name="KNOWN_NEWS_ITEM_WRONG_REFERENCED_PUBLISHER_Negative110006"/>
-          <include name="KNOWN_NEWS_ITEM_KNOWN_MENTIONED_PUBLISHER_Negative120007"/>
+          <include name="testCase40005"/>
+          <include name="testCase40003"/>
+          <include name="testCase40004"/>
+          <include name="TheEconomist10001"/>
+          <include name="testCase40002"/>
+          <include name="testCase13005"/>
+          <include name="testCase13004"/>
           <include name="tearDown"/>
-          <include name="SEMANTIC_HEADLINE_CONTRADICTION_Negative90009"/>
-          <include name="KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER180002"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5006"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5008"/>
-          <include name="CANNOT_VERIFY_VIDEO_ATTACHMENT_Negative5007"/>
-          <include name="KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER190005"/>
+          <include name="testCase50001"/>
+          <include name="testCase50002"/>
+          <include name="testCase13003"/>
+          <include name="testCase50003"/>
+          <include name="testCase13002"/>
+          <include name="testCase50004"/>
+          <include name="testCase13001"/>
+          <include name="testCase50005"/>
+          <include name="testCase40001"/>
+          <include name="testCase20003"/>
+          <include name="testCase10005"/>
+          <include name="testCase10001"/>
+          <include name="testCase10003"/>
+          <include name="testCase10002"/>
+          <include name="testCase10004"/>
+          <include name="maximizeWindow"/>
+          <include name="testCase20005"/>
+          <include name="testCase20004"/>
+          <include name="testCase20001"/>
+          <include name="testCase20002"/>
+          <include name="testCase80003"/>
+          <include name="testCase80004"/>
+          <include name="testCase80002"/>
+          <include name="testCase80001"/>
+          <include name="testCase11002"/>
+          <include name="testCase11003"/>
+          <include name="testCase80005"/>
+          <include name="testCase11004"/>
+          <include name="testCase11005"/>
+          <include name="testCase11001"/>
+          <include name="testCase60001"/>
+          <include name="testCase60002"/>
+          <include name="setUp"/>
+          <include name="testCase60003"/>
+          <include name="testCase60005"/>
+          <include name="testCase60004"/>
+          <include name="testCase70003"/>
+          <include name="testCase70004"/>
+          <include name="testCase70005"/>
+          <include name="testCase70002"/>
+          <include name="testCase70001"/>
         </methods>
-      </class> <!-- Testng_UI -->
+      </class> <!-- username_match -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

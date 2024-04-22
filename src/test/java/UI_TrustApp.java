@@ -20,7 +20,7 @@ public class UI_TrustApp {
 		WebDriverManager.chromedriver().setup();
 
 		// Example usage:
-		List<String> extensionPaths = List.of("./Extension/TrustApp 1.1.16.0.crx");
+		List<String> extensionPaths = List.of("./Extension/TrustApp 1.2.3.0.crx");
 		WebDriver driver = createChromeDriverWithExtensions(extensionPaths);
 
 		// Navigate to a website).

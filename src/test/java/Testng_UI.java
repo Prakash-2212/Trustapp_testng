@@ -64,6 +64,8 @@ public class Testng_UI {
 		}
 	}
 
+	// added total 190 test cases
+
 	// ---------------------------------------------------------------------
 	// Verified_Tweet
 	@Test(priority = 0)
@@ -6623,7 +6625,7 @@ public class Testng_UI {
 		}
 	}
 
-//		//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
 	// SEMANTIC_HEADLINE_CONTRADICTION
 	@Test(priority = 73)
 	public void SEMANTIC_HEADLINE_CONTRADICTION_Negative90007() throws InterruptedException {
@@ -6713,7 +6715,7 @@ public class Testng_UI {
 
 		}
 	}
-//				//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
 
 	// SEMANTIC_HEADLINE_CONTRADICTION
 	@Test(priority = 74)
@@ -6805,7 +6807,7 @@ public class Testng_UI {
 		}
 	}
 
-//				//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
 	// SEMANTIC_HEADLINE_CONTRADICTION
 	@Test(priority = 75)
 	public void SEMANTIC_HEADLINE_CONTRADICTION_Negative90009() throws InterruptedException {
@@ -6896,7 +6898,7 @@ public class Testng_UI {
 		}
 	}
 
-//				//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
 	// SEMANTIC_HEADLINE_CONTRADICTION
 	@Test(priority = 76)
 	public void SEMANTIC_HEADLINE_CONTRADICTION_Negative90010() throws InterruptedException {
@@ -8602,10 +8604,10 @@ public class Testng_UI {
 		String widgetstatus6 = Widget_Status6.getText();
 
 		// Define the expected status text
-		String expectedStatus = "Trustedl";
+		String unexpectedStatus = "Trusted";
 
 		// Compare the actual status text with the expected status
-		Assert.assertEquals(widgetstatus6, expectedStatus, "Status does not match expected");
+		Assert.assertEquals(widgetstatus6, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
@@ -8695,10 +8697,10 @@ public class Testng_UI {
 		String widgetstatus7 = Widget_Status7.getText();
 
 		// Define the expected status text
-		String expectedStatus = "Suspicious";
+		String unexpectedStatus = "Trusted";
 
 		// Compare the actual status text with the expected status
-		Assert.assertEquals(widgetstatus7, expectedStatus, "Status does not match expected");
+		Assert.assertEquals(widgetstatus7, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
@@ -8788,10 +8790,10 @@ public class Testng_UI {
 		String widgetstatus8 = Widget_Status8.getText();
 
 		// Define the expected status text
-		String expectedStatus = "Suspicious";
+		String unexpectedStatus = "Trusted";
 
 		// Compare the actual status text with the expected status
-		Assert.assertEquals(widgetstatus8, expectedStatus, "Status does not match expected");
+		Assert.assertEquals(widgetstatus8, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
@@ -8881,10 +8883,10 @@ public class Testng_UI {
 		String widgetstatus9 = Widget_Status9.getText();
 
 		// Define the expected status text
-		String expectedStatus = "Suspicious";
+		String unexpectedStatus = "Trusted";
 
 		// Compare the actual status text with the expected status
-		Assert.assertEquals(widgetstatus9, expectedStatus, "Status does not match expected");
+		Assert.assertEquals(widgetstatus9, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
@@ -8974,10 +8976,10 @@ public class Testng_UI {
 		String widgetstatus10 = Widget_Status10.getText();
 
 		// Define the expected status text
-		String expectedStatus = "Suspicious";
+		String unexpectedStatus = "Trusted";
 
 		// Compare the actual status text with the expected status
-		Assert.assertEquals(widgetstatus10, expectedStatus, "Status does not match expected");
+		Assert.assertEquals(widgetstatus10, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
@@ -9067,11 +9069,10 @@ public class Testng_UI {
 		String widgetstatus11 = Widget_Status11.getText();
 
 		// Define the expected status text
-		String expectedStatus = "Suspicious";
+		String unexpectedStatus = "Trusted";
 
 		// Compare the actual status text with the expected status
-		Assert.assertEquals(widgetstatus11, expectedStatus, "Status does not match expected");
-
+		Assert.assertEquals(widgetstatus11, unexpectedStatus, "Status does not match expected");
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
 		System.out.print("\033[1m101. STATUS\033[0m: ");
@@ -11284,7 +11285,7 @@ public class Testng_UI {
 			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case PASSED");
 		} else {
 			System.out.println("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
-         Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
+			Assert.fail("UNVERIFIED_ATTACHMENT_ORIGIN test case FAILED");
 		}
 	}
 
@@ -14357,7 +14358,7 @@ public class Testng_UI {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -14449,7 +14450,7 @@ public class Testng_UI {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -14541,7 +14542,7 @@ public class Testng_UI {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -14633,7 +14634,7 @@ public class Testng_UI {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -14725,7 +14726,7 @@ public class Testng_UI {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -14817,7 +14818,7 @@ public class Testng_UI {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_MATCHED_PUBLISHER_DOMAIN test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -15371,10 +15372,11 @@ public class Testng_UI {
 
 		// Compare the actual text with the expected output
 		if (messageText18.equals(expectedOutput)) {
-			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+			System.out.println(
+					"KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -15414,10 +15416,10 @@ public class Testng_UI {
 		String widgetstatus18 = Widget_Status18.getText();
 
 		// Define the expected status text
-				String unexpectedStatus = "Trusted";
+		String unexpectedStatus = "Trusted";
 
-				// Compare the actual status text with the expected status
-				Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
@@ -15463,10 +15465,11 @@ public class Testng_UI {
 
 		// Compare the actual text with the expected output
 		if (messageText18.equals(expectedOutput)) {
-			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+			System.out.println(
+					"KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -15506,10 +15509,10 @@ public class Testng_UI {
 		String widgetstatus18 = Widget_Status18.getText();
 
 		// Define the expected status text
-				String unexpectedStatus = "Trusted";
+		String unexpectedStatus = "Trusted";
 
-				// Compare the actual status text with the expected status
-				Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
@@ -15555,10 +15558,11 @@ public class Testng_UI {
 
 		// Compare the actual text with the expected output
 		if (messageText18.equals(expectedOutput)) {
-			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+			System.out.println(
+					"KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -15598,10 +15602,10 @@ public class Testng_UI {
 		String widgetstatus18 = Widget_Status18.getText();
 
 		// Define the expected status text
-				String unexpectedStatus = "Trusted";
+		String unexpectedStatus = "Trusted";
 
-				// Compare the actual status text with the expected status
-				Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
@@ -15647,10 +15651,11 @@ public class Testng_UI {
 
 		// Compare the actual text with the expected output
 		if (messageText18.equals(expectedOutput)) {
-			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+			System.out.println(
+					"KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -15690,10 +15695,10 @@ public class Testng_UI {
 		String widgetstatus18 = Widget_Status18.getText();
 
 		// Define the expected status text
-				String unexpectedStatus = "Trusted";
+		String unexpectedStatus = "Trusted";
 
-				// Compare the actual status text with the expected status
-				Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
@@ -15739,10 +15744,11 @@ public class Testng_UI {
 
 		// Compare the actual text with the expected output
 		if (messageText18.equals(expectedOutput)) {
-			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+			System.out.println(
+					"KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -15782,10 +15788,10 @@ public class Testng_UI {
 		String widgetstatus18 = Widget_Status18.getText();
 
 		// Define the expected status text
-				String unexpectedStatus = "Trusted";
+		String unexpectedStatus = "Trusted";
 
-				// Compare the actual status text with the expected status
-				Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus18, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// red
@@ -15831,10 +15837,11 @@ public class Testng_UI {
 
 		// Compare the actual text with the expected output
 		if (messageText18.equals(expectedOutput)) {
-			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
+			System.out.println(
+					"KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_DIFFERENT_REFERENCED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -16387,7 +16394,7 @@ public class Testng_UI {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -16427,10 +16434,10 @@ public class Testng_UI {
 		String widgetstatus19 = Widget_Status19.getText();
 
 		// Define the expected status text
-				String unexpectedStatus = "Conclusive";
+		String unexpectedStatus = "Conclusive";
 
-				// Compare the actual status text with the expected status
-				Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
@@ -16479,7 +16486,7 @@ public class Testng_UI {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
 
@@ -16519,10 +16526,10 @@ public class Testng_UI {
 		String widgetstatus19 = Widget_Status19.getText();
 
 		// Define the expected status text
-				String unexpectedStatus = "Conclusive";
+		String unexpectedStatus = "Conclusive";
 
-				// Compare the actual status text with the expected status
-				Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
@@ -16571,11 +16578,10 @@ public class Testng_UI {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
-	
+
 	}
-	
 
 	// ---------------------------------------------------------------------
 	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
@@ -16613,10 +16619,10 @@ public class Testng_UI {
 		String widgetstatus19 = Widget_Status19.getText();
 
 		// Define the expected status text
-				String unexpectedStatus = "Conclusive";
+		String unexpectedStatus = "Conclusive";
 
-				// Compare the actual status text with the expected status
-				Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
@@ -16665,10 +16671,9 @@ public class Testng_UI {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
-	
 
 	// ---------------------------------------------------------------------
 	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
@@ -16706,10 +16711,10 @@ public class Testng_UI {
 		String widgetstatus19 = Widget_Status19.getText();
 
 		// Define the expected status text
-				String unexpectedStatus = "Conclusive";
+		String unexpectedStatus = "Conclusive";
 
-				// Compare the actual status text with the expected status
-				Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
@@ -16758,9 +16763,10 @@ public class Testng_UI {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
+
 	// ---------------------------------------------------------------------
 	// KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER
 	@Test(priority = 187)
@@ -16797,10 +16803,10 @@ public class Testng_UI {
 		String widgetstatus19 = Widget_Status19.getText();
 
 		// Define the expected status text
-				String unexpectedStatus = "Conclusive";
+		String unexpectedStatus = "Conclusive";
 
-				// Compare the actual status text with the expected status
-				Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
+		// Compare the actual status text with the expected status
+		Assert.assertNotEquals(widgetstatus19, unexpectedStatus, "Status does not match expected");
 
 		// Print the status with only the word "STATUS" in bold and the widget status in
 		// grey
@@ -16849,10 +16855,9 @@ public class Testng_UI {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case FAILED(Unexpected outcome)");
 		} else {
 			System.out.println("KNOWN_PUBLISHER_DOMAIN_WITH_MENTIONED_PUBLISHER test case PASSED (As expected)");
-			
+
 		}
 	}
-	
 
 	// ---------------------------------------------------------------------
 	@Test(priority = 188)
